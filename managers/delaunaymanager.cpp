@@ -13,6 +13,8 @@
 #include <cg3/data_structures/arrays/arrays.h>
 #include <cg3/utilities/timer.h>
 
+#include "data_structures/triangulation.h"
+#include "algorithms/delaunay.h"
 
 //Limits for the bounding box
 //It defines where points can be added
@@ -247,7 +249,7 @@ void DelaunayManager::setVisibilityBoundingTriangle(const bool visible)
  * @brief Check if the current triangulation is a Delaunay Triangulation
  */
 void DelaunayManager::checkTriangulation() {
-	std::vector<cg3::Point2Dd> points;
+    std::vector<cg3::Point2Dd> points;
     cg3::Array2D<unsigned int> triangles;
 
     //Get your triangulation here and save the data in the vector of
@@ -265,7 +267,7 @@ void DelaunayManager::checkTriangulation() {
     //assignment operator: "triangles(i,j) = a"; 
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    DelaunayTriangulation::Checker::fillDataStructures(triangulation, points, triangles);
 
     /********************************************************************************************************************/
 
