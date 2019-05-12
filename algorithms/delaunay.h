@@ -16,7 +16,10 @@ const unsigned int dimension = 3;
 namespace Checker {
 
 void fillDataStructures(const Triangulation& triangulation, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles);
+
 }
+
+void legalizeEdge(const cg3::Point2Dd& point, const int& pi, const int& pj, Triangle& triangle);
 
 }
 

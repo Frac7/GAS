@@ -43,8 +43,6 @@ private:
     //Declare your private attributes here
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
-
     Triangulation triangulation;
 
     /********************************************************************************************************************/
