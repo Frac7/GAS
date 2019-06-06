@@ -49,7 +49,8 @@ SOURCES += \
     data_structures/dag.cpp \
     data_structures/triangulation.cpp \
     data_structures/triangle.cpp \
-    data_structures/node.cpp
+    data_structures/node.cpp \
+    drawables/drawabletriangle.cpp
 
 FORMS += \
     managers/delaunaymanager.ui
@@ -62,7 +63,8 @@ HEADERS += \
     data_structures/dag.h \
     data_structures/triangulation.h \
     data_structures/triangle.h \
-    data_structures/node.h
+    data_structures/node.h \
+    drawables/drawabletriangle.h
 
 
 

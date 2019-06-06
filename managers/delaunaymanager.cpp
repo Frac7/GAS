@@ -55,7 +55,7 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     ui(new Ui::DelaunayManager),
     mainWindow(static_cast<cg3::viewer::MainWindow&>(*parent)),
     boundingBox(cg3::Point2Dd(-BOUNDINGBOX, -BOUNDINGBOX),
-                cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX))    
+                cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX))
 {
     //UI setup
     ui->setupUi(this);
@@ -79,7 +79,13 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     //for member initialization.
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    //bounding triangle initialization
+    boundingTriangle.setV1(BT_P1);
+    boundingTriangle.setV2(BT_P2);
+    boundingTriangle.setV3(BT_P3);
+
+    mainWindow.pushObj(&boundingTriangle, "Bounding triangle");
+    mainWindow.setObjVisibility(&boundingTriangle, false);
 
     /********************************************************************************************************************/
 }
@@ -117,7 +123,7 @@ DelaunayManager::~DelaunayManager() {
     //Try to avoid using dynamic objects whenever it is possible.
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    mainWindow.deleteObj(&boundingTriangle);
 
     /********************************************************************************************************************/
 
@@ -170,7 +176,11 @@ void DelaunayManager::clearDelaunayTriangulation() {
     //Clear here your Delaunay Triangulation data structure.
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    //clear triangles and adjacencies
+    triangulation.clearDataStructure();
+
+    //clear the DAG
+    dag.clearDataStructure();
 
     /********************************************************************************************************************/
 }
@@ -239,7 +249,7 @@ void DelaunayManager::setVisibilityBoundingTriangle(const bool visible)
     //Set the visibility of your bounding triangle here
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    mainWindow.setObjVisibility(&boundingTriangle, visible);
 
     /********************************************************************************************************************/
     CG3_SUPPRESS_WARNING(visible);

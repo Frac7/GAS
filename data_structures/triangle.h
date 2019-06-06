@@ -6,25 +6,30 @@
 class Triangle
 {
 public:
+    Triangle();
+
     //create new triangle from three points
-    Triangle(const unsigned int& v1, const unsigned int& v2, const unsigned int& v3);
+    Triangle(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3);
 
     //getters and setters
-    unsigned int getV1() const;
-    void setV1(const unsigned int& value);
+    cg3::Point2Dd getV1() const;
+    void setV1(const cg3::Point2Dd& value);
 
-    unsigned int getV2() const;
-    void setV2(const unsigned int& value);
+    cg3::Point2Dd getV2() const;
+    void setV2(const cg3::Point2Dd& value);
 
-    unsigned int getV3() const;
-    void setV3(const unsigned int& value);
-private:
+    cg3::Point2Dd getV3() const;
+    void setV3(const cg3::Point2Dd& value);
+
+    cg3::Point2Dd getCenter() const;
+
+protected:
     //topmost point
-    unsigned int v1;
+    cg3::Point2Dd v1;
     //leftmost point
-    unsigned int v2;
+    cg3::Point2Dd v2;
     //rightmost point
-    unsigned int v3;
+    cg3::Point2Dd v3;
 };
 
 #endif // TRIANGLE_H

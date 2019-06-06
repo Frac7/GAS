@@ -1,6 +1,6 @@
 #include "node.h"
 
-Node::Node(const int& c1, const int&  c2, const int& c3, const Triangle& data)
+Node::Node(const int& c1, const int&  c2, const int& c3, const int& data)
     : c1(c1), c2(c2), c3(c3), data(data) {}
 
 void Node::addChild(const int &value)
@@ -32,12 +32,12 @@ int Node::getC3() const
     return c3;
 }
 
-Triangle Node::getData() const
+int Node::getData() const
 {
     return data;
 }
 
-void Node::setData(const Triangle &value)
+void Node::setData(const int& value)
 {
     data = value;
 }
@@ -45,4 +45,14 @@ void Node::setData(const Triangle &value)
 bool Node::isLeaf()
 {
     return c1 == noChild && c2 == noChild && c3 == noChild;
+}
+
+bool Node::isDeleted()
+{
+    return data == deleted;
+}
+
+void Node::setDeleted()
+{
+    data = deleted;
 }

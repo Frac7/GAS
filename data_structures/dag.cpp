@@ -10,3 +10,8 @@ void DAG::addNode(const Node& value, Node& p1, Node& p2)
     p1.addChild(nodeIndex);
     p2.addChild(nodeIndex);
 }
+
+void DAG::clearDataStructure()
+{
+    nodeList.clear();
+}

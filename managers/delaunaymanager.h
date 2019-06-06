@@ -7,7 +7,10 @@
 
 #include <cg3/viewer/drawable_objects/2d/drawable_bounding_box2d.h>
 
+#include <data_structures/dag.h>
 #include <data_structures/triangulation.h>
+
+#include <drawables/drawabletriangle.h>
 
 
 namespace Ui {
@@ -44,6 +47,9 @@ private:
     /********************************************************************************************************************/
 
     Triangulation triangulation;
+    DAG dag;
+
+    DrawableTriangle boundingTriangle;
 
     /********************************************************************************************************************/
 

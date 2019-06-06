@@ -5,20 +5,22 @@ namespace DelaunayTriangulation {
 
 namespace Checker {
 
-void fillDataStructures(const Triangulation& triangulation, cg3::Array2D<unsigned int>& triangles)
+void fillDataStructures(const Triangulation& triangulation, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
 {
     std::vector<Triangle> triangleVector = triangulation.getTriangles();
     unsigned int vectorSize = triangleVector.size();
 
     triangles.resize(vectorSize, dimension);
 
-    for(unsigned int i = 0; i < vectorSize; i++)
+    for(unsigned int i = 0; i < vectorSize; i+=3)
     {
-        unsigned int j = 0;
+        points[i] = triangleVector[i].getV1();
+        points[i + 1] = triangleVector[i].getV2();
+        points[i + 2] = triangleVector[i].getV3();
 
-        triangles(i, j) = triangleVector[i].getV1();
-        triangles(i, j + 1) = triangleVector[i].getV2();
-        triangles(i, j + 2) = triangleVector[i].getV3();
+        triangles(i, 0) = i;
+        triangles(i, 1) = i + 1;
+        triangles(i, 2) = i + 2;
     }
 
 }
@@ -35,29 +37,24 @@ void fillDataStructures(const Triangulation& triangulation, cg3::Array2D<unsigne
     5. LegalizeEdge(p r ,p i p k ,T )
     6. LegalizeEdge(p r ,p k p j ,T )
 */
-void legalizeEdge(const cg3::Point2Dd& point, const int& pi, const int& pj, Triangle& triangle)
+void legalizeEdge(Triangulation& triangulation, const cg3::Point2Dd& point, const unsigned int& pipj, const unsigned int& triangle)
 {
+    Triangle t = triangulation.getTriangles()[triangle];
     //TODO: reuse o implement...?
     if(!DelaunayTriangulation::Checker::
-            isPointLyingInCircle(triangle.getV1(), triangle.getV2(), triangle.getV3(), point, true))
+            isPointLyingInCircle(t.getV1(), t.getV2(), t.getV3(), point, true))
     {
         /*
-         * if the edge is illegal, find the adjacent triangle to T having points pi and pj
-         * to find this triangle, check for neighbors (it can be 1 or they can be 2) in the DAG
-         * the third can be found using the reference to the parent and finding its leaf neighbor
-         *
-         * during the search, it can be necessary to check if a point is inside a triangle
-         * use the method isPointLyingInTriangle in utils2D
-         *
-         * using this approach, triangle.isInside(point) must be implemented
-         * and it is necessary to have a method to find the adjacent triangle
-         *
-         * Triangulation data structure must store adjacency
+         * if the edge is illegal, find the adjacent triangle to T adjacent in pipj
          *
          * for replacing the edge, the triangle and the adjacent along this edge
          * must be modified in the triangulation
          * and two new triangles must be added to the DAG as children of the initial two
          */
+
+        //pick the adjacent triangle
+        Triangle adjacent = triangulation.getTriangles()[triangulation.getAdjacencies(triangle)[pipj]];
+
     }
 }
 

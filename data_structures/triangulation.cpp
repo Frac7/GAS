@@ -15,38 +15,53 @@ std::vector<Triangle> Triangulation::getTriangles() const
     return triangles;
 }
 
-void Triangulation::modifyAdjacency(unsigned int& triangle,
-                     unsigned int& neighbor,
+/* I assume that here the edge in common for triangle and neighbor is already flipped */
+void Triangulation::modifyAdjacency(const unsigned int& triangle,
+                     const unsigned int& neighbor,
                      const unsigned int& triangleAdjNeighbor,
                      const unsigned int& neighborAdjTriangle)
 {
-    modifyTriangleAdjacency(triangle, neighbor, triangleAdjNeighbor);
-    modifyTriangleAdjacency(neighbor, triangle, neighborAdjTriangle);
-}
+    unsigned int unchangedAdjacencyTriangle;
+    unsigned int adjacencyToChangeTriangle;
 
-void Triangulation::modifyTriangleAdjacency(unsigned int& triangle,
-                                            unsigned int& neighbor,
-                                            const unsigned int& adjacencyIndex)
-{
-    int tmp = -1;
+    //the edge that doesn't change has as endpoint
+    //Vx | x doesn't belong to triangleAdjNeighbor, triangleAdjNeighbor + 1 % maxAdjacentTriangles
+    unchangedAdjacencyTriangle = (triangleAdjNeighbor + 1) % maxAdjacentTriangles;
 
-    //resulting edge from flipping
-    unsigned int newStartingPoint = (adjacencyIndex + 1) % maxAdjacentTriangles;
-    //preparing for swap
-    tmp = adjacency[triangle][newStartingPoint];
-    adjacency[triangle][newStartingPoint] = neighbor;
+    //3 - (0 + 1), 3 - (0 + 2), 3 - (1 + 2) the remaining adjacency
+    adjacencyToChangeTriangle = maxAdjacentTriangles - (triangleAdjNeighbor + unchangedAdjacencyTriangle);
+    //due to the flip, this edge picks the adjacency of triangleAdjNeighbor -neighbor triangle changed due to flip
+
+    //swap due to edge flip
+    std::swap(adjacency[triangle][adjacencyToChangeTriangle], adjacency[triangle][triangleAdjNeighbor]);
+
+    unsigned int unchangedAdjacencyNeighbor;
+    unsigned int adjacencyToChangeNeighbor;
 
     //the edge that doesn't change has Vx as endpoint, so the adjacency doesn't change
-    unsigned int unchangedAdjacency = (adjacencyIndex - 1) % maxAdjacentTriangles;
+    unchangedAdjacencyNeighbor = (neighborAdjTriangle + 1) % maxAdjacentTriangles;
 
     //3 - (0 + 1) = 3 - (0 + 2) = 3 - (1 + 2) the adjacency remaining
-    unsigned int adjacencyToChange = maxAdjacentTriangles - (newStartingPoint + unchangedAdjacency);
-    //swap (here there was neighbor)
-    adjacency[triangle][adjacencyToChange] = tmp;
+    adjacencyToChangeNeighbor = maxAdjacentTriangles - (neighborAdjTriangle + unchangedAdjacencyNeighbor);
 
-    //recursively modify adjacency for neighbor triangle
-    //modifyTriangleAdjacency(tmp, triangle, index from 0 to 2 for tmp->triangle adjacency);
-    /*
-     * TODO: perform some checks to identify adjacency index using common points
-     */
+    //swap due to edge flip
+    std::swap(adjacency[neighbor][adjacencyToChangeNeighbor], adjacency[neighbor][neighborAdjTriangle]);
+
+    //swap adjacencies belonging to each other
+    std::swap(adjacency[triangle][adjacencyToChangeTriangle], adjacency[neighbor][adjacencyToChangeNeighbor]);
+
+    //TODO: recursively modify adjacency for adjTriangleNeighbor and adjNeighborTriangle
+    //TODO: find a condition to stop -exploit reusability
+}
+
+
+std::array<int, maxAdjacentTriangles> Triangulation::getAdjacencies(const unsigned int& triangle)
+{
+    return adjacency[triangle];
+}
+
+void Triangulation::clearDataStructure()
+{
+    triangles.clear();
+    adjacency.clear();
 }

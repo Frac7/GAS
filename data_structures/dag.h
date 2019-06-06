@@ -13,6 +13,8 @@ public:
      * while if the triangle was created by edge legalization, the number of parents will be 2
      * max 2 parents and max 3 children */
 
+    void clearDataStructure();
+
 private:
     std::vector<Node> nodeList;
 };
