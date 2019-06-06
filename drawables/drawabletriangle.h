@@ -9,8 +9,6 @@
 class DrawableTriangle : public Triangle, public cg3::DrawableObject
 {
 public:
-
-    DrawableTriangle();
     DrawableTriangle(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3);
 
     void draw() const;

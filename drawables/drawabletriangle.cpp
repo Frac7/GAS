@@ -1,7 +1,5 @@
 #include "drawabletriangle.h"
 
-DrawableTriangle::DrawableTriangle() : Triangle() {}
-
 DrawableTriangle::DrawableTriangle(const cg3::Point2Dd &v1, const cg3::Point2Dd &v2, const cg3::Point2Dd &v3) :
     Triangle(v1, v2, v3) {}
 

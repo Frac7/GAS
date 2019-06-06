@@ -6,8 +6,6 @@
 class Triangle
 {
 public:
-    Triangle();
-
     //create new triangle from three points
     Triangle(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3);
 

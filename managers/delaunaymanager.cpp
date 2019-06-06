@@ -55,7 +55,9 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     ui(new Ui::DelaunayManager),
     mainWindow(static_cast<cg3::viewer::MainWindow&>(*parent)),
     boundingBox(cg3::Point2Dd(-BOUNDINGBOX, -BOUNDINGBOX),
-                cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX))
+                cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX)),
+    boundingTriangle(BT_P1, BT_P2, BT_P3)
+  //bounding triangle initialization
 {
     //UI setup
     ui->setupUi(this);
@@ -79,13 +81,10 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     //for member initialization.
     /********************************************************************************************************************/
 
-    //bounding triangle initialization
-    boundingTriangle.setV1(BT_P1);
-    boundingTriangle.setV2(BT_P2);
-    boundingTriangle.setV3(BT_P3);
-
     mainWindow.pushObj(&boundingTriangle, "Bounding triangle");
     mainWindow.setObjVisibility(&boundingTriangle, false);
+
+    mainWindow.updateGlCanvas();
 
     /********************************************************************************************************************/
 }
@@ -250,6 +249,8 @@ void DelaunayManager::setVisibilityBoundingTriangle(const bool visible)
     /********************************************************************************************************************/
 
     mainWindow.setObjVisibility(&boundingTriangle, visible);
+
+    mainWindow.updateGlCanvas();
 
     /********************************************************************************************************************/
     CG3_SUPPRESS_WARNING(visible);
