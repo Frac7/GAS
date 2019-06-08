@@ -1,23 +1,18 @@
 #include "drawabletriangulation.h"
 
-DrawableTriangulation::DrawableTriangulation(const cg3::Pointd& center, const double& radius) :
-    Triangulation (), center(center), radius(radius) {}
-
+DrawableTriangulation::DrawableTriangulation(const Triangulation& triangulation, const cg3::Pointd& center, const double& radius) :
+    center(center), radius(radius), triangulation(triangulation) {}
 //parameters of the bounding triangle are passed because the triangulation is inside this polygon
 
-DrawableTriangulation::DrawableTriangulation(const std::vector<Triangle>& triangles,
-                                             const std::vector<std::array<int, maxAdjacentTriangles>>& adjacencies,
-                                             const cg3::Pointd &center,
-                                             const double& radius) :
-    Triangulation (triangles, adjacencies), center(center), radius(radius) {}
-
-//TODO: implement method for updating the triangulation
 void DrawableTriangulation::draw() const
 {
-    unsigned int length = triangles.size();
+    const std::vector<Triangle>& triangles = triangulation.getTriangles();
+    const unsigned int length = triangles.size();
+
     //draw each triangle of triangulation
-    for(unsigned int i = 0; i < length; i++)
+    for(unsigned int i = 1; i < length; i++)
     {
+        //ignore bounding triangle
         cg3::viewer::drawTriangle2D(triangles[i].getV1(), triangles[i].getV2(), triangles[i].getV3(), Qt::black);
     }
 }

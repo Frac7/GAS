@@ -30,17 +30,10 @@ void DAG::clearDataStructure()
     const std::vector<Node>::iterator nodeListIterator = nodeList.begin() + 1;
     nodeList.erase(nodeListIterator, nodeList.end());
 
+    //reset to node as leaf
     nodeList[0].setC1(noChild);
     nodeList[0].setC2(noChild);
     nodeList[0].setC3(noChild);
-}
-
-int DAG::findNodeContainingPoint(const cg3::Point2Dd &point, const std::vector<Triangle> &triangles)
-{
-    unsigned int length = nodeList.size();
-    unsigned int i = 0;
-
-    return searchInNode(i, length, point, triangles);
 }
 
 std::vector<Node> DAG::getNodeList() const
@@ -48,7 +41,7 @@ std::vector<Node> DAG::getNodeList() const
     return nodeList;
 }
 
-int DAG::searchInNode(const unsigned int& i, const unsigned int& length, const cg3::Point2Dd point, const std::vector<Triangle>& triangles)
+int DAG::searchInNodes(const unsigned int& i, const unsigned int& length, const cg3::Point2Dd point, const std::vector<Triangle>& triangles) const
 {
     bool flag = false;
 
@@ -78,14 +71,14 @@ int DAG::searchInNode(const unsigned int& i, const unsigned int& length, const c
             //in this case the node is not a leaf but it contains the point
             if(!flagLeaf && flagInside)
             {
-                //TODO: evaluate if it is reasonable to create a function for avoid code repetition
+                //TODO: evaluate if it is reasonable to create a function to avoid code repetition
                 int child = noChild;
 
                 child = nodeList[i].getC1();
                 //search in children 1
                 if(child != noChild)
                 {
-                    result = searchInNode(child, length, point, triangles);
+                    result = searchInNodes(child, length, point, triangles);
                     if(result != outside)
                     {
                         return result;
@@ -96,7 +89,7 @@ int DAG::searchInNode(const unsigned int& i, const unsigned int& length, const c
                 //search in children 2
                 if(child != noChild)
                 {
-                    result = searchInNode(child, length, point, triangles);
+                    result = searchInNodes(child, length, point, triangles);
                     if(result != outside)
                     {
                         return result;
@@ -107,25 +100,14 @@ int DAG::searchInNode(const unsigned int& i, const unsigned int& length, const c
                 //search in children 3
                 if(child != noChild)
                 {
-                    result = searchInNode(child, length, point, triangles);
+                    result = searchInNodes(child, length, point, triangles);
                     if(result != outside)
                     {
                         return result;
                     }
                 }
             }
-            //in this case the node is a leaf but the point is not inside the triangle
-            /*else if(flagLeaf && !flagInside)
-            {
-                //call the function on siblings...?
-            }
-            //in this case the node doesn't contain the point and it is not a leaf
-            else
-            {
-                return outside;
-                //stop research
-            }*/
-            else
+            else //flagLeaf && !flagInside or both flags false
             {
                 return outside;
             }

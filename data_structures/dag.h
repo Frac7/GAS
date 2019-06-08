@@ -19,15 +19,13 @@ public:
 
     void clearDataStructure();
 
-    int findNodeContainingPoint(const cg3::Point2Dd& point, const std::vector<Triangle>& triangles);
+    int searchInNodes(const unsigned int &i, const unsigned int &length, const cg3::Point2Dd point, const std::vector<Triangle>& triangles) const;
 
 
     std::vector<Node> getNodeList() const;
 
 private:
     std::vector<Node> nodeList;
-
-    int searchInNode(const unsigned int &i, const unsigned int &length, const cg3::Point2Dd point, const std::vector<Triangle>& triangles);
 };
 
 #endif // DAG_H

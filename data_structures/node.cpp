@@ -44,12 +44,12 @@ void Node::setData(const int& value)
     data = value;
 }
 
-bool Node::isLeaf()
+bool Node::isLeaf() const
 {
     return c1 == noChild && c2 == noChild && c3 == noChild;
 }
 
-bool Node::isDeleted()
+bool Node::isDeleted() const
 {
     return data == deleted;
 }

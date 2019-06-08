@@ -80,10 +80,12 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
     const std::vector<Node>& nodes = dag.getNodeList();
 
     const unsigned int totalTrianglesNumber = triangles.size();
+    const unsigned int totalNodes = nodes.size();
 
     //find the triangle that contains this point using the DAG
-    unsigned int parentNodeIndex = dag.findNodeContainingPoint(point, triangles);
-    int triangleIndex = nodes[parentNodeIndex].getData();
+    const unsigned int parentNodeIndex = dag.searchInNodes(0, totalNodes, point, triangles);
+    const unsigned int triangleIndex = nodes[parentNodeIndex].getData();
+    //these numbers must be not equal to -1
 
     //get vertices of triangle
     const cg3::Point2Dd& v1 = triangles[triangleIndex].getV1();
@@ -119,9 +121,12 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
     const std::array<int, maxAdjacentTriangles>& oldTriangleAdjacencies = triangulation.getAdjacenciesFromTriangle(triangleIndex);
 
     //update adjacencies
-    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle1, oldTriangleAdjacencies[0], totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
-    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle2, totalTrianglesNumber, oldTriangleAdjacencies[1], totalTrianglesNumber + 2, triangleIndex);
-    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle3, totalTrianglesNumber, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
+    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle1,
+                                               oldTriangleAdjacencies[0], totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
+    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle2,
+                                               totalTrianglesNumber, oldTriangleAdjacencies[1], totalTrianglesNumber + 2, triangleIndex);
+    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle3,
+                                               totalTrianglesNumber, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
 }
 
 }

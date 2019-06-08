@@ -57,7 +57,7 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     boundingBox(cg3::Point2Dd(-BOUNDINGBOX, -BOUNDINGBOX),
                 cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX)),
     boundingTriangle(BT_P1, BT_P2, BT_P3), //bounding triangle initialization
-    drawableTriangulation(boundingTriangle.sceneCenter(), boundingTriangle.sceneRadius())
+    drawableTriangulation(triangulation, boundingTriangle.sceneCenter(), boundingTriangle.sceneRadius())
     //drawable triangulation initialization
 {
     //UI setup

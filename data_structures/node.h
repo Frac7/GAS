@@ -23,10 +23,10 @@ public:
     int getData() const;
     void setData(const int& value);
 
-    bool isLeaf();
+    bool isLeaf() const;
 
     //methods for managing flag deletion
-    bool isDeleted();
+    bool isDeleted() const;
     void setDeleted();
 
     void setC1(int value);
