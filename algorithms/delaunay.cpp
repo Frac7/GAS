@@ -12,15 +12,20 @@ void fillDataStructures(const Triangulation& triangulation, std::vector<cg3::Poi
 
     triangles.resize(vectorSize, dimension);
 
-    for(unsigned int i = 0; i < vectorSize; i+=3)
-    {
-        points[i] = triangleVector[i].getV1();
-        points[i + 1] = triangleVector[i].getV2();
-        points[i + 2] = triangleVector[i].getV3();
+    unsigned int j = 0;
 
-        triangles(i, 0) = i;
-        triangles(i, 1) = i + 1;
-        triangles(i, 2) = i + 2;
+    //ignore bounding triangle
+    for(unsigned int i = 1; i < vectorSize; i++)
+    {
+        points.push_back(triangleVector[i].getV1());
+        points.push_back(triangleVector[i].getV2());
+        points.push_back(triangleVector[i].getV3());
+
+        triangles(i, 0) = j;
+        triangles(i, 1) = j + 1;
+        triangles(i, 2) = j + 2;
+
+        j += 3;
     }
 
 }
