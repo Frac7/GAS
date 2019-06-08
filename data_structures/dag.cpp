@@ -1,17 +1,132 @@
 #include "dag.h"
 
+#include <cg3lib/cg3/core/cg3/geometry/2d/utils2d.h>
 
-void DAG::addNode(const Node& value, Node& p1, Node& p2)
+
+void DAG::addNode(const Node& value, const unsigned int& p1, const unsigned int& p2)
 {
     int nodeIndex = nodeList.size();
     nodeList.push_back(value);
 
-    //TODO: check if p2 exists
-    p1.addChild(nodeIndex);
-    p2.addChild(nodeIndex);
+    nodeList[p1].addChild(nodeIndex);
+    nodeList[p2].addChild(nodeIndex);
+}
+
+void DAG::addNode(const Node& value, const unsigned int& p1)
+{
+    int nodeIndex = nodeList.size();
+    nodeList.push_back(value);
+
+   nodeList[p1].addChild(nodeIndex);
+}
+
+void DAG::addNode(const Node &value)
+{
+    nodeList.push_back(value);
 }
 
 void DAG::clearDataStructure()
 {
     nodeList.clear();
+}
+
+int DAG::findNodeContainingPoint(const cg3::Point2Dd &point, const std::vector<Triangle> &triangles)
+{
+    unsigned int length = nodeList.size();
+    unsigned int i = 0;
+
+    return searchInNode(i, length, point, triangles);
+}
+
+std::vector<Node> DAG::getNodeList() const
+{
+    return nodeList;
+}
+
+int DAG::searchInNode(const unsigned int& i, const unsigned int& length, const cg3::Point2Dd point, const std::vector<Triangle>& triangles)
+{
+    bool flag = false;
+
+    if(i < length)
+    {
+        //get triangle index from the node
+        unsigned int data = nodeList[i].getData();
+
+        //check if the point is inside this triangle
+        bool flagInside = cg3::isPointLyingInTriangle(
+                    triangles[data].getV1(), triangles[data].getV2(), triangles[data].getV3(), point, false);
+        //check if the node is a leaf
+        bool flagLeaf = nodeList[i].isLeaf();
+
+        flag = flagInside && flagLeaf;
+
+        //if the point is inside and the triangle is a leaf, then return the index of the node in the dag
+        if(flag)
+        {
+            return i;
+        }
+        //if the flag is false, the node can be a parent or the node doesn't contain the point
+        else
+        {
+            int result = outside;
+
+            //in this case the node is not a leaf but it contains the point
+            if(!flagLeaf && flagInside)
+            {
+                //TODO: evaluate if it is reasonable to create a function for avoid code repetition
+                int child = noChild;
+
+                child = nodeList[i].getC1();
+                //search in children 1
+                if(child != noChild)
+                {
+                    result = searchInNode(child, length, point, triangles);
+                    if(result != outside)
+                    {
+                        return result;
+                    }
+                }
+
+                child = nodeList[i].getC2();
+                //search in children 2
+                if(child != noChild)
+                {
+                    result = searchInNode(child, length, point, triangles);
+                    if(result != outside)
+                    {
+                        return result;
+                    }
+                }
+
+                child = nodeList[i].getC3();
+                //search in children 3
+                if(child != noChild)
+                {
+                    result = searchInNode(child, length, point, triangles);
+                    if(result != outside)
+                    {
+                        return result;
+                    }
+                }
+            }
+            //in this case the node is a leaf but the point is not inside the triangle
+            /*else if(flagLeaf && !flagInside)
+            {
+                //call the function on siblings...?
+            }
+            //in this case the node doesn't contain the point and it is not a leaf
+            else
+            {
+                return outside;
+                //stop research
+            }*/
+            else
+            {
+                return outside;
+            }
+            //maybe it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
+        }
+    }
+
+    return outside;
 }

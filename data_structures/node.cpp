@@ -1,7 +1,7 @@
 #include "node.h"
 
-Node::Node(const int& c1, const int&  c2, const int& c3, const int& data)
-    : c1(c1), c2(c2), c3(c3), data(data) {}
+Node::Node(const int& data)
+    : c1(noChild), c2(noChild), c3(noChild), data(data) {}
 
 void Node::addChild(const int &value)
 {

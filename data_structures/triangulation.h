@@ -35,12 +35,19 @@ public:
 
     void clearDataStructure();
 
+    void addAdjacenciesForNewTriangle(const int& v1v2, const int& v2v3, const int& v3v1);
+    void addAdjacenciesForNewTriangle(const unsigned int& triangle, const int& v1v2, const int& v2v3, const int& v3v1, const unsigned int& old);
+
 protected:
     //triangles of the triangulation
     std::vector<Triangle> triangles;
 
     //adjacency of triangles
     std::vector<std::array<int, maxAdjacentTriangles> > adjacencies;
+
+    unsigned int findOldAdjacency(const unsigned int& edge, const unsigned int& old);
+
+    //TODO: evaluate if it is reasonable to add the dag in this data structure
 };
 
 #endif // TRIANGULATION_H

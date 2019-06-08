@@ -9,7 +9,7 @@ class Node
 {
 public:
     //create node from children and data
-    Node(const int& c1, const int&  c2, const int& c3, const int& data);
+    Node(const int& data);
 
     void addChild(const int& value);
 
@@ -28,7 +28,6 @@ public:
     //methods for managing flag deletion
     bool isDeleted();
     void setDeleted();
-    //TODO: evaluate the best position to place these methods...
 
 private:
     //first child
@@ -42,6 +41,8 @@ private:
 };
 
 const int noChild = -1;
+
+const int outside = -1; //point not inside triangle
 
 //when a node must be deleted, the data field contains this value
 const int deleted = -1;

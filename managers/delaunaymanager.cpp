@@ -87,6 +87,11 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
 
     mainWindow.pushObj(&drawableTriangulation, "Triangulation");
 
+    //data structure initialization with bounding triangle
+    triangulation.addTriangle(Triangle(boundingTriangle.getV1(), boundingTriangle.getV2(), boundingTriangle.getV3()));
+    triangulation.addAdjacenciesForNewTriangle(-1, -1, -1); //TODO: replace magic numbers
+    dag.addNode(Node(0));
+
     /*mainWindow.updateGlCanvas();
     fitScene();*/
 
@@ -154,7 +159,11 @@ void DelaunayManager::computeDelaunayTriangulation(const std::vector<cg3::Point2
     //fills your output Triangulation data structure.
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    const unsigned int& length = inputPoints.size();
+    for(int i = 0; i < length; i++)
+    {
+        addPointToDelaunayTriangulation(points[i]);
+    }
 
     /********************************************************************************************************************/
     CG3_SUPPRESS_WARNING(inputPoints);
@@ -168,7 +177,7 @@ void DelaunayManager::addPointToDelaunayTriangulation(const cg3::Point2Dd& p) {
     //Here you have to launch the incremental algorithm for the insertion of a new single point into the current triangulation.
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    DelaunayTriangulation::incrementalTriangulation(triangulation, dag, p);
 
     /********************************************************************************************************************/
     CG3_SUPPRESS_WARNING(p);

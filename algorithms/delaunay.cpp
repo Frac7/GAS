@@ -58,4 +58,56 @@ void legalizeEdge(Triangulation& triangulation, const cg3::Point2Dd& point, cons
     }
 }
 
+void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3::Point2Dd& point)
+{
+    //TODO: manage the case where the point lies on the edge
+
+    const std::vector<Triangle>& triangles = triangulation.getTriangles();
+    const std::vector<Node>& nodes = dag.getNodeList();
+
+    const unsigned int totalTrianglesNumber = triangles.size();
+
+    //find the triangle that contains this point using the DAG
+    unsigned int parentNodeIndex = dag.findNodeContainingPoint(point, triangles);
+    int triangleIndex = nodes[parentNodeIndex].getData();
+
+    //get vertices of triangle
+    const cg3::Point2Dd& v1 = triangles[triangleIndex].getV1();
+    const cg3::Point2Dd& v2 = triangles[triangleIndex].getV2();
+    const cg3::Point2Dd& v3 = triangles[triangleIndex].getV3();
+
+    //create 3 new triangles and 3 new nodes
+
+    const unsigned int& indexOfTriangle1 = totalTrianglesNumber;
+    //add triangle to the triangulation
+    const Triangle triangle1(v1, v2, point); //totalTrianglesNumber
+    triangulation.addTriangle(triangle1);
+    //add node to the dag
+    const Node node1(indexOfTriangle1);
+    dag.addNode(node1, parentNodeIndex);
+
+    const unsigned int& indexOfTriangle2 = totalTrianglesNumber + 1;
+    //add triangle to the triangulation
+    const Triangle triangle2(point, v2, v3); //totalTrianglesNumber + 1
+    triangulation.addTriangle(triangle2);
+    //add node to the dag
+    const Node node2(indexOfTriangle2);
+    dag.addNode(node2, parentNodeIndex);
+
+    const unsigned int& indexOfTriangle3 = totalTrianglesNumber + 2;
+    //add triangle to the triangulation
+    const Triangle triangle3(v1, point, v3); //totalTrianglesNumber + 2
+    triangulation.addTriangle(triangle3);
+    //add node to the dag
+    const Node node3(indexOfTriangle3);
+    dag.addNode(node3, parentNodeIndex);
+
+    const std::array<int, maxAdjacentTriangles>& oldTriangleAdjacencies = triangulation.getAdjacenciesFromTriangle(triangleIndex);
+
+    //update adjacencies
+    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle1, oldTriangleAdjacencies[0], totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
+    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle2, totalTrianglesNumber, oldTriangleAdjacencies[1], totalTrianglesNumber + 2, triangleIndex);
+    triangulation.addAdjacenciesForNewTriangle(indexOfTriangle3, totalTrianglesNumber, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
+}
+
 }

@@ -21,7 +21,7 @@ std::vector<Triangle> Triangulation::getTriangles() const
     return triangles;
 }
 
-/* I assume that here the edge in common for triangle and neighbor is already flipped */
+// I assume that here the edge in common for triangle and neighbor is already flipped
 void Triangulation::modifyAdjacency(const unsigned int& triangle,
                      const unsigned int& neighbor,
                      const unsigned int& triangleAdjNeighbor,
@@ -70,4 +70,25 @@ void Triangulation::clearDataStructure()
 {
     triangles.clear();
     adjacencies.clear();
+}
+
+void Triangulation::addAdjacenciesForNewTriangle(const int &v1v2, const int &v2v3, const int &v3v1)
+{
+    std::array<int, maxAdjacentTriangles> newAdjacency = {v1v2, v2v3, v3v1};
+    adjacencies.push_back(newAdjacency);
+}
+
+void Triangulation::addAdjacenciesForNewTriangle(const unsigned int &triangle, const int &v1v2, const int &v2v3, const int &v3v1, const unsigned int& old)
+{
+    addAdjacenciesForNewTriangle(v1v2, v2v3, v3v1);
+
+    //update old adjacencies
+    adjacencies[v1v2][findOldAdjacency(v1v2, old)] = triangle;
+    adjacencies[v2v3][findOldAdjacency(v2v3, old)] = triangle;
+    adjacencies[v3v1][findOldAdjacency(v3v1, old)] = triangle;
+}
+
+unsigned int Triangulation::findOldAdjacency(const unsigned int &edge, const unsigned int& old)
+{
+    return adjacencies[edge][0] == old? 0 : (adjacencies[edge][1] == old? 1 : 2);
 }
