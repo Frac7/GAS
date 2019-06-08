@@ -50,7 +50,7 @@ private:
     Triangulation triangulation;
     DAG dag;
 
-    DrawableTriangle boundingTriangle;
+    const DrawableTriangle boundingTriangle;
     DrawableTriangulation drawableTriangulation;
 
     /********************************************************************************************************************/

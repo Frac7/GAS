@@ -8,10 +8,12 @@ void Node::addChild(const int &value)
     if(c1 == noChild)
     {
         c1 = value;
-    } else if(c2 == noChild)
+    }
+    else if(c2 == noChild)
     {
         c2 = value;
-    } else
+    }
+    else
     {
         c3 = value;
     }
@@ -55,4 +57,19 @@ bool Node::isDeleted()
 void Node::setDeleted()
 {
     data = deleted;
+}
+
+void Node::setC1(int value)
+{
+    c1 = value;
+}
+
+void Node::setC2(int value)
+{
+    c2 = value;
+}
+
+void Node::setC3(int value)
+{
+    c3 = value;
 }

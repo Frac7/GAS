@@ -27,7 +27,12 @@ void DAG::addNode(const Node &value)
 
 void DAG::clearDataStructure()
 {
-    nodeList.clear();
+    const std::vector<Node>::iterator nodeListIterator = nodeList.begin() + 1;
+    nodeList.erase(nodeListIterator, nodeList.end());
+
+    nodeList[0].setC1(noChild);
+    nodeList[0].setC2(noChild);
+    nodeList[0].setC3(noChild);
 }
 
 int DAG::findNodeContainingPoint(const cg3::Point2Dd &point, const std::vector<Triangle> &triangles)

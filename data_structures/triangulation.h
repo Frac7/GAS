@@ -15,8 +15,6 @@ public:
 
     //add a triangle to the triangulation
     void addTriangle(const Triangle& triangle);
-    //remove a triangle from the triangulation
-    void removeTriangle(const std::vector<Triangle>::iterator position);
 
     //get triangles
     std::vector<Triangle> getTriangles() const;

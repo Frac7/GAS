@@ -29,6 +29,12 @@ public:
     bool isDeleted();
     void setDeleted();
 
+    void setC1(int value);
+
+    void setC2(int value);
+
+    void setC3(int value);
+
 private:
     //first child
     int c1;

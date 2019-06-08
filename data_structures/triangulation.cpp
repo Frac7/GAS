@@ -11,11 +11,6 @@ void Triangulation::addTriangle(const Triangle& triangle)
     triangles.push_back(triangle);
 }
 
-void Triangulation::removeTriangle(const std::vector<Triangle>::iterator position)
-{
-    triangles.erase(position);
-}
-
 std::vector<Triangle> Triangulation::getTriangles() const
 {
     return triangles;
@@ -68,8 +63,15 @@ std::array<int, maxAdjacentTriangles> Triangulation::getAdjacenciesFromTriangle(
 
 void Triangulation::clearDataStructure()
 {
-    triangles.clear();
-    adjacencies.clear();
+    //erase triangle from position 1 to position n - 1
+    std::vector<Triangle>::iterator triangleIterator = triangles.begin() + 1;
+    triangles.erase(triangleIterator, triangles.end());
+
+    //erase adjacencies from position 1 to position n - 1
+    std::vector<std::array<int, maxAdjacentTriangles>>::iterator adjacenciesIterator = adjacencies.begin() + 1;
+    adjacencies.erase(adjacenciesIterator, adjacencies.end());
+
+    //in this way we keep always the bounding triangle as first element
 }
 
 void Triangulation::addAdjacenciesForNewTriangle(const int &v1v2, const int &v2v3, const int &v3v1)

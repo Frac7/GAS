@@ -5,27 +5,36 @@ namespace DelaunayTriangulation {
 
 namespace Checker {
 
-void fillDataStructures(const Triangulation& triangulation, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
+void fillDataStructures(const Triangulation& triangulation, const DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
 {
-    std::vector<Triangle> triangleVector = triangulation.getTriangles();
-    unsigned int vectorSize = triangleVector.size();
+    const std::vector<Triangle>& triangleVector = triangulation.getTriangles();
+    const std::vector<Node>& nodeVector = dag.getNodeList();
 
-    triangles.resize(vectorSize, dimension);
+    const unsigned int& vectorSize = triangleVector.size();
 
-    unsigned int j = 0;
-
-    //ignore bounding triangle
-    for(unsigned int i = 1; i < vectorSize; i++)
+    if(vectorSize > 1)
     {
-        points.push_back(triangleVector[i].getV1());
-        points.push_back(triangleVector[i].getV2());
-        points.push_back(triangleVector[i].getV3());
+        triangles.resize(vectorSize, dimension);
 
-        triangles(i, 0) = j;
-        triangles(i, 1) = j + 1;
-        triangles(i, 2) = j + 2;
+        unsigned int j = 0;
 
-        j += 3;
+        //ignore bounding triangle
+        for(unsigned int i = 1; i < vectorSize; i++)
+        {
+            //ignore deleted triangles
+            if(nodeVector[i].getData() != deleted)
+            {
+                points.push_back(triangleVector[i].getV1());
+                points.push_back(triangleVector[i].getV2());
+                points.push_back(triangleVector[i].getV3());
+
+                triangles(i, 0) = j;
+                triangles(i, 1) = j + 1;
+                triangles(i, 2) = j + 2;
+
+                j += 3;
+            }
+        }
     }
 
 }

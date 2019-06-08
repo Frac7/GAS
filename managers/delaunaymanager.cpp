@@ -293,7 +293,7 @@ void DelaunayManager::checkTriangulation() {
     //assignment operator: "triangles(i,j) = a"; 
     /********************************************************************************************************************/
 
-    DelaunayTriangulation::Checker::fillDataStructures(triangulation, points, triangles);
+    DelaunayTriangulation::Checker::fillDataStructures(triangulation, dag, points, triangles);
 
     /********************************************************************************************************************/
 
