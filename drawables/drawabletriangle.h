@@ -14,10 +14,6 @@ public:
     void draw() const;
     cg3::Pointd sceneCenter() const;
     double sceneRadius() const;
-
-private:
-    void drawPoints() const;
-    void drawLines() const;
 };
 
 #endif // DRAWABLETRIANGLE_H

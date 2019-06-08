@@ -1,5 +1,11 @@
 #include "triangulation.h"
 
+Triangulation::Triangulation() {}
+
+Triangulation::Triangulation(const std::vector<Triangle> &triangles,
+                             const std::vector<std::array<int, maxAdjacentTriangles> > &adjacencies)
+    : triangles(triangles), adjacencies(adjacencies) {}
+
 void Triangulation::addTriangle(const Triangle& triangle)
 {
     triangles.push_back(triangle);
@@ -33,7 +39,7 @@ void Triangulation::modifyAdjacency(const unsigned int& triangle,
     //due to the flip, this edge picks the adjacency of triangleAdjNeighbor -neighbor triangle changed due to flip
 
     //swap due to edge flip
-    std::swap(adjacency[triangle][adjacencyToChangeTriangle], adjacency[triangle][triangleAdjNeighbor]);
+    std::swap(adjacencies[triangle][adjacencyToChangeTriangle], adjacencies[triangle][triangleAdjNeighbor]);
 
     unsigned int unchangedAdjacencyNeighbor;
     unsigned int adjacencyToChangeNeighbor;
@@ -45,23 +51,23 @@ void Triangulation::modifyAdjacency(const unsigned int& triangle,
     adjacencyToChangeNeighbor = maxAdjacentTriangles - (neighborAdjTriangle + unchangedAdjacencyNeighbor);
 
     //swap due to edge flip
-    std::swap(adjacency[neighbor][adjacencyToChangeNeighbor], adjacency[neighbor][neighborAdjTriangle]);
+    std::swap(adjacencies[neighbor][adjacencyToChangeNeighbor], adjacencies[neighbor][neighborAdjTriangle]);
 
     //swap adjacencies belonging to each other
-    std::swap(adjacency[triangle][adjacencyToChangeTriangle], adjacency[neighbor][adjacencyToChangeNeighbor]);
+    std::swap(adjacencies[triangle][adjacencyToChangeTriangle], adjacencies[neighbor][adjacencyToChangeNeighbor]);
 
     //TODO: recursively modify adjacency for adjTriangleNeighbor and adjNeighborTriangle
     //TODO: find a condition to stop -exploit reusability
 }
 
 
-std::array<int, maxAdjacentTriangles> Triangulation::getAdjacencies(const unsigned int& triangle)
+std::array<int, maxAdjacentTriangles> Triangulation::getAdjacenciesFromTriangle(const unsigned int& triangle)
 {
-    return adjacency[triangle];
+    return adjacencies[triangle];
 }
 
 void Triangulation::clearDataStructure()
 {
     triangles.clear();
-    adjacency.clear();
+    adjacencies.clear();
 }

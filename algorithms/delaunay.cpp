@@ -53,7 +53,7 @@ void legalizeEdge(Triangulation& triangulation, const cg3::Point2Dd& point, cons
          */
 
         //pick the adjacent triangle
-        Triangle adjacent = triangulation.getTriangles()[triangulation.getAdjacencies(triangle)[pipj]];
+        Triangle adjacent = triangulation.getTriangles()[triangulation.getAdjacenciesFromTriangle(triangle)[pipj]];
 
     }
 }

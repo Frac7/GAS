@@ -11,6 +11,7 @@
 #include <data_structures/triangulation.h>
 
 #include <drawables/drawabletriangle.h>
+#include <drawables/drawabletriangulation.h>
 
 
 namespace Ui {
@@ -50,6 +51,7 @@ private:
     DAG dag;
 
     DrawableTriangle boundingTriangle;
+    DrawableTriangulation drawableTriangulation;
 
     /********************************************************************************************************************/
 

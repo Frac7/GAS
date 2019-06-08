@@ -9,6 +9,9 @@ const unsigned int maxAdjacentTriangles = 3;
 class Triangulation
 {
 public:
+    Triangulation();
+    Triangulation(const std::vector<Triangle>& triangles,
+                  const std::vector<std::array<int, maxAdjacentTriangles>>& adjacencies);
 
     //add a triangle to the triangulation
     void addTriangle(const Triangle& triangle);
@@ -28,16 +31,16 @@ public:
     //triangleAdjNeighbor indicates index from 0 to 2 to find the adjacet neighbor
     //the same is for neighbor
 
-    std::array<int, maxAdjacentTriangles> getAdjacencies(const unsigned int &triangle);
+    std::array<int, maxAdjacentTriangles> getAdjacenciesFromTriangle(const unsigned int &triangle);
 
     void clearDataStructure();
 
-private:
+protected:
     //triangles of the triangulation
     std::vector<Triangle> triangles;
 
     //adjacency of triangles
-    std::vector<std::array<int, maxAdjacentTriangles> > adjacency;
+    std::vector<std::array<int, maxAdjacentTriangles> > adjacencies;
 };
 
 #endif // TRIANGULATION_H

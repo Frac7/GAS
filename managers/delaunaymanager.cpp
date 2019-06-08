@@ -56,8 +56,9 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     mainWindow(static_cast<cg3::viewer::MainWindow&>(*parent)),
     boundingBox(cg3::Point2Dd(-BOUNDINGBOX, -BOUNDINGBOX),
                 cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX)),
-    boundingTriangle(BT_P1, BT_P2, BT_P3)
-  //bounding triangle initialization
+    boundingTriangle(BT_P1, BT_P2, BT_P3), //bounding triangle initialization
+    drawableTriangulation(boundingTriangle.sceneCenter(), boundingTriangle.sceneRadius())
+    //drawable triangulation initialization
 {
     //UI setup
     ui->setupUi(this);
@@ -84,7 +85,10 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     mainWindow.pushObj(&boundingTriangle, "Bounding triangle");
     mainWindow.setObjVisibility(&boundingTriangle, false);
 
-    mainWindow.updateGlCanvas();
+    mainWindow.pushObj(&drawableTriangulation, "Triangulation");
+
+    /*mainWindow.updateGlCanvas();
+    fitScene();*/
 
     /********************************************************************************************************************/
 }
@@ -123,6 +127,8 @@ DelaunayManager::~DelaunayManager() {
     /********************************************************************************************************************/
 
     mainWindow.deleteObj(&boundingTriangle);
+
+    mainWindow.deleteObj(&drawableTriangulation);
 
     /********************************************************************************************************************/
 
