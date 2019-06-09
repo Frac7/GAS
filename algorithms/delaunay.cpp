@@ -92,68 +92,218 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
     const cg3::Point2Dd& v2 = triangles[triangleIndex].getV2();
     const cg3::Point2Dd& v3 = triangles[triangleIndex].getV3();
 
-    unsigned int currentTriangle = totalTrianglesNumber;
-    //TODO: replace magic numbers
-    int triangle1 = -1;
-    int triangle2 = -1;
-    int triangle3 = -1;
+    //if one of these flag is true, we have to create 4 new triangles instead of 3
+    const bool colinearV1V2 = cg3::areCollinear(v1, v2, point);
+    const bool colinearV2V3 = cg3::areCollinear(v2, v3, point);
+    const bool colinearV3V1 = cg3::areCollinear(v3, v1, point);
 
-    //create 3 new triangles and 3 new nodes
-
-    if(!cg3::areCollinear(v1, v2, point))
+    //point is inside a triangle, so we have to create 3 new triangles
+    if(!colinearV1V2 && !colinearV2V3 && !colinearV3V1)
     {
-        //add triangle to the triangulation
-        triangulation.addTriangle(Triangle(v1, v2, point));
-        //add node to the dag
-        dag.addNode(Node(currentTriangle), parentNodeIndex);
+        pointInside(v1, v2, v3, point, totalTrianglesNumber, parentNodeIndex, triangleIndex, triangulation, dag);
+    }
+    else
+    {
+        /*unsigned int edge = -1; //TODO: replace magic numbers
+        if(colinearV1V2)
+        {
+            edge = 0;
+        }
+        else if(colinearV2V3)
+        {
+            edge = 1;
+        }
+        else
+        {
+            edge = 2;
+        }*/
 
-        triangle1 = currentTriangle;
-        //increment index
-        currentTriangle++;
+        const unsigned int edge = colinearV1V2? 0 : (colinearV2V3? 1 : 2);
+
+        pointInSegment(v1, v2, v3, point, totalTrianglesNumber, parentNodeIndex, triangleIndex, edge, triangulation, dag, triangles);
     }
 
-    if(!cg3::areCollinear(v2, v3, point))
-    {
-        //add triangle to the triangulation
-        triangulation.addTriangle(Triangle(point, v2, v3)); //totalTrianglesNumber + 1
-        //add node to the dag
-        dag.addNode(Node(currentTriangle), parentNodeIndex);
 
-        triangle2 = currentTriangle;
-        //increment index
-        currentTriangle++;
-    }
+}
 
-    if(!cg3::areCollinear(v3, v1, point))
-    {
-        //add triangle to the triangulation
-        triangulation.addTriangle(Triangle(v1, point, v3)); //totalTrianglesNumber + 2
-        //add node to the dag
-        dag.addNode(Node(currentTriangle), parentNodeIndex);
+//TODO: avoid code repetition in the next 2 functions
 
-        triangle3 = currentTriangle;
-        //increment index
-        currentTriangle++;
-    }
+void pointInside(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& point,
+                 const unsigned int& totalTrianglesNumber, const unsigned int& parentNodeIndex, const unsigned int& triangleIndex,
+                 Triangulation& triangulation, DAG& dag)
+{
 
     const std::array<int, maxAdjacentTriangles>& oldTriangleAdjacencies = triangulation.getAdjacenciesFromTriangle(triangleIndex);
 
+    //create 3 new triangles and 3 new nodes
+
+    //add triangle to the triangulation
+    triangulation.addTriangle(Triangle(v1, v2, point));
+    //add node to the dag
+    dag.addNode(Node(totalTrianglesNumber), parentNodeIndex);
     //update adjacencies
-    if(triangle1 != -1) //TODO: replace magic numbers
+    triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber,
+        oldTriangleAdjacencies[0], totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
+
+    //add triangle to the triangulation
+    triangulation.addTriangle(Triangle(point, v2, v3)); //totalTrianglesNumber + 1
+    //add node to the dag
+    dag.addNode(Node(totalTrianglesNumber + 1), parentNodeIndex);
+    //update adjacencies
+    triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1,
+        totalTrianglesNumber, oldTriangleAdjacencies[1], totalTrianglesNumber + 2, totalTrianglesNumber);
+
+    //add triangle to the triangulation
+    triangulation.addTriangle(Triangle(v1, point, v3)); //totalTrianglesNumber + 2
+    //add node to the dag
+    dag.addNode(Node(totalTrianglesNumber + 2), parentNodeIndex);
+    //update adjacencies
+    triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 2,
+        totalTrianglesNumber, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
+
+    //TODO: legalize edge
+}
+
+void pointInSegment(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& point,
+                 const unsigned int& totalTrianglesNumber, const unsigned int& parentNodeIndex, const unsigned int& triangleIndex, const unsigned int& adjacency,
+                 Triangulation& triangulation, DAG& dag, const std::vector<Triangle>& triangles)
+{
+
+    const std::array<int, maxAdjacentTriangles>& oldTriangleAdjacencies = triangulation.getAdjacenciesFromTriangle(triangleIndex);
+    //get the adjacent triangle
+    const unsigned int adjacentTriangleIndex = oldTriangleAdjacencies[adjacency];
+    Triangle adjacent = triangles[adjacentTriangleIndex];
+
+    //get old adjacencies for neighbor triangle
+    const std::array<int, maxAdjacentTriangles>& oldNeighborAdjacencies = triangulation.getAdjacenciesFromTriangle(adjacentTriangleIndex);
+
+    const cg3::Point2Dd& adjacentV1 = adjacent.getV1();
+    const cg3::Point2Dd& adjacentV2 = adjacent.getV2();
+    const cg3::Point2Dd& adjacentV3 = adjacent.getV3();
+
+    //based on the adjacency where the point lies (segment), create two new triangles
+    switch(adjacency)
     {
-        triangulation.addAdjacenciesForNewTriangle(triangle1,
-                                               oldTriangleAdjacencies[0], triangle2, triangle3, triangleIndex);
+        case 0: //v3 -> adjacency in v1v2
+
+            //first triangle
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(v1, point, v3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber,
+                totalTrianglesNumber + 2, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(point, v2, v3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 1), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1,
+                totalTrianglesNumber + 3, oldTriangleAdjacencies[1], totalTrianglesNumber, triangleIndex);
+
+            //second triangle
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(adjacentV1, adjacentV2, point));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 2), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 2,
+                oldNeighborAdjacencies[0], totalTrianglesNumber + 3, totalTrianglesNumber, adjacentTriangleIndex);
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(point, adjacentV2, adjacentV3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 3), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 3,
+                totalTrianglesNumber + 2, oldNeighborAdjacencies[1], totalTrianglesNumber + 1, adjacentTriangleIndex);
+
+            break;
+        case 1: //v1 -> adjacency in v2v3
+
+            //first triangle
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(v1, v2, point));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber,
+                oldTriangleAdjacencies[0], totalTrianglesNumber + 3, totalTrianglesNumber + 1, triangleIndex);
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(v1, point, v3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 1), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1,
+                totalTrianglesNumber, totalTrianglesNumber + 3, oldTriangleAdjacencies[2], triangleIndex);
+
+            //second triangle
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(adjacentV1, adjacentV2, point));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 2), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 2,
+                totalTrianglesNumber + 3, oldNeighborAdjacencies[1], totalTrianglesNumber + 1, adjacentTriangleIndex);
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(point, adjacentV2, adjacentV3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 3), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 3,
+                oldNeighborAdjacencies[0], totalTrianglesNumber + 2, totalTrianglesNumber, adjacentTriangleIndex);
+
+            break;
+        case 2: //v2 -> adjacency in v3v1
+
+            //first triangle
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(point, v2, v3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber,
+                oldTriangleAdjacencies[0], totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(v1, v2, point));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 1), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1,
+                totalTrianglesNumber, oldNeighborAdjacencies[1], totalTrianglesNumber + 3, triangleIndex);
+
+            //second triangle
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(adjacentV1, point, adjacentV3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 2), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 2,
+                totalTrianglesNumber, totalTrianglesNumber + 3, oldNeighborAdjacencies[2], adjacentTriangleIndex);
+
+            //add triangle to the triangulation
+            triangulation.addTriangle(Triangle(point, adjacentV2, adjacentV3));
+            //add node to the dag
+            dag.addNode(Node(totalTrianglesNumber + 3), parentNodeIndex);
+            //update adjacencies
+            triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 3,
+                totalTrianglesNumber + 1, oldNeighborAdjacencies[1], totalTrianglesNumber + 2, adjacentTriangleIndex);
+
+            break;
     }
-    if(triangle2 != - 1)
-    {
-        triangulation.addAdjacenciesForNewTriangle(triangle2,
-                                               triangle1, oldTriangleAdjacencies[1], triangle3, triangleIndex);
-    }
-    if(triangle3 != -1)
-    {
-        triangulation.addAdjacenciesForNewTriangle(triangle3,
-                                               triangle1, triangle2, oldTriangleAdjacencies[2], triangleIndex);
-    }
+
+    //TODO: legalize edge
 }
 
 }
