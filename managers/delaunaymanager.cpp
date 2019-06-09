@@ -56,9 +56,12 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     mainWindow(static_cast<cg3::viewer::MainWindow&>(*parent)),
     boundingBox(cg3::Point2Dd(-BOUNDINGBOX, -BOUNDINGBOX),
                 cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX)),
-    boundingTriangle(BT_P1, BT_P2, BT_P3), //bounding triangle initialization
-    drawableTriangulation(triangulation, boundingTriangle.sceneCenter(), boundingTriangle.sceneRadius())
-    //drawable triangulation initialization
+    boundingTriangle(BT_P1,
+                     BT_P2,
+                     BT_P3), //bounding triangle initialization
+    drawableTriangulation(triangulation,
+                          boundingTriangle.sceneCenter(),
+                          boundingTriangle.sceneRadius()) //drawable triangulation initialization
 {
     //UI setup
     ui->setupUi(this);
@@ -82,18 +85,20 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     //for member initialization.
     /********************************************************************************************************************/
 
+    //push bounding triangle and hide it
     mainWindow.pushObj(&boundingTriangle, "Bounding triangle");
     mainWindow.setObjVisibility(&boundingTriangle, false);
 
+    //push empty triangulation
     mainWindow.pushObj(&drawableTriangulation, "Triangulation");
 
     //data structure initialization with bounding triangle
     triangulation.addTriangle(Triangle(boundingTriangle.getV1(), boundingTriangle.getV2(), boundingTriangle.getV3()));
-    triangulation.addAdjacenciesForNewTriangle(-1, -1, -1); //TODO: replace magic numbers
+    triangulation.addAdjacenciesForNewTriangle(noAdjacentTriangle, noAdjacentTriangle, noAdjacentTriangle);
     dag.addNode(Node(0));
 
-    /*mainWindow.updateGlCanvas();
-    fitScene();*/
+    //mainWindow.updateGlCanvas();
+    //fitScene();
 
     /********************************************************************************************************************/
 }
@@ -131,8 +136,8 @@ DelaunayManager::~DelaunayManager() {
     //Try to avoid using dynamic objects whenever it is possible.
     /********************************************************************************************************************/
 
+    //delete drawable bounding triangle and triangulation objects
     mainWindow.deleteObj(&boundingTriangle);
-
     mainWindow.deleteObj(&drawableTriangulation);
 
     /********************************************************************************************************************/
@@ -162,7 +167,7 @@ void DelaunayManager::computeDelaunayTriangulation(const std::vector<cg3::Point2
     const unsigned int& length = inputPoints.size();
     for(int i = 0; i < length; i++)
     {
-        addPointToDelaunayTriangulation(points[i]);
+         DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[i]);
     }
 
     /********************************************************************************************************************/
@@ -177,7 +182,19 @@ void DelaunayManager::addPointToDelaunayTriangulation(const cg3::Point2Dd& p) {
     //Here you have to launch the incremental algorithm for the insertion of a new single point into the current triangulation.
     /********************************************************************************************************************/
 
-    DelaunayTriangulation::incrementalTriangulation(triangulation, dag, p);
+    //points.push_back(p);
+    //const unsigned int pointIndex = points.size() - 1;
+
+    const unsigned int pointIndex = points.size();
+    cg3::Point2Dd c = boundingTriangle.getCenter();
+    if(pointIndex == 1)
+        c.setYCoord(c.y() + BOUNDINGBOX/2 - 1000);
+    else if(pointIndex == 2)
+        c.setXCoord(c.x() + BOUNDINGBOX/2 - 1000);
+
+    points.push_back(c);
+
+    DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[pointIndex]);
 
     /********************************************************************************************************************/
     CG3_SUPPRESS_WARNING(p);
@@ -264,8 +281,6 @@ void DelaunayManager::setVisibilityBoundingTriangle(const bool visible)
     /********************************************************************************************************************/
 
     mainWindow.setObjVisibility(&boundingTriangle, visible);
-
-    mainWindow.updateGlCanvas();
 
     /********************************************************************************************************************/
     CG3_SUPPRESS_WARNING(visible);

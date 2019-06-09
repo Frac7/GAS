@@ -6,6 +6,8 @@
 
 const unsigned int maxAdjacentTriangles = 3;
 
+const int noAdjacentTriangle = -1;
+
 class Triangulation
 {
 public:

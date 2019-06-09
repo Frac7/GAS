@@ -34,6 +34,5 @@ void Triangle::setV3(const cg3::Point2Dd& value)
 
 cg3::Point2Dd Triangle::getCenter() const
 {
-    //TODO: replace with points
     return (v1 + v2 + v3) / 3;
 }

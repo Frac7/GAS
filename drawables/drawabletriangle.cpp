@@ -6,7 +6,7 @@ DrawableTriangle::DrawableTriangle(const cg3::Point2Dd &v1, const cg3::Point2Dd 
 void DrawableTriangle::draw() const
 {
     //draw the triangle with points and lines
-    cg3::viewer::drawTriangle2D(v1, v2, v3, Qt::black);
+    cg3::viewer::drawTriangle2D(v1, v2, v3, Qt::red, 1);
 }
 
 cg3::Pointd DrawableTriangle::sceneCenter() const

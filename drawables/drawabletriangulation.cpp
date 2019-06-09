@@ -13,7 +13,7 @@ void DrawableTriangulation::draw() const
     for(unsigned int i = 1; i < length; i++)
     {
         //ignore bounding triangle
-        cg3::viewer::drawTriangle2D(triangles[i].getV1(), triangles[i].getV2(), triangles[i].getV3(), Qt::black);
+        cg3::viewer::drawTriangle2D(triangles[i].getV1(), triangles[i].getV2(), triangles[i].getV3(), Qt::blue, 1);
     }
 }
 

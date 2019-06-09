@@ -28,6 +28,8 @@ protected:
     cg3::Point2Dd v2;
     //rightmost point
     cg3::Point2Dd v3;
+
+    //TODO: evaluate if the reference to the point is const or not, following the flip edge algorithm
 };
 
 #endif // TRIANGLE_H

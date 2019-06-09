@@ -30,7 +30,7 @@ void DAG::clearDataStructure()
     const std::vector<Node>::iterator nodeListIterator = nodeList.begin() + 1;
     nodeList.erase(nodeListIterator, nodeList.end());
 
-    //reset to node as leaf
+    //reset node as leaf
     nodeList[0].setC1(noChild);
     nodeList[0].setC2(noChild);
     nodeList[0].setC3(noChild);
@@ -41,10 +41,9 @@ std::vector<Node> DAG::getNodeList() const
     return nodeList;
 }
 
-int DAG::searchInNodes(const unsigned int& i, const unsigned int& length, const cg3::Point2Dd point, const std::vector<Triangle>& triangles) const
+//TODO: evaluate iteration
+int DAG::searchInNodes(const unsigned int& i, const unsigned int& length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
 {
-    bool flag = false;
-
     if(i < length)
     {
         //get triangle index from the node
@@ -52,14 +51,12 @@ int DAG::searchInNodes(const unsigned int& i, const unsigned int& length, const 
 
         //check if the point is inside this triangle
         bool flagInside = cg3::isPointLyingInTriangle(
-                    triangles[data].getV1(), triangles[data].getV2(), triangles[data].getV3(), point, false);
+                    triangles[data].getV1(), triangles[data].getV2(), triangles[data].getV3(), point, true);
         //check if the node is a leaf
         bool flagLeaf = nodeList[i].isLeaf();
 
-        flag = flagInside && flagLeaf;
-
         //if the point is inside and the triangle is a leaf, then return the index of the node in the dag
-        if(flag)
+        if(flagInside && flagLeaf)
         {
             return i;
         }
@@ -107,13 +104,9 @@ int DAG::searchInNodes(const unsigned int& i, const unsigned int& length, const 
                     }
                 }
             }
-            else //flagLeaf && !flagInside or both flags false
-            {
-                return outside;
-            }
-            //maybe it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
         }
     }
-
+    //flagLeaf && !flagInside or both flags false
     return outside;
+    //it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
 }
