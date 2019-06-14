@@ -56,9 +56,9 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     mainWindow(static_cast<cg3::viewer::MainWindow&>(*parent)),
     boundingBox(cg3::Point2Dd(-BOUNDINGBOX, -BOUNDINGBOX),
                 cg3::Point2Dd(BOUNDINGBOX, BOUNDINGBOX)),
-    boundingTriangle(BT_P1,
-                     BT_P2,
-                     BT_P3), //bounding triangle initialization
+    boundingTriangle(BT_P3,
+                     BT_P1,
+                     BT_P2), //bounding triangle initialization
     drawableTriangulation(triangulation,
                           boundingTriangle.sceneCenter(),
                           boundingTriangle.sceneRadius()) //drawable triangulation initialization
@@ -182,17 +182,17 @@ void DelaunayManager::addPointToDelaunayTriangulation(const cg3::Point2Dd& p) {
     //Here you have to launch the incremental algorithm for the insertion of a new single point into the current triangulation.
     /********************************************************************************************************************/
 
-    //points.push_back(p);
-    //const unsigned int pointIndex = points.size() - 1;
+    points.push_back(p);
+    const unsigned int pointIndex = points.size() - 1;
 
-    const unsigned int pointIndex = points.size();
+    /*const unsigned int pointIndex = points.size();
     cg3::Point2Dd c = boundingTriangle.getCenter();
     if(pointIndex == 1)
         c.setYCoord(c.y() + BOUNDINGBOX/2 - 1000);
     else if(pointIndex == 2)
         c.setXCoord(c.x() + BOUNDINGBOX/2 - 1000);
 
-    points.push_back(c);
+    points.push_back(c);*/
 
     DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[pointIndex]);
 

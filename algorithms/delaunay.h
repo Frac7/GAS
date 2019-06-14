@@ -24,11 +24,11 @@ void legalizeEdge(const cg3::Point2Dd& point, const int& pi, const int& pj, Tria
 void incrementalTriangulation(Triangulation& triangulation, DAG &dag, const cg3::Point2Dd& point);
 
 void pointInside(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& point,
-                 const unsigned int& totalTrianglesNumber, const unsigned int& parentNodeIndex, const unsigned int& triangleIndex,
+                 const unsigned int totalTrianglesNumber, const unsigned int& parentNodeIndex, const unsigned int& triangleIndex,
                  Triangulation& triangulation, DAG& dag);
 
 void pointInSegment(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& point,
-                 const unsigned int& totalTrianglesNumber, const unsigned int& parentNodeIndex, const unsigned int& triangleIndex, const unsigned int& adjacency,
+                 const unsigned int totalTrianglesNumber, const unsigned int& parentNodeIndex, const unsigned int& triangleIndex, const unsigned int& adjacency,
                  Triangulation& triangulation, DAG& dag, const std::vector<Triangle>& triangles);
 
 }
