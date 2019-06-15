@@ -89,19 +89,28 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int &triangle, c
     //update old adjacencies
     if(v1v2 < length)
     {
-        adjacencies[v1v2][findOldAdjacency(v1v2, old)] = triangle;
+        if(findOldAdjacency(v1v2, old) != -1)
+        {
+            adjacencies[v1v2][findOldAdjacency(v1v2, old)] = triangle;
+        }
     }
     if(v2v3 < length)
     {
-        adjacencies[v2v3][findOldAdjacency(v2v3, old)] = triangle;
+        if(findOldAdjacency(v2v3, old) != -1)
+        {
+            adjacencies[v2v3][findOldAdjacency(v2v3, old)] = triangle;
+        }
     }
     if(v3v1 < length)
     {
-        adjacencies[v3v1][findOldAdjacency(v3v1, old)] = triangle;
+        if(findOldAdjacency(v3v1, old) != -1)
+        {
+            adjacencies[v3v1][findOldAdjacency(v3v1, old)] = triangle;
+        }
     }
 }
 
 unsigned int Triangulation::findOldAdjacency(const unsigned int &edge, const unsigned int& old)
 {
-    return adjacencies[edge][0] == old? 0 : (adjacencies[edge][1] == old? 1 : 2);
+    return adjacencies[edge][0] == old? 0 : (adjacencies[edge][1] == old? 1 : (adjacencies[edge][2] == old? 2 : -1));
 }
