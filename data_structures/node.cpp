@@ -39,24 +39,9 @@ int Node::getData() const
     return data;
 }
 
-void Node::setData(const int& value)
-{
-    data = value;
-}
-
 bool Node::isLeaf() const
 {
     return c1 == noChild && c2 == noChild && c3 == noChild;
-}
-
-bool Node::isDeleted() const
-{
-    return data == deleted;
-}
-
-void Node::setDeleted()
-{
-    data = deleted;
 }
 
 void Node::setC1(int value)

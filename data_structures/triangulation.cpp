@@ -16,6 +16,8 @@ std::vector<Triangle> Triangulation::getTriangles() const
     return triangles;
 }
 
+//TODO: review
+
 // I assume that here the edge in common for triangle and neighbor is already flipped
 void Triangulation::modifyAdjacency(const unsigned int& triangle,
                      const unsigned int& neighbor,

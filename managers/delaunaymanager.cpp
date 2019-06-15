@@ -164,6 +164,8 @@ void DelaunayManager::computeDelaunayTriangulation(const std::vector<cg3::Point2
     //fills your output Triangulation data structure.
     /********************************************************************************************************************/
 
+    std::random_shuffle(points.begin(), points.end());
+
     const unsigned int& length = inputPoints.size();
     for(int i = 0; i < length; i++)
     {
@@ -182,18 +184,8 @@ void DelaunayManager::addPointToDelaunayTriangulation(const cg3::Point2Dd& p) {
     //Here you have to launch the incremental algorithm for the insertion of a new single point into the current triangulation.
     /********************************************************************************************************************/
 
-    /*points.push_back(p);
-    const unsigned int pointIndex = points.size() - 1;*/
-
-    const unsigned int pointIndex = points.size();
-        cg3::Point2Dd c = boundingTriangle.getCenter();
-        if(pointIndex == 3)
-            c.setYCoord(c.y() + BOUNDINGBOX/2 - 1000);
-        else if(pointIndex == 2) //TODO: to test
-            c.setXCoord(c.x() + BOUNDINGBOX/2 - 1000);
-        else if(pointIndex == 1)
-            c.setXCoord(c.x() - BOUNDINGBOX/2 - 1000);
-        points.push_back(c);
+    points.push_back(p);
+    const unsigned int pointIndex = points.size() - 1;
 
     DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[pointIndex]);
 

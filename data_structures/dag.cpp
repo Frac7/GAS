@@ -2,7 +2,6 @@
 
 #include <cg3lib/cg3/core/cg3/geometry/2d/utils2d.h>
 
-
 void DAG::addNode(const Node& value, const unsigned int& p1, const unsigned int& p2)
 {
     int nodeIndex = nodeList.size();
@@ -112,7 +111,7 @@ std::vector<Node> DAG::getNodeList() const
 }*/
 
 
-int DAG::searchInNodes(const unsigned int& i, const unsigned int& length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
+int DAG::searchInNodes(const unsigned int& length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
 {
     bool firstChildVisited = false;
     bool secondChildVisited = false;

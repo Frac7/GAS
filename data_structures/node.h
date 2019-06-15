@@ -25,10 +25,6 @@ public:
 
     bool isLeaf() const;
 
-    //methods for managing flag deletion
-    bool isDeleted() const;
-    void setDeleted();
-
     void setC1(int value);
 
     void setC2(int value);
@@ -47,10 +43,5 @@ private:
 };
 
 const int noChild = -1;
-
-const int outside = -1; //point not inside triangle
-
-//when a node must be deleted, the data field contains this value
-const int deleted = -1;
 
 #endif // NODE_H
