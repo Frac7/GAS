@@ -11,13 +11,10 @@ public:
 
     //getters and setters
     cg3::Point2Dd getV1() const;
-    void setV1(const cg3::Point2Dd& value);
 
     cg3::Point2Dd getV2() const;
-    void setV2(const cg3::Point2Dd& value);
 
     cg3::Point2Dd getV3() const;
-    void setV3(const cg3::Point2Dd& value);
 
     cg3::Point2Dd getCenter() const;
 

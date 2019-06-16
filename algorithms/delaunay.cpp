@@ -45,12 +45,29 @@ void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3:
 
 void legalizeEdge(Triangulation& triangulation, DAG& dag,
                   const unsigned int& triangleIndex, const unsigned int& adjacentIndex,
-                  const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& adjacentOpposite)
+                  const cg3::Point2Dd& pi, const cg3::Point2Dd& pj, const cg3::Point2Dd& pr, const cg3::Point2Dd& pk,
+                  const unsigned int& edge)
 {
     if(!DelaunayTriangulation::Checker::
-            isPointLyingInCircle(v1, v2, v3, adjacentOpposite, true))
+            isPointLyingInCircle(pi, pj, pr, pk, true))
     {
+        const unsigned int totalTrianglesNumber = triangulation.getTriangles().size();
 
+        //TODO: manage adjacencies when creating triangles
+
+        triangulation.addTriangle(Triangle(pi, pk, pr));
+        dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
+        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, 0, 0, 0, triangleIndex);
+
+        triangulation.addTriangle(Triangle(pr, pk, pj));
+        dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
+        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, 0, 0, 0, adjacentIndex);
+
+        //TODO: legalize
+        //TODO: modify adjacencies
+
+        legalizeEdge(triangulation, dag, totalTrianglesNumber, 0, pi, pk, pr, pj, 0);
+        legalizeEdge(triangulation, dag, totalTrianglesNumber, 0, pr, pk, pj, pi, 0);
     }
 }
 
@@ -77,6 +94,12 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
 
         const std::array<int, maxAdjacentTriangles>& oldTriangleAdjacencies = triangulation.getAdjacenciesFromTriangle(triangleIndex);
 
+        //these values are cached because during the computation in this function some adjacencies are added
+        //the address of this array changes (it belongs to a vector)
+        const int adjacency0 = oldTriangleAdjacencies[0];
+        const int adjacency1 = oldTriangleAdjacencies[1];
+        const int adjacency2 = oldTriangleAdjacencies[2];
+
         //TODO: avoid code repetition
 
         //create 3 new triangles and 3 new nodes
@@ -87,7 +110,7 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         dag.addNode(Node(totalTrianglesNumber), parentNodeIndex);
         //update adjacencies
         triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber,
-            oldTriangleAdjacencies[0], totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
+            adjacency0, totalTrianglesNumber + 1, totalTrianglesNumber + 2, triangleIndex);
 
         //add triangle to the triangulation
         triangulation.addTriangle(Triangle(point, v2, v3)); //totalTrianglesNumber + 1
@@ -95,7 +118,7 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         dag.addNode(Node(totalTrianglesNumber + 1), parentNodeIndex);
         //update adjacencies
         triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1,
-            totalTrianglesNumber, oldTriangleAdjacencies[1], totalTrianglesNumber + 2, totalTrianglesNumber);
+            totalTrianglesNumber, adjacency1, totalTrianglesNumber + 2, totalTrianglesNumber);
 
         //add triangle to the triangulation
         triangulation.addTriangle(Triangle(v1, point, v3)); //totalTrianglesNumber + 2
@@ -103,7 +126,7 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         dag.addNode(Node(totalTrianglesNumber + 2), parentNodeIndex);
         //update adjacencies
         triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 2,
-            totalTrianglesNumber, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
+            totalTrianglesNumber, totalTrianglesNumber + 1, adjacency2, triangleIndex);
 
         //adjacent triangles are known (their index)
         //for legalizing and edge I need v1, v2, v3 (one of these is the point to be inserted) and pk
@@ -112,10 +135,35 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         //in legalize edge I need also the triangulation to call the function recursively and I need to insert triangles
         //I need the dag to insert new nodes
 
-        //const unsigned int& adjacencyNeighbourToTriangle = triangulation.findAdjacency(oldTriangleAdjacencies[0], totalTrianglesNumber);
-        //legalizeEdge(triangulation, dag, totalTrianglesNumber, oldTriangleAdjacencies[0], v1, v2, point, pk);
-        //legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, oldTriangleAdjacencies[1], point, v2, v3, pk);
-        //legalizeEdge(triangulation, dag, totalTrianglesNumber + 2, oldTriangleAdjacencies[2], v1, point, v3, pk);
+        //oppositepk is the edge of the neighbour where I can find the adjacency with the triangle
+        //using this edge I can find pk that is the opposite point of this edge in the adjacent triangle
+
+        if(adjacency0 != -1)
+        {
+            const int oppositePk = triangulation.findAdjacency(adjacency0, totalTrianglesNumber);
+            const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
+
+            const cg3::Point2Dd& pk = pkIndex == 0? triangles[adjacency0].getV1() : (pkIndex == 1? triangles[adjacency0].getV2() : triangles[adjacency0].getV3());
+            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjacency0, v1, v2, point, pk, 0);
+        }
+
+        if(adjacency1 != -1)
+        {
+            const int oppositePk = triangulation.findAdjacency(adjacency1, totalTrianglesNumber + 1);
+            const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
+
+            const cg3::Point2Dd& pk = pkIndex == 0? triangles[adjacency1].getV1() : (pkIndex == 1? triangles[adjacency1].getV2() : triangles[adjacency1].getV3());
+            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjacency1, v2, v3, point, pk, 1);
+        }
+
+        if(adjacency2 != -1)
+        {
+            const int oppositePk = triangulation.findAdjacency(adjacency2, totalTrianglesNumber + 2);
+            const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
+
+            const cg3::Point2Dd& pk = pkIndex == 0? triangles[adjacency2].getV1() : (pkIndex == 1? triangles[adjacency2].getV2() : triangles[adjacency2].getV3());
+            legalizeEdge(triangulation, dag, totalTrianglesNumber + 2, adjacency2, v3, v1, point, pk, 2);
+        }
 
     }
 
