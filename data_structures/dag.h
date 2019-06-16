@@ -21,8 +21,7 @@ public:
 
     int searchInNodes(const unsigned int &length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const;
 
-
-    std::vector<Node> getNodeList() const;
+    std::vector<Node>& getNodeList();
 
 private:
     std::vector<Node> nodeList;

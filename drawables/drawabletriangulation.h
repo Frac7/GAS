@@ -1,6 +1,7 @@
 #ifndef DRAWABLETRIANGULATION_H
 #define DRAWABLETRIANGULATION_H
 
+#include <data_structures/dag.h>
 #include <data_structures/triangulation.h>
 
 #include <cg3/viewer/interfaces/drawable_object.h>
@@ -9,7 +10,7 @@
 class DrawableTriangulation : public cg3::DrawableObject
 {
 public:
-    DrawableTriangulation(const Triangulation& triangulation, const cg3::Pointd& center, const double& radius);
+    DrawableTriangulation(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, const double& radius);
 
     void draw() const;
     cg3::Pointd sceneCenter() const;
@@ -19,7 +20,8 @@ private:
     const cg3::Pointd center;
     const double radius;
 
-    const Triangulation& triangulation;
+    Triangulation& triangulation;
+    DAG& dag;
 };
 
 #endif // DRAWABLETRIANGULATION_H

@@ -60,6 +60,7 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
                      BT_P2,
                      BT_P3), //bounding triangle initialization
     drawableTriangulation(triangulation,
+                          dag,
                           boundingTriangle.sceneCenter(),
                           boundingTriangle.sceneRadius()) //drawable triangulation initialization
 {

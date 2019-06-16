@@ -7,7 +7,7 @@ namespace DelaunayTriangulation {
 
 namespace Checker {
 
-void fillDataStructures(const Triangulation& triangulation, const DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
+void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
 {
     const std::vector<Triangle>& triangleVector = triangulation.getTriangles();
     const std::vector<Node>& nodeVector = dag.getNodeList();
@@ -43,47 +43,13 @@ void fillDataStructures(const Triangulation& triangulation, const DAG& dag, std:
 
 }
 
-void legalizeEdge(Triangulation& triangulation, DAG& dag, const cg3::Point2Dd& point, const unsigned int& pipj, const unsigned int& triangle)
+void legalizeEdge(Triangulation& triangulation, DAG& dag,
+                  const unsigned int& triangleIndex, const unsigned int& adjacentIndex,
+                  const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& adjacentOpposite)
 {
-    const std::vector<Triangle>& triangles = triangulation.getTriangles();
-    Triangle triangleObject = triangles[triangle];
-
     if(!DelaunayTriangulation::Checker::
-            isPointLyingInCircle(triangleObject.getV1(), triangleObject.getV2(), triangleObject.getV3(), point, true))
+            isPointLyingInCircle(v1, v2, v3, adjacentOpposite, true))
     {
-        const unsigned int& trianglesNumber = triangles.size();
-
-        const unsigned int& adjacentTriangle = triangulation.getAdjacenciesFromTriangle(triangle)[pipj];
-        const unsigned int& adjacentEdgeAdjacentTriangle = triangulation.findOldAdjacency(adjacentTriangle, triangle);
-
-        //TODO: replace magic numbers
-        const unsigned int& pk = (adjacentEdgeAdjacentTriangle + 2) % 3;
-        const unsigned int& pr = (adjacentTriangle + 2) % 3;
-
-        //pick the adjacent triangle
-        Triangle adjacent = triangles[adjacentTriangle];
-
-        const cg3::Point2Dd& oldTA = triangleObject.getV1();
-        const cg3::Point2Dd& oldTB = triangleObject.getV2();
-        const cg3::Point2Dd& oldTC = triangleObject.getV3();
-
-        const cg3::Point2Dd& oldAA = adjacent.getV1();
-        const cg3::Point2Dd& oldAB = adjacent.getV2();
-        const cg3::Point2Dd& oldAC = adjacent.getV3();
-
-        //TODO: replace edge
-
-        dag.addNode(Node(trianglesNumber), triangle, adjacentTriangle);
-        dag.addNode(Node(trianglesNumber + 1), triangle, adjacentTriangle);
-
-        triangulation.addTriangle(triangleObject);
-        triangulation.addTriangle(adjacent);
-
-        //TODO: change these numbers
-        legalizeEdge(triangulation, dag, point, 0, trianglesNumber);
-        legalizeEdge(triangulation, dag, point, 1, trianglesNumber + 1);
-
-        //TODO: modify adjacencies
 
     }
 }
@@ -139,9 +105,17 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 2,
             totalTrianglesNumber, totalTrianglesNumber + 1, oldTriangleAdjacencies[2], triangleIndex);
 
-        legalizeEdge(triangulation, dag, point, 0, totalTrianglesNumber);
-        legalizeEdge(triangulation, dag, point, 1, totalTrianglesNumber + 1);
-        legalizeEdge(triangulation, dag, point, 2, totalTrianglesNumber + 2);
+        //adjacent triangles are known (their index)
+        //for legalizing and edge I need v1, v2, v3 (one of these is the point to be inserted) and pk
+        //pk is the vertex of the adjacent triangle (the unique vertex that is not in the edge to be tested)
+
+        //in legalize edge I need also the triangulation to call the function recursively and I need to insert triangles
+        //I need the dag to insert new nodes
+
+        //const unsigned int& adjacencyNeighbourToTriangle = triangulation.findAdjacency(oldTriangleAdjacencies[0], totalTrianglesNumber);
+        //legalizeEdge(triangulation, dag, totalTrianglesNumber, oldTriangleAdjacencies[0], v1, v2, point, pk);
+        //legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, oldTriangleAdjacencies[1], point, v2, v3, pk);
+        //legalizeEdge(triangulation, dag, totalTrianglesNumber + 2, oldTriangleAdjacencies[2], v1, point, v3, pk);
 
     }
 

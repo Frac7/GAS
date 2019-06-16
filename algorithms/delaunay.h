@@ -15,11 +15,13 @@ const unsigned int dimension = 3;
 
 namespace Checker {
 
-void fillDataStructures(const Triangulation& triangulation, const DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles);
+void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles);
 
 }
 
-void legalizeEdge(Triangulation& triangulation, DAG& dag, const cg3::Point2Dd& point, const unsigned int& pipj, const unsigned int& triangle);
+void legalizeEdge(Triangulation& triangulation, DAG& dag,
+                  const unsigned int& triangleIndex, const unsigned int& adjacentIndex,
+                  const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3, const cg3::Point2Dd& adjacentOpposite);
 
 void incrementalTriangulation(Triangulation& triangulation, DAG &dag, const cg3::Point2Dd& point);
 
