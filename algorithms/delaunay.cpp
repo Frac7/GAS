@@ -49,7 +49,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                   const unsigned int& edge)
 {
     if(!DelaunayTriangulation::Checker::
-            isPointLyingInCircle(pi, pj, pr, pk, true))
+            isPointLyingInCircle(pi, pj, pr, pk, false))
     {
         const unsigned int totalTrianglesNumber = triangulation.getTriangles().size();
 
@@ -138,7 +138,7 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         //oppositepk is the edge of the neighbour where I can find the adjacency with the triangle
         //using this edge I can find pk that is the opposite point of this edge in the adjacent triangle
 
-        if(adjacency0 != -1)
+        /*if(adjacency0 != -1)
         {
             const int oppositePk = triangulation.findAdjacency(adjacency0, totalTrianglesNumber);
             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
@@ -163,7 +163,7 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
 
             const cg3::Point2Dd& pk = pkIndex == 0? triangles[adjacency2].getV1() : (pkIndex == 1? triangles[adjacency2].getV2() : triangles[adjacency2].getV3());
             legalizeEdge(triangulation, dag, totalTrianglesNumber + 2, adjacency2, v3, v1, point, pk, 2);
-        }
+        }*/
 
     }
 

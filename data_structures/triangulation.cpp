@@ -57,7 +57,7 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int &triangle, c
     if(v2v3 < length)
     {
         const int& adjacency = findAdjacency(v2v3, old);
-        if(adjacency)
+        if(adjacency != -1)
         {
             adjacencies[v2v3][adjacency] = triangle;
         }
