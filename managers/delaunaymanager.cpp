@@ -98,8 +98,8 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     triangulation.addAdjacenciesForNewTriangle(noAdjacentTriangle, noAdjacentTriangle, noAdjacentTriangle);
     dag.addNode(Node(0));
 
-    //mainWindow.updateGlCanvas();
-    //fitScene();
+    mainWindow.updateGlCanvas();
+    fitScene();
 
     /********************************************************************************************************************/
 }
@@ -185,14 +185,8 @@ void DelaunayManager::addPointToDelaunayTriangulation(const cg3::Point2Dd& p) {
     //Here you have to launch the incremental algorithm for the insertion of a new single point into the current triangulation.
     /********************************************************************************************************************/
 
-    //points.push_back(p);
-    //const unsigned int pointIndex = points.size() - 1;
-
-    const unsigned int pointIndex = points.size();
-    if(pointIndex == 0)
-        points.push_back(cg3::Point2Dd(-413910, 360255));
-    else if(pointIndex == 1)
-        points.push_back(cg3::Point2Dd(436905, -429240));
+    points.push_back(p);
+    const unsigned int pointIndex = points.size() - 1;
 
     DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[pointIndex]);
 
