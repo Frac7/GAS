@@ -1,9 +1,9 @@
 #include "node.h"
 
-Node::Node(const int& data)
+Node::Node(const int data)
     : c1(noChild), c2(noChild), c3(noChild), data(data) {}
 
-void Node::addChild(const int &value)
+void Node::addChild(const int value)
 {
     if(c1 == noChild)
     {

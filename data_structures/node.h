@@ -9,9 +9,9 @@ class Node
 {
 public:
     //create node from children and data
-    Node(const int& data);
+    Node(const int data);
 
-    void addChild(const int& value);
+    void addChild(const int value);
 
     //getters and setters
     int getC1() const;
@@ -21,7 +21,7 @@ public:
     int getC3() const;
 
     int getData() const;
-    void setData(const int& value);
+    void setData(const int value);
 
     bool isLeaf() const;
 

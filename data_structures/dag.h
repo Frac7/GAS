@@ -8,8 +8,8 @@ class DAG
 public:
 
     //add node to the dag
-    void addNode(const Node& node, const unsigned int& p1, const unsigned int& p2);
-    void addNode(const Node& node, const unsigned int& p1);
+    void addNode(const Node& node, const unsigned int p1, const unsigned int p2);
+    void addNode(const Node& node, const unsigned int p1);
     void addNode(const Node& node);
 
     /* adding a node means adding a triangle
@@ -19,7 +19,7 @@ public:
 
     void clearDataStructure();
 
-    int searchInNodes(const unsigned int &length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const;
+    int searchInNodes(const unsigned int length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const;
 
     std::vector<Node>& getNodeList();
 

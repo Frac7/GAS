@@ -17,7 +17,13 @@ void DrawableTriangulation::draw() const
         //ignore bounding triangle
         if(nodes[i].isLeaf())
         {
-            cg3::viewer::drawTriangle2D(triangles[i].getV1(), triangles[i].getV2(), triangles[i].getV3(), Qt::blue, 1);
+            cg3::viewer::drawPoint2D(triangles[i].getV1(), Qt::red, 3);
+            cg3::viewer::drawPoint2D(triangles[i].getV2(), Qt::red, 3);
+            cg3::viewer::drawPoint2D(triangles[i].getV3(), Qt::red, 3);
+
+            cg3::viewer::drawLine2D(triangles[i].getV1(), triangles[i].getV2(), Qt::green, 1);
+            cg3::viewer::drawLine2D(triangles[i].getV2(), triangles[i].getV3(), Qt::green, 1);
+            cg3::viewer::drawLine2D(triangles[i].getV3(), triangles[i].getV1(), Qt::green, 1);
         }
     }
 }
