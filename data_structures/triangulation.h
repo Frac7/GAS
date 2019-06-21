@@ -8,6 +8,10 @@ const unsigned int maxAdjacentTriangles = 3;
 
 const int noAdjacentTriangle = -1;
 
+const unsigned int v1v2Edge = 0;
+const unsigned int v2v3Edge = 1;
+const unsigned int v3v1Edge = 2;
+
 class Triangulation
 {
 public:

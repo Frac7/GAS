@@ -39,54 +39,54 @@ void Triangulation::addAdjacenciesForNewTriangle(const int v1v2, const int v2v3,
     adjacencies.push_back({v1v2, v2v3, v3v1});
 }
 
-//TODO: refactoring and replace magic numbers
+//TODO: refactoring
 void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1, const unsigned int old, const unsigned int oldAdj)
 {
     addAdjacenciesForNewTriangle(v1v2, v2v3, v3v1);
 
     const unsigned int length = adjacencies.size();
 
-    int adjacency = -1;
+    int adjacency = noAdjacentTriangle;
 
     //update old adjacencies
-    if(v1v2 != -1 && v1v2 < length)
+    if(v1v2 != noAdjacentTriangle && v1v2 < length)
     {
         adjacency = findAdjacency(v1v2, old);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v1v2][adjacency] = triangle;
         }
 
         adjacency = findAdjacency(v1v2, oldAdj);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v1v2][adjacency] = triangle;
         }
     }
-    if(v2v3 != -1 && v2v3 < length)
+    if(v2v3 != noAdjacentTriangle && v2v3 < length)
     {
         adjacency = findAdjacency(v2v3, old);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v2v3][adjacency] = triangle;
         }
 
         adjacency = findAdjacency(v2v3, oldAdj);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v2v3][adjacency] = triangle;
         }
     }
-    if(v3v1 != -1 && v3v1 < length)
+    if(v3v1 != noAdjacentTriangle && v3v1 < length)
     {
         adjacency = findAdjacency(v3v1, old);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v3v1][adjacency] = triangle;
         }
 
         adjacency = findAdjacency(v3v1, oldAdj);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v3v1][adjacency] = triangle;
         }
@@ -99,29 +99,29 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, co
 
     const unsigned int length = adjacencies.size();
 
-    int adjacency = -1;
+    int adjacency = noAdjacentTriangle;
 
     //update old adjacencies
-    if(v1v2 != -1 && v1v2 < length)
+    if(v1v2 != noAdjacentTriangle && v1v2 < length)
     {
         adjacency = findAdjacency(v1v2, old);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v1v2][adjacency] = triangle;
         }
     }
-    if(v2v3 != -1 && v2v3 < length)
+    if(v2v3 != noAdjacentTriangle && v2v3 < length)
     {
         adjacency = findAdjacency(v2v3, old);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v2v3][adjacency] = triangle;
         }
     }
-    if(v3v1 != -1 && v3v1 < length)
+    if(v3v1 != noAdjacentTriangle && v3v1 < length)
     {
         adjacency = findAdjacency(v3v1, old);
-        if(adjacency != -1)
+        if(adjacency != noAdjacentTriangle)
         {
             adjacencies[v3v1][adjacency] = triangle;
         }
@@ -130,5 +130,5 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, co
 
 unsigned int Triangulation::findAdjacency(const unsigned int triangle, const unsigned int adjacent)
 {
-    return adjacencies[triangle][0] == adjacent? 0 : (adjacencies[triangle][1] == adjacent? 1 : (adjacencies[triangle][2] == adjacent? 2 : -1));
+    return adjacencies[triangle][0] == adjacent? 0 : (adjacencies[triangle][1] == adjacent? 1 : (adjacencies[triangle][2] == adjacent? 2 : noAdjacentTriangle));
 }
