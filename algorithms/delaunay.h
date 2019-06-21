@@ -22,7 +22,8 @@ void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3:
 void legalizeEdge(Triangulation& triangulation, DAG& dag,
                   const unsigned int triangleIndex, const unsigned int adjacentIndex,
                   const cg3::Point2Dd& p1, const cg3::Point2Dd& p2, const cg3::Point2Dd& p3, const cg3::Point2Dd& pk,
-                  const unsigned int edge, std::array<int, dimension>& triangleAdj, std::array<int, dimension>& adjTriangleAdj);
+                  const unsigned int edge, const unsigned int adjEdge,
+                  std::array<int, dimension>& triangleAdj, std::array<int, dimension>& adjTriangleAdj);
 
 void incrementalTriangulation(Triangulation& triangulation, DAG &dag, const cg3::Point2Dd& point);
 
