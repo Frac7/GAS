@@ -80,7 +80,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                 legalizeEdge(triangulation, dag, totalTrianglesNumber, totalTrianglesNumber + 1, pk, p2, p3, p1, 0, 2,
                              triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
                 legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, totalTrianglesNumber, pk, p3, p1, p2, 2, 0,
-                             triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
+                             triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber));
                     break;
                 case 2: //p1 p2 is pi pj, p3 is pr
                     triangulation.addTriangle(Triangle(p1, pk, p3));
@@ -98,7 +98,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                     legalizeEdge(triangulation, dag, totalTrianglesNumber, totalTrianglesNumber + 1, p1, pk, p3, p2, 1, 0,
                                  triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
                     legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, totalTrianglesNumber, p3, pk, p2, p1, 0, 1,
-                                 triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
+                                 triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber));
                     break;
             }
                 break;
@@ -120,7 +120,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                         legalizeEdge(triangulation, dag, totalTrianglesNumber, totalTrianglesNumber + 1, p1, p2, pk, p3, 2, 0,
                                      triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
                         legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, totalTrianglesNumber, p1, pk, p3, p2, 0, 2,
-                                     triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
+                                     triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber));
                         break;
                     case 2:
                         //p2 p3 is pi pj, p1 is pr
@@ -137,7 +137,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                         legalizeEdge(triangulation, dag, totalTrianglesNumber, totalTrianglesNumber + 1, p2, pk, p1, p3, 1, 0,
                                      triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
                         legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, totalTrianglesNumber, p1, pk, p3, p2, 0, 1,
-                                     triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
+                                     triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber));
                         break;
                 }
                 break;
@@ -160,7 +160,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                     legalizeEdge(triangulation, dag, totalTrianglesNumber, totalTrianglesNumber + 1, p2, p3, pk, p1, 0, 2,
                                  triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
                     legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, totalTrianglesNumber, p1, p2, pk, p3, 2, 0,
-                                 triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
+                                 triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber));
                         break;
                     case 1:
                     //p3 p1 is pi pj, p2 is pr
@@ -177,7 +177,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                     legalizeEdge(triangulation, dag, totalTrianglesNumber, totalTrianglesNumber + 1, pk, p2, p3, p1, 0, 1,
                                  triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
                     legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, totalTrianglesNumber, pk, p1, p2, p3, 1, 0,
-                                 triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1));
+                                 triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber));
                         break;
                 }
 
