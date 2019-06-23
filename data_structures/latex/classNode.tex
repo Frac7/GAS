@@ -1,0 +1,182 @@
+\hypertarget{classNode}{}\section{Node Class Reference}
+\label{classNode}\index{Node@{Node}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNode_a92589d30b37760493978baedac11c4af}{Node} (const int data)
+\begin{DoxyCompactList}\small\item\em Creates a node without children and initializes the data field with the input parameter. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_a0534fe9af130ed888e44f9c9b2a8144d}{add\+Child} (const int value)
+\begin{DoxyCompactList}\small\item\em Adds a child to a existing node. \end{DoxyCompactList}\item 
+int \hyperlink{classNode_a9c32461ac040d49aff5d25b41b0353a7}{get\+C1} () const
+\begin{DoxyCompactList}\small\item\em Returns child 1. \end{DoxyCompactList}\item 
+int \hyperlink{classNode_aea950a9a2d050dc1aa571a5282c8b410}{get\+C2} () const
+\begin{DoxyCompactList}\small\item\em Returns child 2. \end{DoxyCompactList}\item 
+int \hyperlink{classNode_a3b941af12dfb8085e4f621ed62469ba5}{get\+C3} () const
+\begin{DoxyCompactList}\small\item\em Returns child 3. \end{DoxyCompactList}\item 
+int \hyperlink{classNode_a4bf12425ae4895ac3ec27c91fea8f646}{get\+Data} () const
+\begin{DoxyCompactList}\small\item\em Returns the node data. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_ad6d91049f0851255bb064836405067be}{set\+C1} (int value)
+\begin{DoxyCompactList}\small\item\em Sets child 1. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_aec5c9d9903b33dbb1bfef5b5dd351a49}{set\+C2} (int value)
+\begin{DoxyCompactList}\small\item\em Sets child 2. \end{DoxyCompactList}\item 
+void \hyperlink{classNode_a36d0038efe7fae34655f5c360008da6f}{set\+C3} (int value)
+\begin{DoxyCompactList}\small\item\em Sets child 3. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNode_a66eb518ab2f277afef38d4306404fd7a}\label{classNode_a66eb518ab2f277afef38d4306404fd7a}} 
+void {\bfseries set\+Data} (const int value)
+\item 
+bool \hyperlink{classNode_a0c5b662d3bfbb856292a9aab878ed622}{is\+Leaf} () const
+\begin{DoxyCompactList}\small\item\em Returns true or false if the node is or isn\textquotesingle{}t a leaf. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNode_a92589d30b37760493978baedac11c4af}\label{classNode_a92589d30b37760493978baedac11c4af}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{const int}]{data }\end{DoxyParamCaption})}
+
+
+
+Creates a node without children and initializes the data field with the input parameter. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & the index of the triangle in the array of triangulation \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNode_a0534fe9af130ed888e44f9c9b2a8144d}\label{classNode_a0534fe9af130ed888e44f9c9b2a8144d}} 
+\index{Node@{Node}!add\+Child@{add\+Child}}
+\index{add\+Child@{add\+Child}!Node@{Node}}
+\subsubsection{\texorpdfstring{add\+Child()}{addChild()}}
+{\footnotesize\ttfamily void Node\+::add\+Child (\begin{DoxyParamCaption}\item[{const int}]{value }\end{DoxyParamCaption})}
+
+
+
+Adds a child to a existing node. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the index of the child in the dag \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNode_a9c32461ac040d49aff5d25b41b0353a7}\label{classNode_a9c32461ac040d49aff5d25b41b0353a7}} 
+\index{Node@{Node}!get\+C1@{get\+C1}}
+\index{get\+C1@{get\+C1}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+C1()}{getC1()}}
+{\footnotesize\ttfamily int Node\+::get\+C1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns child 1. 
+
+\begin{DoxyReturn}{Returns}
+c1\+: child 1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_aea950a9a2d050dc1aa571a5282c8b410}\label{classNode_aea950a9a2d050dc1aa571a5282c8b410}} 
+\index{Node@{Node}!get\+C2@{get\+C2}}
+\index{get\+C2@{get\+C2}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+C2()}{getC2()}}
+{\footnotesize\ttfamily int Node\+::get\+C2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns child 2. 
+
+\begin{DoxyReturn}{Returns}
+c2\+: child 2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a3b941af12dfb8085e4f621ed62469ba5}\label{classNode_a3b941af12dfb8085e4f621ed62469ba5}} 
+\index{Node@{Node}!get\+C3@{get\+C3}}
+\index{get\+C3@{get\+C3}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+C3()}{getC3()}}
+{\footnotesize\ttfamily int Node\+::get\+C3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns child 3. 
+
+\begin{DoxyReturn}{Returns}
+c3\+: child 3 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a4bf12425ae4895ac3ec27c91fea8f646}\label{classNode_a4bf12425ae4895ac3ec27c91fea8f646}} 
+\index{Node@{Node}!get\+Data@{get\+Data}}
+\index{get\+Data@{get\+Data}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+Data()}{getData()}}
+{\footnotesize\ttfamily int Node\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the node data. 
+
+\begin{DoxyReturn}{Returns}
+data\+: index of the triangle in the triangulation 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_a0c5b662d3bfbb856292a9aab878ed622}\label{classNode_a0c5b662d3bfbb856292a9aab878ed622}} 
+\index{Node@{Node}!is\+Leaf@{is\+Leaf}}
+\index{is\+Leaf@{is\+Leaf}!Node@{Node}}
+\subsubsection{\texorpdfstring{is\+Leaf()}{isLeaf()}}
+{\footnotesize\ttfamily bool Node\+::is\+Leaf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns true or false if the node is or isn\textquotesingle{}t a leaf. 
+
+If a node is a leaf, its children are all equal to -\/1, that is the const \char`\"{}no\+Child\char`\"{}.
+
+\begin{DoxyReturn}{Returns}
+flag\+: the node has or hasn\textquotesingle{}t children 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNode_ad6d91049f0851255bb064836405067be}\label{classNode_ad6d91049f0851255bb064836405067be}} 
+\index{Node@{Node}!set\+C1@{set\+C1}}
+\index{set\+C1@{set\+C1}!Node@{Node}}
+\subsubsection{\texorpdfstring{set\+C1()}{setC1()}}
+{\footnotesize\ttfamily void Node\+::set\+C1 (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets child 1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the index of the child \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNode_aec5c9d9903b33dbb1bfef5b5dd351a49}\label{classNode_aec5c9d9903b33dbb1bfef5b5dd351a49}} 
+\index{Node@{Node}!set\+C2@{set\+C2}}
+\index{set\+C2@{set\+C2}!Node@{Node}}
+\subsubsection{\texorpdfstring{set\+C2()}{setC2()}}
+{\footnotesize\ttfamily void Node\+::set\+C2 (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets child 2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the index of the child \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNode_a36d0038efe7fae34655f5c360008da6f}\label{classNode_a36d0038efe7fae34655f5c360008da6f}} 
+\index{Node@{Node}!set\+C3@{set\+C3}}
+\index{set\+C3@{set\+C3}!Node@{Node}}
+\subsubsection{\texorpdfstring{set\+C3()}{setC3()}}
+{\footnotesize\ttfamily void Node\+::set\+C3 (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets child 3. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the index of the child \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+node.\+h\item 
+node.\+cpp\end{DoxyCompactItemize}

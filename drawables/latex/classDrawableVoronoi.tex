@@ -1,0 +1,90 @@
+\hypertarget{classDrawableVoronoi}{}\section{Drawable\+Voronoi Class Reference}
+\label{classDrawableVoronoi}\index{Drawable\+Voronoi@{Drawable\+Voronoi}}
+
+
+Inheritance diagram for Drawable\+Voronoi\+:
+% FIG 0
+
+
+Collaboration diagram for Drawable\+Voronoi\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}{Drawable\+Voronoi} (Triangulation \&triangulation, D\+AG \&dag, const cg3\+::\+Pointd \&center, const double radius)
+\begin{DoxyCompactList}\small\item\em Initializes the drawable object. \end{DoxyCompactList}\item 
+void \hyperlink{classDrawableVoronoi_aa10c214cfc42f752433c682760d88b70}{draw} () const
+\begin{DoxyCompactList}\small\item\em Draws the Voronoi diagram. \end{DoxyCompactList}\item 
+cg3\+::\+Pointd \hyperlink{classDrawableVoronoi_a1707c9e575880eeac9e981d73e03b3bf}{scene\+Center} () const
+\begin{DoxyCompactList}\small\item\em Returns the triangulation center. \end{DoxyCompactList}\item 
+double \hyperlink{classDrawableVoronoi_af26652a83c96748bf9a09abc6255672b}{scene\+Radius} () const
+\begin{DoxyCompactList}\small\item\em Return the radius of the triangulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}\label{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}} 
+\index{Drawable\+Voronoi@{Drawable\+Voronoi}!Drawable\+Voronoi@{Drawable\+Voronoi}}
+\index{Drawable\+Voronoi@{Drawable\+Voronoi}!Drawable\+Voronoi@{Drawable\+Voronoi}}
+\subsubsection{\texorpdfstring{Drawable\+Voronoi()}{DrawableVoronoi()}}
+{\footnotesize\ttfamily Drawable\+Voronoi\+::\+Drawable\+Voronoi (\begin{DoxyParamCaption}\item[{Triangulation \&}]{triangulation,  }\item[{D\+AG \&}]{dag,  }\item[{const cg3\+::\+Pointd \&}]{center,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+
+
+Initializes the drawable object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em triangulation} & array of triangles and adjacencies \\
+\hline
+\mbox{\tt in}  & {\em dag} & the search data structure \\
+\hline
+\mbox{\tt in}  & {\em center} & the center of the triangulation -\/ center of the bounding triangle \\
+\hline
+\mbox{\tt in}  & {\em radius} & the radius of the triangulation -\/ radius of the bounding triangle \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDrawableVoronoi_aa10c214cfc42f752433c682760d88b70}\label{classDrawableVoronoi_aa10c214cfc42f752433c682760d88b70}} 
+\index{Drawable\+Voronoi@{Drawable\+Voronoi}!draw@{draw}}
+\index{draw@{draw}!Drawable\+Voronoi@{Drawable\+Voronoi}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Drawable\+Voronoi\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Draws the Voronoi diagram. 
+
+This method draws only triangles contained in leaves, it draws blue lines for the edges and yellow points for the circumcenters. \mbox{\Hypertarget{classDrawableVoronoi_a1707c9e575880eeac9e981d73e03b3bf}\label{classDrawableVoronoi_a1707c9e575880eeac9e981d73e03b3bf}} 
+\index{Drawable\+Voronoi@{Drawable\+Voronoi}!scene\+Center@{scene\+Center}}
+\index{scene\+Center@{scene\+Center}!Drawable\+Voronoi@{Drawable\+Voronoi}}
+\subsubsection{\texorpdfstring{scene\+Center()}{sceneCenter()}}
+{\footnotesize\ttfamily cg3\+::\+Pointd Drawable\+Voronoi\+::scene\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the triangulation center. 
+
+\begin{DoxyReturn}{Returns}
+center\+: the bounding triangle barycenter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDrawableVoronoi_af26652a83c96748bf9a09abc6255672b}\label{classDrawableVoronoi_af26652a83c96748bf9a09abc6255672b}} 
+\index{Drawable\+Voronoi@{Drawable\+Voronoi}!scene\+Radius@{scene\+Radius}}
+\index{scene\+Radius@{scene\+Radius}!Drawable\+Voronoi@{Drawable\+Voronoi}}
+\subsubsection{\texorpdfstring{scene\+Radius()}{sceneRadius()}}
+{\footnotesize\ttfamily double Drawable\+Voronoi\+::scene\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Return the radius of the triangulation. 
+
+\begin{DoxyReturn}{Returns}
+radius\+: the bounding triangle radius 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+drawablevoronoi.\+h\item 
+drawablevoronoi.\+cpp\end{DoxyCompactItemize}

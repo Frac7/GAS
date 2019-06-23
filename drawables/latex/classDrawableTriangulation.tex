@@ -1,0 +1,90 @@
+\hypertarget{classDrawableTriangulation}{}\section{Drawable\+Triangulation Class Reference}
+\label{classDrawableTriangulation}\index{Drawable\+Triangulation@{Drawable\+Triangulation}}
+
+
+Inheritance diagram for Drawable\+Triangulation\+:
+% FIG 0
+
+
+Collaboration diagram for Drawable\+Triangulation\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDrawableTriangulation_a2025131e8964746883f1493f177f8e39}{Drawable\+Triangulation} (Triangulation \&triangulation, D\+AG \&dag, const cg3\+::\+Pointd \&center, const double radius)
+\begin{DoxyCompactList}\small\item\em Initializes the drawable object. \end{DoxyCompactList}\item 
+void \hyperlink{classDrawableTriangulation_a364e9b612571481930770fdfa9d68148}{draw} () const
+\begin{DoxyCompactList}\small\item\em Draws the triangulation. \end{DoxyCompactList}\item 
+cg3\+::\+Pointd \hyperlink{classDrawableTriangulation_a3198ae77285c354fd020f5b18df718f5}{scene\+Center} () const
+\begin{DoxyCompactList}\small\item\em Returns the triangulation center. \end{DoxyCompactList}\item 
+double \hyperlink{classDrawableTriangulation_a0aee9121b146c327dbbd741c3dc58c0a}{scene\+Radius} () const
+\begin{DoxyCompactList}\small\item\em Return the radius of the triangulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDrawableTriangulation_a2025131e8964746883f1493f177f8e39}\label{classDrawableTriangulation_a2025131e8964746883f1493f177f8e39}} 
+\index{Drawable\+Triangulation@{Drawable\+Triangulation}!Drawable\+Triangulation@{Drawable\+Triangulation}}
+\index{Drawable\+Triangulation@{Drawable\+Triangulation}!Drawable\+Triangulation@{Drawable\+Triangulation}}
+\subsubsection{\texorpdfstring{Drawable\+Triangulation()}{DrawableTriangulation()}}
+{\footnotesize\ttfamily Drawable\+Triangulation\+::\+Drawable\+Triangulation (\begin{DoxyParamCaption}\item[{Triangulation \&}]{triangulation,  }\item[{D\+AG \&}]{dag,  }\item[{const cg3\+::\+Pointd \&}]{center,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+
+
+
+Initializes the drawable object. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em triangulation} & array of triangles and adjacencies \\
+\hline
+\mbox{\tt in}  & {\em dag} & the search data structure \\
+\hline
+\mbox{\tt in}  & {\em center} & the center of the triangulation -\/ center of the bounding triangle \\
+\hline
+\mbox{\tt in}  & {\em radius} & the radius of the triangulation -\/ radius of the bounding triangle \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDrawableTriangulation_a364e9b612571481930770fdfa9d68148}\label{classDrawableTriangulation_a364e9b612571481930770fdfa9d68148}} 
+\index{Drawable\+Triangulation@{Drawable\+Triangulation}!draw@{draw}}
+\index{draw@{draw}!Drawable\+Triangulation@{Drawable\+Triangulation}}
+\subsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily void Drawable\+Triangulation\+::draw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Draws the triangulation. 
+
+This method draws only triangles contained in leaves, it draws green lines for the edges and red points for the vertices. \mbox{\Hypertarget{classDrawableTriangulation_a3198ae77285c354fd020f5b18df718f5}\label{classDrawableTriangulation_a3198ae77285c354fd020f5b18df718f5}} 
+\index{Drawable\+Triangulation@{Drawable\+Triangulation}!scene\+Center@{scene\+Center}}
+\index{scene\+Center@{scene\+Center}!Drawable\+Triangulation@{Drawable\+Triangulation}}
+\subsubsection{\texorpdfstring{scene\+Center()}{sceneCenter()}}
+{\footnotesize\ttfamily cg3\+::\+Pointd Drawable\+Triangulation\+::scene\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Returns the triangulation center. 
+
+\begin{DoxyReturn}{Returns}
+center\+: the bounding triangle barycenter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDrawableTriangulation_a0aee9121b146c327dbbd741c3dc58c0a}\label{classDrawableTriangulation_a0aee9121b146c327dbbd741c3dc58c0a}} 
+\index{Drawable\+Triangulation@{Drawable\+Triangulation}!scene\+Radius@{scene\+Radius}}
+\index{scene\+Radius@{scene\+Radius}!Drawable\+Triangulation@{Drawable\+Triangulation}}
+\subsubsection{\texorpdfstring{scene\+Radius()}{sceneRadius()}}
+{\footnotesize\ttfamily double Drawable\+Triangulation\+::scene\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Return the radius of the triangulation. 
+
+\begin{DoxyReturn}{Returns}
+radius\+: the bounding triangle radius 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+drawabletriangulation.\+h\item 
+drawabletriangulation.\+cpp\end{DoxyCompactItemize}
