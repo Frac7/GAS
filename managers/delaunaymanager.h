@@ -12,6 +12,7 @@
 
 #include <drawables/drawabletriangle.h>
 #include <drawables/drawabletriangulation.h>
+#include <drawables/drawablevoronoi.h>
 
 
 namespace Ui {
@@ -52,6 +53,7 @@ private:
 
     const DrawableTriangle boundingTriangle;
     DrawableTriangulation drawableTriangulation;
+    DrawableVoronoi voronoiDiagram;
 
     /********************************************************************************************************************/
 
@@ -86,7 +88,8 @@ private slots:
     //Declare your private slots methods here if you need some. They are needed if you want to implement Voronoi
     /********************************************************************************************************************/
 
-    /* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+    void on_voronoiDiagramPushButton_clicked();
+    void on_clearVoronoiDiagramPushButton_clicked();
 
     /********************************************************************************************************************/
 

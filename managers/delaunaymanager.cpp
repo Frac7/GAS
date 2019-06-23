@@ -62,7 +62,12 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
     drawableTriangulation(triangulation,
                           dag,
                           boundingTriangle.sceneCenter(),
-                          boundingTriangle.sceneRadius()) //drawable triangulation initialization
+                          boundingTriangle.sceneRadius()), //drawable triangulation initialization
+     voronoiDiagram(triangulation,
+                    dag,
+                    boundingTriangle.sceneCenter(),
+                    //boundingTriangle.sceneRadius()) //drawable Voronoi initialization
+                    -1) //drawable Voronoi initialization
 {
     //UI setup
     ui->setupUi(this);
@@ -141,6 +146,11 @@ DelaunayManager::~DelaunayManager() {
     mainWindow.deleteObj(&boundingTriangle);
     mainWindow.deleteObj(&drawableTriangulation);
 
+    if(mainWindow.contains(&voronoiDiagram))
+    {
+        mainWindow.deleteObj(&voronoiDiagram);
+    }
+
     /********************************************************************************************************************/
 
     //Delete the bounding box drawable object
@@ -167,8 +177,8 @@ void DelaunayManager::computeDelaunayTriangulation(const std::vector<cg3::Point2
 
     std::random_shuffle(points.begin(), points.end());
 
-    const unsigned int& length = inputPoints.size();
-    for(int i = 0; i < length; i++)
+    unsigned int length = unsigned(inputPoints.size());
+    for(unsigned int i = 0; i < length; i++)
     {
          DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[i]);
     }
@@ -186,7 +196,7 @@ void DelaunayManager::addPointToDelaunayTriangulation(const cg3::Point2Dd& p) {
     /********************************************************************************************************************/
 
     points.push_back(p);
-    const unsigned int pointIndex = points.size() - 1;
+    unsigned int pointIndex = unsigned(points.size() - 1);
 
     DelaunayTriangulation::incrementalTriangulation(triangulation, dag, points[pointIndex]);
 
@@ -331,7 +341,25 @@ void DelaunayManager::checkTriangulation() {
 //They are needed if you want to implement voronoi
 /********************************************************************************************************************/
 
-/* WRITE YOUR CODE HERE! Read carefully the above comments! This line can be deleted */
+void DelaunayManager::on_voronoiDiagramPushButton_clicked() {
+    if(!mainWindow.contains(&voronoiDiagram))
+    {
+        mainWindow.pushObj(&voronoiDiagram, "Voronoi diagram");
+
+        mainWindow.updateGlCanvas();
+        fitScene();
+    }
+}
+
+void DelaunayManager::on_clearVoronoiDiagramPushButton_clicked() {
+    if(mainWindow.contains(&voronoiDiagram))
+    {
+        mainWindow.deleteObj(&voronoiDiagram);
+
+        mainWindow.updateGlCanvas();
+        fitScene();
+    }
+}
 
 /********************************************************************************************************************/
 

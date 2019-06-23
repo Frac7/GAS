@@ -18,6 +18,8 @@ public:
 
     cg3::Point2Dd getCenter() const;
 
+    cg3::Point2Dd getCircumcenter() const;
+
 protected:
     //topmost point
     cg3::Point2Dd v1;

@@ -51,7 +51,8 @@ SOURCES += \
     data_structures/triangle.cpp \
     data_structures/node.cpp \
     drawables/drawabletriangle.cpp \
-    drawables/drawabletriangulation.cpp
+    drawables/drawabletriangulation.cpp \
+    drawables/drawablevoronoi.cpp
 
 FORMS += \
     managers/delaunaymanager.ui
@@ -66,7 +67,9 @@ HEADERS += \
     data_structures/triangle.h \
     data_structures/node.h \
     drawables/drawabletriangle.h \
-    drawables/drawabletriangulation.h
+    drawables/drawabletriangulation.h \
+    drawables/drawablevoronoi.h
+
 
 
 

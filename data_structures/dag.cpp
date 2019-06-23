@@ -4,19 +4,19 @@
 
 void DAG::addNode(const Node& value, const unsigned int p1, const unsigned int p2)
 {
-    int nodeIndex = nodeList.size();
+    unsigned int nodeIndex = unsigned(nodeList.size());
     nodeList.push_back(value);
 
-    nodeList[p1].addChild(nodeIndex);
-    nodeList[p2].addChild(nodeIndex);
+    nodeList[p1].addChild(int(nodeIndex));
+    nodeList[p2].addChild(int(nodeIndex));
 }
 
 void DAG::addNode(const Node& value, const unsigned int p1)
 {
-    int nodeIndex = nodeList.size();
+    unsigned int nodeIndex = unsigned(nodeList.size());
     nodeList.push_back(value);
 
-   nodeList[p1].addChild(nodeIndex);
+   nodeList[p1].addChild(int(nodeIndex));
 }
 
 void DAG::addNode(const Node &value)
@@ -46,7 +46,7 @@ int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, co
     bool secondChildVisited = false;
     bool thirdChildVisited = false;
 
-    int currentNode = 0;
+    unsigned int currentNode = 0;
     int lastParentVisited = -1; //TODO: replace magic numbers
     int resultNode = -1; //TODO: replace magic numbers
     int lastChildrenVisited = -1; //TODO: replace magic numbers
@@ -54,18 +54,18 @@ int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, co
     while(resultNode == -1 && currentNode < length)
     {
         //get triangle index from the node
-        unsigned int data = nodeList[currentNode].getData();
+        int data = nodeList[unsigned(currentNode)].getData();
 
         //check if the point is inside this triangle
         bool flagInside = cg3::isPointLyingInTriangle(
-                    triangles[data].getV1(), triangles[data].getV2(), triangles[data].getV3(), point, true);
+                    triangles[unsigned(data)].getV1(), triangles[unsigned(data)].getV2(), triangles[unsigned(data)].getV3(), point, true);
         //check if the node is a leaf
-        bool flagLeaf = nodeList[currentNode].isLeaf();
+        bool flagLeaf = nodeList[unsigned(currentNode)].isLeaf();
 
         //if the point is inside and the triangle is a leaf, then return the index of the node in the dag
         if(flagInside && flagLeaf)
         {
-            resultNode = currentNode;
+            resultNode = int(currentNode);
         }
         //if the flag is false, the node can be a parent or the node doesn't contain the point
         else
@@ -74,7 +74,7 @@ int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, co
             if(!flagLeaf && flagInside)
             {
                 //if I deside to go down to a child, then these flags must be reset
-                if(lastChildrenVisited == currentNode)
+                if(lastChildrenVisited == int(currentNode))
                 {
                     firstChildVisited = false;
                     secondChildVisited = false;
@@ -86,36 +86,34 @@ int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, co
 
                 //TODO: avoid continue keyword
 
-                child = nodeList[currentNode].getC1();
+                child = nodeList[unsigned(currentNode)].getC1();
                 //search in children 1
                 if(child != noChild && !firstChildVisited)
                 {
-                    lastParentVisited = currentNode;
-                    currentNode = child;
+                    lastParentVisited = int(currentNode);
+                    currentNode = unsigned(child);
                     firstChildVisited = true;
                     lastChildrenVisited = child;
                     continue;
                 }
 
-                child = nodeList[currentNode].getC2();
+                child = nodeList[unsigned(currentNode)].getC2();
                 //search in children 2
                 if(child != noChild && !secondChildVisited)
                 {
-
-                    lastParentVisited = currentNode;
-                    currentNode  = child;
+                    lastParentVisited = int(currentNode);
+                    currentNode = unsigned(child);
                     secondChildVisited = true;
                     lastChildrenVisited = child;
                     continue;
                 }
 
-                child = nodeList[currentNode].getC3();
+                child = nodeList[unsigned(currentNode)].getC3();
                 //search in children 3
                 if(child != noChild && !thirdChildVisited)
                 {
-
-                    lastParentVisited = currentNode;
-                    currentNode  = child;
+                    lastParentVisited = int(currentNode);
+                    currentNode = unsigned(child);
                     thirdChildVisited = true;
                     lastChildrenVisited = child;
                     continue;
@@ -125,7 +123,7 @@ int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, co
             else if(!flagInside)
             //it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
             {
-                currentNode = lastParentVisited;
+                currentNode = unsigned(lastParentVisited);
             }
 
         }
