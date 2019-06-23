@@ -2,6 +2,12 @@
 
 #include <cg3lib/cg3/core/cg3/geometry/2d/utils2d.h>
 
+/**
+ * @brief Adds node the dag and sets it as children of nodes p1 and p2
+ * @param[in] value: the node to add
+ * @param[in] p1: first parent index in the dag
+ * @param[in] p2: second parent index in the dag
+*/
 void DAG::addNode(const Node& value, const unsigned int p1, const unsigned int p2)
 {
     unsigned int nodeIndex = unsigned(nodeList.size());
@@ -11,6 +17,11 @@ void DAG::addNode(const Node& value, const unsigned int p1, const unsigned int p
     nodeList[p2].addChild(int(nodeIndex));
 }
 
+/**
+ * @brief Adds node the dag and sets it as children of node p1
+ * @param[in] value: the node to add
+ * @param[in] p1: first parent index in the dag
+*/
 void DAG::addNode(const Node& value, const unsigned int p1)
 {
     unsigned int nodeIndex = unsigned(nodeList.size());
@@ -19,11 +30,18 @@ void DAG::addNode(const Node& value, const unsigned int p1)
    nodeList[p1].addChild(int(nodeIndex));
 }
 
+/**
+ * @brief Adds node the dag
+ * @param[in] value: the node to add
+*/
 void DAG::addNode(const Node &value)
 {
     nodeList.push_back(value);
 }
 
+/**
+ * @brief Removes each node from the dag but not the root
+*/
 void DAG::clearDataStructure()
 {
     const std::vector<Node>::iterator nodeListIterator = nodeList.begin() + 1;
@@ -35,12 +53,21 @@ void DAG::clearDataStructure()
     nodeList[0].setC3(noChild);
 }
 
+/**
+ * @brief Returns the list of nodes
+ * @return nodeList: the list of nodes in the dag
+*/
 std::vector<Node> &DAG::getNodeList()
 {
     return nodeList;
 }
 
-int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
+/**
+ * @brief Searches the triangle containing the point using the dag
+ * @param[in] point: last point inserted
+ * @param[in] triangles: triangles of triangulation
+*/
+int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
 {
     bool firstChildVisited = false;
     bool secondChildVisited = false;
@@ -50,6 +77,8 @@ int DAG::searchInNodes(const unsigned int length, const cg3::Point2Dd& point, co
     int lastParentVisited = -1; //TODO: replace magic numbers
     int resultNode = -1; //TODO: replace magic numbers
     int lastChildrenVisited = -1; //TODO: replace magic numbers
+
+    unsigned int length = unsigned(nodeList.size());
 
     while(resultNode == -1 && currentNode < length)
     {

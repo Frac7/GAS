@@ -15,21 +15,17 @@ public:
 
     //getters and setters
     int getC1() const;
-
     int getC2() const;
-
     int getC3() const;
-
     int getData() const;
+
+
+    void setC1(int value);
+    void setC2(int value);
+    void setC3(int value);
     void setData(const int value);
 
     bool isLeaf() const;
-
-    void setC1(int value);
-
-    void setC2(int value);
-
-    void setC3(int value);
 
 private:
     //first child
@@ -42,6 +38,7 @@ private:
     int data;
 };
 
+//"empty" child
 const int noChild = -1;
 
 #endif // NODE_H

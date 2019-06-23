@@ -7,9 +7,16 @@ namespace DelaunayTriangulation {
 
 namespace Checker {
 
+/**
+ * @brief Fills points and triangle to check the computed triangulation
+ * @param[in] triangulation: the triangulation data structure
+ * @param[in] dag: the search data structure
+ * @param[in] points: data structure to fill with points
+ * @param[in] triangles: data strucutre to fill with triangles
+*/
 void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
 {
-    const std::vector<Triangle>& triangleVector = triangulation.getTriangles();
+    std::vector<Triangle>& triangleVector = triangulation.getTriangles();
     const std::vector<Node>& nodeVector = dag.getNodeList();
 
     unsigned int vectorSize = unsigned(triangleVector.size());
@@ -43,6 +50,19 @@ void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3:
 
 }
 
+/**
+ * @brief Edge flip
+ * @param[in] triangulation: triangulation data structure
+ * @param[in] dag: search data structure
+ * @param[in] triangle index: index of new triangle to legalize
+ * @param[in] adjacent index: index of adjacent triangle in the edge to legalize
+ * @param[in] p1: triangle vertex 1
+ * @param[in] p2: triangle vertex 2
+ * @param[in] p3: triangle vertex 3
+ * @param[in] pk: triangle opposite vertex
+ * @param[in] triangle adjacencies: adjacencies for the new triangle
+ * @param[in] adjacent triangle adjacencies: adjacencies for the adjacent triangle
+*/
 void legalizeEdge(Triangulation& triangulation, DAG& dag,
                   const unsigned int triangleIndex, const unsigned int adjacentIndex,
                   const cg3::Point2Dd& p1, const cg3::Point2Dd& p2, const cg3::Point2Dd& p3, const cg3::Point2Dd& pk,
@@ -52,7 +72,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
     if(DelaunayTriangulation::Checker::
             isPointLyingInCircle(p1, p2, p3, pk, false))
     {
-        const std::vector<Triangle>& triangles = triangulation.getTriangles();
+        std::vector<Triangle>& triangles = triangulation.getTriangles();
 
         int totalTrianglesNumber = int(triangles.size());
 
@@ -271,15 +291,20 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
     }
 }
 
+/**
+ * @brief Incremental step for computing the triangulation
+ * @param[in] triangulation: triangulation data structure
+ * @param[in] dag: search data structure
+ * @param[in] point: the point to be added to the triangulation
+*/
 void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3::Point2Dd& point)
 {
-    const std::vector<Triangle>& triangles = triangulation.getTriangles();
+    std::vector<Triangle>& triangles = triangulation.getTriangles();
 
     const std::vector<Node>& nodes = dag.getNodeList();
-    const int totalNodes = nodes.size();
 
     //find the triangle that contains this point using the DAG
-    const unsigned int parentNodeIndex = dag.searchInNodes(totalNodes, point, triangles);
+    const unsigned int parentNodeIndex = dag.searchInNodes(point, triangles);
     const unsigned int triangleIndex = nodes[parentNodeIndex].getData();
     //these numbers must be not equal to -1
 

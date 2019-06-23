@@ -10,7 +10,7 @@
 class DrawableVoronoi : public cg3::DrawableObject
 {
 public:
-    DrawableVoronoi(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, const double& radius);
+    DrawableVoronoi(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, const double radius);
 
     void draw() const;
     cg3::Pointd sceneCenter() const;

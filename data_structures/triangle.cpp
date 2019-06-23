@@ -1,28 +1,54 @@
 #include "triangle.h"
 
+/**
+ * @brief Creates a node from 3 vertices
+ * @param[in] v1: rightmost vertex
+ * @param[in] v2: topmost vertex
+ * @param[in] v3: leftmost vertex
+*/
 Triangle::Triangle(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3)
     : v1(v1), v2(v2), v3(v3) {}
 
-cg3::Point2Dd Triangle::getV1() const
+/**
+ * @brief Returns the first vertex
+ * @return v1: vertex 1
+*/
+cg3::Point2Dd& Triangle::getV1()
 {
     return v1;
 }
 
-cg3::Point2Dd Triangle::getV2() const
+/**
+ * @brief Returns the second vertex
+ * @return v2: vertex 2
+*/
+cg3::Point2Dd& Triangle::getV2()
 {
     return v2;
 }
 
-cg3::Point2Dd Triangle::getV3() const
+/**
+ * @brief Returns the third vertex
+ * @return v3: vertex 3
+*/
+cg3::Point2Dd& Triangle::getV3()
 {
     return v3;
 }
 
+/**
+ * @brief Returns the center of the triangle
+ * @return center: the barycenter of the triangle
+*/
 cg3::Point2Dd Triangle::getCenter() const
 {
     return (v1 + v2 + v3) / 3;
 }
 
+/**
+ * @brief Returns the center of the triangle
+ * @return center: the circumcenter of the triangle
+*/
 cg3::Point2Dd Triangle::getCircumcenter() const
 {
     double x, y;
