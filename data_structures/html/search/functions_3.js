@@ -9,7 +9,7 @@ var searchData=
   ['getdata',['getData',['../classNode.html#a4bf12425ae4895ac3ec27c91fea8f646',1,'Node']]],
   ['getnodelist',['getNodeList',['../classDAG.html#af8afaefe800c1eb05ef631e148692c2d',1,'DAG']]],
   ['gettriangles',['getTriangles',['../classTriangulation.html#a9245c1ffae5777f76f51b217f267d594',1,'Triangulation']]],
-  ['getv1',['getV1',['../classTriangle.html#a67057550ec55c6fbd3e1cf512fb88c4a',1,'Triangle']]],
-  ['getv2',['getV2',['../classTriangle.html#ae1d2450565f168c8c18d17a6c726f8e8',1,'Triangle']]],
-  ['getv3',['getV3',['../classTriangle.html#aa5b85443932443cf6b035c56af82aad8',1,'Triangle']]]
+  ['getv1',['getV1',['../classTriangle.html#a488beca5f5e516f4914f7ec118d2205e',1,'Triangle']]],
+  ['getv2',['getV2',['../classTriangle.html#a6b22d833c2cc9b738793da637642bfd0',1,'Triangle']]],
+  ['getv3',['getV3',['../classTriangle.html#ad63dee82c3268c96bb5a6d353675c133',1,'Triangle']]]
 ];

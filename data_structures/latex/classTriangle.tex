@@ -5,16 +5,22 @@
 \item 
 \hyperlink{classTriangle_a3bb081f3c4d90284e27e1005a2b33599}{Triangle} (const cg3\+::\+Point2\+Dd \&v1, const cg3\+::\+Point2\+Dd \&v2, const cg3\+::\+Point2\+Dd \&v3)
 \begin{DoxyCompactList}\small\item\em Creates a node from 3 vertices. \end{DoxyCompactList}\item 
-cg3\+::\+Point2\+Dd \& \hyperlink{classTriangle_a67057550ec55c6fbd3e1cf512fb88c4a}{get\+V1} ()
+cg3\+::\+Point2\+Dd \hyperlink{classTriangle_a488beca5f5e516f4914f7ec118d2205e}{get\+V1} () const
 \begin{DoxyCompactList}\small\item\em Returns the first vertex. \end{DoxyCompactList}\item 
-cg3\+::\+Point2\+Dd \& \hyperlink{classTriangle_ae1d2450565f168c8c18d17a6c726f8e8}{get\+V2} ()
+cg3\+::\+Point2\+Dd \hyperlink{classTriangle_a6b22d833c2cc9b738793da637642bfd0}{get\+V2} () const
 \begin{DoxyCompactList}\small\item\em Returns the second vertex. \end{DoxyCompactList}\item 
-cg3\+::\+Point2\+Dd \& \hyperlink{classTriangle_aa5b85443932443cf6b035c56af82aad8}{get\+V3} ()
+cg3\+::\+Point2\+Dd \hyperlink{classTriangle_ad63dee82c3268c96bb5a6d353675c133}{get\+V3} () const
 \begin{DoxyCompactList}\small\item\em Returns the third vertex. \end{DoxyCompactList}\item 
 cg3\+::\+Point2\+Dd \hyperlink{classTriangle_a4d120f7288b7051a1cf442268edd328d}{get\+Center} () const
 \begin{DoxyCompactList}\small\item\em Returns the center of the triangle. \end{DoxyCompactList}\item 
 cg3\+::\+Point2\+Dd \hyperlink{classTriangle_a0ac42109ff92fc5b907283e10d7946b2}{get\+Circumcenter} () const
-\begin{DoxyCompactList}\small\item\em Returns the center of the triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the center of the triangle. \end{DoxyCompactList}\item 
+void \hyperlink{classTriangle_a5769869c3384056f58410395ccd1a979}{set\+V1} (const cg3\+::\+Point2\+Dd \&value)
+\begin{DoxyCompactList}\small\item\em Set the first vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classTriangle_aeff8b3fc2c12c3608de55e01f995015a}{set\+V2} (const cg3\+::\+Point2\+Dd \&value)
+\begin{DoxyCompactList}\small\item\em Set the second vertex. \end{DoxyCompactList}\item 
+void \hyperlink{classTriangle_a0781ccac767888ddda2fa868320d0d6b}{set\+V3} (const cg3\+::\+Point2\+Dd \&value)
+\begin{DoxyCompactList}\small\item\em Set the third vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -78,11 +84,11 @@ Returns the center of the triangle.
 \begin{DoxyReturn}{Returns}
 center\+: the circumcenter of the triangle 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTriangle_a67057550ec55c6fbd3e1cf512fb88c4a}\label{classTriangle_a67057550ec55c6fbd3e1cf512fb88c4a}} 
+\mbox{\Hypertarget{classTriangle_a488beca5f5e516f4914f7ec118d2205e}\label{classTriangle_a488beca5f5e516f4914f7ec118d2205e}} 
 \index{Triangle@{Triangle}!get\+V1@{get\+V1}}
 \index{get\+V1@{get\+V1}!Triangle@{Triangle}}
 \subsubsection{\texorpdfstring{get\+V1()}{getV1()}}
-{\footnotesize\ttfamily cg3\+::\+Point2\+Dd \& Triangle\+::get\+V1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily cg3\+::\+Point2\+Dd Triangle\+::get\+V1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -91,11 +97,11 @@ Returns the first vertex.
 \begin{DoxyReturn}{Returns}
 v1\+: vertex 1 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTriangle_ae1d2450565f168c8c18d17a6c726f8e8}\label{classTriangle_ae1d2450565f168c8c18d17a6c726f8e8}} 
+\mbox{\Hypertarget{classTriangle_a6b22d833c2cc9b738793da637642bfd0}\label{classTriangle_a6b22d833c2cc9b738793da637642bfd0}} 
 \index{Triangle@{Triangle}!get\+V2@{get\+V2}}
 \index{get\+V2@{get\+V2}!Triangle@{Triangle}}
 \subsubsection{\texorpdfstring{get\+V2()}{getV2()}}
-{\footnotesize\ttfamily cg3\+::\+Point2\+Dd \& Triangle\+::get\+V2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily cg3\+::\+Point2\+Dd Triangle\+::get\+V2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -104,11 +110,11 @@ Returns the second vertex.
 \begin{DoxyReturn}{Returns}
 v2\+: vertex 2 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTriangle_aa5b85443932443cf6b035c56af82aad8}\label{classTriangle_aa5b85443932443cf6b035c56af82aad8}} 
+\mbox{\Hypertarget{classTriangle_ad63dee82c3268c96bb5a6d353675c133}\label{classTriangle_ad63dee82c3268c96bb5a6d353675c133}} 
 \index{Triangle@{Triangle}!get\+V3@{get\+V3}}
 \index{get\+V3@{get\+V3}!Triangle@{Triangle}}
 \subsubsection{\texorpdfstring{get\+V3()}{getV3()}}
-{\footnotesize\ttfamily cg3\+::\+Point2\+Dd \& Triangle\+::get\+V3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily cg3\+::\+Point2\+Dd Triangle\+::get\+V3 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 
@@ -117,6 +123,51 @@ Returns the third vertex.
 \begin{DoxyReturn}{Returns}
 v3\+: vertex 3 
 \end{DoxyReturn}
+\mbox{\Hypertarget{classTriangle_a5769869c3384056f58410395ccd1a979}\label{classTriangle_a5769869c3384056f58410395ccd1a979}} 
+\index{Triangle@{Triangle}!set\+V1@{set\+V1}}
+\index{set\+V1@{set\+V1}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{set\+V1()}{setV1()}}
+{\footnotesize\ttfamily void Triangle\+::set\+V1 (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the first vertex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTriangle_aeff8b3fc2c12c3608de55e01f995015a}\label{classTriangle_aeff8b3fc2c12c3608de55e01f995015a}} 
+\index{Triangle@{Triangle}!set\+V2@{set\+V2}}
+\index{set\+V2@{set\+V2}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{set\+V2()}{setV2()}}
+{\footnotesize\ttfamily void Triangle\+::set\+V2 (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the second vertex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the vertex \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classTriangle_a0781ccac767888ddda2fa868320d0d6b}\label{classTriangle_a0781ccac767888ddda2fa868320d0d6b}} 
+\index{Triangle@{Triangle}!set\+V3@{set\+V3}}
+\index{set\+V3@{set\+V3}!Triangle@{Triangle}}
+\subsubsection{\texorpdfstring{set\+V3()}{setV3()}}
+{\footnotesize\ttfamily void Triangle\+::set\+V3 (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Set the third vertex. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the vertex \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

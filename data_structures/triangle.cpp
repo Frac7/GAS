@@ -51,13 +51,13 @@ cg3::Point2Dd Triangle::getCenter() const
 */
 cg3::Point2Dd Triangle::getCircumcenter() const
 {
-    double aX2 = v1.x() * v1.x();
-    double bX2 = v2.x() * v2.x();
-    double cX2 = v3.x() * v3.x();
+    double aX2 = std::pow(v1.x(), 2);
+    double bX2 = std::pow(v2.x(), 2);
+    double cX2 = std::pow(v3.x(), 2);
 
-    double aY2 = v1.y() * v1.y();
-    double bY2 = v2.y() * v2.y();
-    double cY2 = v3.y() * v3.y();
+    double aY2 = std::pow(v1.y(), 2);
+    double bY2 = std::pow(v2.y(), 2);
+    double cY2 = std::pow(v3.y(), 2);
 
     double aSum = aX2 + aY2;
     double bSum = bX2 + bY2;
@@ -69,4 +69,31 @@ cg3::Point2Dd Triangle::getCircumcenter() const
     double d = 2 * (v1.x() * (v2.y() - v3.y()) + v2.x() * (v3.y() - v1.y()) + v3.x() * (v1.y() - v2.y()));
 
     return cg3::Point2Dd(xNum / d, yNum / d);
+}
+
+/**
+ * @brief Set the first vertex
+ * @param[in] value: the vertex
+ */
+void Triangle::setV1(const cg3::Point2Dd &value)
+{
+    v1 = value;
+}
+
+/**
+ * @brief Set the second vertex
+ * @param[in] value: the vertex
+ */
+void Triangle::setV2(const cg3::Point2Dd &value)
+{
+    v2 = value;
+}
+
+/**
+ * @brief Set the third vertex
+ * @param[in] value: the vertex
+ */
+void Triangle::setV3(const cg3::Point2Dd &value)
+{
+    v3 = value;
 }
