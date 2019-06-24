@@ -18,7 +18,7 @@ DrawableTriangulation::DrawableTriangulation(Triangulation& triangulation, DAG& 
 */
 void DrawableTriangulation::draw() const
 {
-    std::vector<Triangle>& triangles = triangulation.getTriangles();
+    const std::vector<Triangle>& triangles = triangulation.getTriangles();
     const std::vector<Node>& nodes = dag.getNodeList();
 
     unsigned int length = unsigned(triangles.size());

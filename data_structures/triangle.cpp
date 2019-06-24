@@ -13,7 +13,7 @@ Triangle::Triangle(const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::
  * @brief Returns the first vertex
  * @return v1: vertex 1
 */
-cg3::Point2Dd& Triangle::getV1()
+cg3::Point2Dd Triangle::getV1() const
 {
     return v1;
 }
@@ -22,7 +22,7 @@ cg3::Point2Dd& Triangle::getV1()
  * @brief Returns the second vertex
  * @return v2: vertex 2
 */
-cg3::Point2Dd& Triangle::getV2()
+cg3::Point2Dd Triangle::getV2() const
 {
     return v2;
 }
@@ -31,7 +31,7 @@ cg3::Point2Dd& Triangle::getV2()
  * @brief Returns the third vertex
  * @return v3: vertex 3
 */
-cg3::Point2Dd& Triangle::getV3()
+cg3::Point2Dd Triangle::getV3() const
 {
     return v3;
 }
@@ -51,20 +51,22 @@ cg3::Point2Dd Triangle::getCenter() const
 */
 cg3::Point2Dd Triangle::getCircumcenter() const
 {
-    double x, y;
+    double aX2 = v1.x() * v1.x();
+    double bX2 = v2.x() * v2.x();
+    double cX2 = v3.x() * v3.x();
 
-    cg3::Point2Dd v1v2EdgeMiddle((v1.x() + v2.x()) / 2, (v1.y() + v2.y()) / 2);
-    double v1v2EdgeSlope = ((v2.y() - v1.y()) / (v2.x() - v1.x()));
+    double aY2 = v1.y() * v1.y();
+    double bY2 = v2.y() * v2.y();
+    double cY2 = v3.y() * v3.y();
 
-    double xMinusY = (v1v2EdgeMiddle.y() + (-v1v2EdgeSlope * -v1v2EdgeMiddle.x())) / v1v2EdgeSlope;
+    double aSum = aX2 + aY2;
+    double bSum = bX2 + bY2;
+    double cSum = cX2 + cY2;
 
-    cg3::Point2Dd v2v3EdgeMiddle((v2.x() + v3.x()) / 2, (v2.y() + v3.y()) / 2);
-    double v2v3EdgeSlope = ((v3.y() - v2.y()) / (v3.x() - v2.x()));
+    double xNum = aSum * (v2.y() - v3.y()) + bSum * (v3.y() - v1.y()) + cSum * (v1.y() - v2.y());
+    double yNum = aSum * (v3.x() - v2.x()) + bSum * (v1.x() - v3.x()) + cSum * (v2.x() - v1.x());
 
-    double xPlusY = (v2v3EdgeMiddle.y() + (-v2v3EdgeSlope * -v2v3EdgeMiddle.x())) / v2v3EdgeSlope;
+    double d = 2 * (v1.x() * (v2.y() - v3.y()) + v2.x() * (v3.y() - v1.y()) + v3.x() * (v1.y() - v2.y()));
 
-    x = xMinusY + xPlusY;
-    y = v1v2EdgeMiddle.y() - (v1v2EdgeSlope * (x - v1v2EdgeMiddle.x()));
-
-    return cg3::Point2Dd(x, y);
+    return cg3::Point2Dd(xNum / d, yNum / d);
 }

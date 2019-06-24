@@ -16,7 +16,7 @@ namespace Checker {
 */
 void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3::Point2Dd>& points, cg3::Array2D<unsigned int>& triangles)
 {
-    std::vector<Triangle>& triangleVector = triangulation.getTriangles();
+    const std::vector<Triangle>& triangleVector = triangulation.getTriangles();
     const std::vector<Node>& nodeVector = dag.getNodeList();
 
     unsigned int vectorSize = unsigned(triangleVector.size());
@@ -72,7 +72,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
     if(DelaunayTriangulation::Checker::
             isPointLyingInCircle(p1, p2, p3, pk, false))
     {
-        std::vector<Triangle>& triangles = triangulation.getTriangles();
+        const std::vector<Triangle>& triangles = triangulation.getTriangles();
 
         int totalTrianglesNumber = int(triangles.size());
 
@@ -299,7 +299,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
 */
 void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3::Point2Dd& point)
 {
-    std::vector<Triangle>& triangles = triangulation.getTriangles();
+    const std::vector<Triangle>& triangles = triangulation.getTriangles();
 
     const std::vector<Node>& nodes = dag.getNodeList();
 

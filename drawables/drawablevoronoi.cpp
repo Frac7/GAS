@@ -34,17 +34,17 @@ void DrawableVoronoi::draw() const
 
             const std::array<int, maxAdjacentTriangles>& adjacencies = triangulation.getAdjacenciesFromTriangle(i);
 
-            if(adjacencies[0] != noAdjacentTriangle)
+            if(adjacencies[v1v2Edge] != noAdjacentTriangle)
             {
-                cg3::viewer::drawLine2D(circumCenter, triangles[unsigned(adjacencies[0])].getCircumcenter(), Qt::blue, 1);
+                cg3::viewer::drawLine2D(circumCenter, triangles[unsigned(adjacencies[v1v2Edge])].getCircumcenter(), Qt::blue, 1);
             }
-            if(adjacencies[1] != noAdjacentTriangle)
+            if(adjacencies[v2v3Edge] != noAdjacentTriangle)
             {
-                cg3::viewer::drawLine2D(circumCenter, triangles[unsigned(adjacencies[1])].getCircumcenter(), Qt::blue, 1);
+                cg3::viewer::drawLine2D(circumCenter, triangles[unsigned(adjacencies[v2v3Edge])].getCircumcenter(), Qt::blue, 1);
             }
-            if(adjacencies[2] != noAdjacentTriangle)
+            if(adjacencies[v3v1Edge] != noAdjacentTriangle)
             {
-                cg3::viewer::drawLine2D(circumCenter, triangles[unsigned(adjacencies[2])].getCircumcenter(), Qt::blue, 1);
+                cg3::viewer::drawLine2D(circumCenter, triangles[unsigned(adjacencies[v3v1Edge])].getCircumcenter(), Qt::blue, 1);
             }
         }
     }

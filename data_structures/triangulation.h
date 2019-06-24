@@ -30,8 +30,10 @@ public:
     void clearDataStructure();
 
     void addAdjacenciesForNewTriangle(const int v1v2, const int v2v3, const int v3v1);
-    void addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1, const unsigned int old);
-    void addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1, const unsigned int old, const unsigned int oldAdj);
+    void addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1,
+                                      const unsigned int old);
+    void addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1,
+                                      const unsigned int old, const unsigned int oldAdj);
 
     unsigned int findAdjacency(const unsigned int triangle, const unsigned int adjacent);
 

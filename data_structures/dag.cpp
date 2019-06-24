@@ -67,7 +67,7 @@ std::vector<Node> &DAG::getNodeList()
  * @param[in] point: last point inserted
  * @param[in] triangles: triangles of triangulation
 */
-int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
+int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &triangles) const
 {
     bool firstChildVisited = false;
     bool secondChildVisited = false;
