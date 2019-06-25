@@ -4,7 +4,7 @@
  * @brief Creates a node without children and initializes the data field with the input parameter
  * @param[in] data: the index of the triangle in the array of triangulation
 */
-Node::Node(const int data)
+Node::Node(const unsigned int data)
     : c1(noChild), c2(noChild), c3(noChild), data(data) {}
 /**
  * @brief Adds a child to a existing node

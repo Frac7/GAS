@@ -3,6 +3,12 @@
 
 #include <cg3/geometry/2d/point2d.h>
 
+/**
+ * @brief Triangle
+ *
+ * The triangle data structure is implemented by storing inserted points for the algorithm: it contains the 3 vertices in counter-clockwise order.
+ * This class implements getters and setters and two methods, one for the barycenter (used for the drawable) and one for the circumcenter (used for Voronoi).
+ */
 class Triangle
 {
 public:

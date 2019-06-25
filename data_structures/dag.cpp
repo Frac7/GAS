@@ -74,9 +74,9 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
     bool thirdChildVisited = false;
 
     unsigned int currentNode = 0;
-    int lastParentVisited = -1; //TODO: replace magic numbers
-    int resultNode = -1; //TODO: replace magic numbers
-    int lastChildrenVisited = -1; //TODO: replace magic numbers
+    int lastParentVisited = -1;
+    int resultNode = -1;
+    int lastChildrenVisited = -1;
 
     unsigned int length = unsigned(nodeList.size());
 
@@ -110,7 +110,6 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
                     thirdChildVisited = false;
                 }
 
-                //TODO: evaluate if it is reasonable to create a function to avoid code repetition
                 int child = noChild;
 
                 //TODO: avoid continue keyword

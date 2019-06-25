@@ -5,11 +5,19 @@
 
 #include <cg3/core/cg3/geometry/2d/point2d.h>
 
+/**
+ * @brief Node: node of the DAG
+ *
+ * Node: the node belongs to the DAG, it is composed by three children
+ * (the graph is directed, so the only way to traverse this data structure is from the root to the children; this is why the (max) 2 parents were not stored in the node)
+ * that are integer indices referring to the vector contained in the DAG, and the index of the triangle in the triangulation that is contained in the node.
+ * This class implements getters and setters and a method that returns true if the node is a leaf, that means that each of its children is set to -1.
+ */
 class Node
 {
 public:
     //create node from children and data
-    Node(const int data);
+    Node(const unsigned int data);
 
     void addChild(const int value);
 
@@ -35,7 +43,7 @@ private:
     //third child
     int c3;
     //data contained in the node
-    int data;
+    unsigned int data;
 };
 
 //"empty" child

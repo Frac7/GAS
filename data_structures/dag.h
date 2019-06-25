@@ -3,6 +3,14 @@
 
 #include "node.h"
 
+/**
+ * @brief DAG: search data structure
+ *
+ * the DAG is implemented using a vector of nodes. In this implementation, triangulation data structure stores all the triangles seen in the execution, and when a triangle is added to the triangulation, the corresponding node is added to the DAG: this means that the DAG and the vectors containing adjacencies and triangles in the triangulation are parallel with it.
+ * In this class, there are 3 overloads for adding nodes: the first method allows to add only the data of the triangle contained in the node; the second allows to add a node and update its parent to set it as child, this is the case when the point is inserted inside the triangle; the third allows to add a node and update its two parents: this is the case of the edge flip.
+ * There are also a method for clearing the data structur without removing the root and a method for search in the DAG: this method pick a point and the vector of triangle of the triangulation and, starting from the root, perform an iterative search updating the index according to parents and children.
+
+ */
 class DAG
 {
 public:
