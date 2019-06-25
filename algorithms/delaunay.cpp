@@ -387,12 +387,6 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
         //in legalize edge I need also the triangulation to call the function recursively and I need to insert triangles
         //I need the dag to insert new nodes
 
-        //oppositepk is the edge of the neighbour where I can find the adjacency with the triangle
-        //using this edge I can find pk that is the opposite point of this edge in the adjacent triangle
-
-        //opposite pk is the edge where the adjacent is adjacent to the triangle
-        //by adding two to this number I can find pk, for example: oppositePk is 0 (V1V2), pk is V3 so 0 + 2 % 3 = 2 that is the index of V3
-
         if(adjacency0 != noAdjacentTriangle)
         {
             testEdge(triangulation, dag, totalTrianglesNumber, unsigned(adjacency0), v1v2Edge, v1, v2, point);
@@ -456,11 +450,18 @@ void testEdge(Triangulation& triangulation, DAG& dag,
 {
     std::vector<Triangle>& triangles = triangulation.getTriangles();
 
+    //opposite pk is the edge where the adjacent is adjacent to the triangle
+    //by adding two to this number I can find pk, for example: oppositePk is 0 (V1V2), pk is V3 so 0 + 2 % 3 = 2 that is the index of V3
+
     int oppositePk = triangulation.findAdjacency(adjacent, triangle);
     unsigned int pkIndex = (unsigned(oppositePk) + 2) % dimension;
 
+    //oppositepk is the edge of the neighbour where I can find the adjacency with the triangle
+    //using this edge I can find pk that is the opposite point of this edge in the adjacent triangle
+
     const cg3::Point2Dd& pk = pkIndex == 0? triangles[adjacent].getV1() :
             (pkIndex == 1? triangles[adjacent].getV2() : triangles[adjacent].getV3());
+
     legalizeEdge(triangulation, dag, triangle, adjacent, v1, v2, v3, pk, edge, unsigned(oppositePk),
                  triangulation.getAdjacenciesFromTriangle(triangle), triangulation.getAdjacenciesFromTriangle(adjacent));
 }
