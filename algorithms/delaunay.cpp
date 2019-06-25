@@ -86,64 +86,64 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                 case v2v3Edge: //pk was v1 in the adjacent triangle
                     triangulation.addTriangle(Triangle(pk, p2, p3));
                     dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
-                    triangulation.addAdjacenciesForNewTriangle(unsigned(totalTrianglesNumber), adjTriangleAdj[0], triangleAdj[1], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
+                    triangulation.addAdjacenciesForNewTriangle(unsigned(totalTrianglesNumber), adjTriangleAdj[v1v2Edge], triangleAdj[v2v3Edge], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
 
                     triangulation.addTriangle(Triangle(pk, p3, p1));
                     dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
-                    triangulation.addAdjacenciesForNewTriangle(unsigned(totalTrianglesNumber + 1), totalTrianglesNumber, triangleAdj[2], adjTriangleAdj[2], triangleIndex, adjacentIndex);
+                    triangulation.addAdjacenciesForNewTriangle(unsigned(totalTrianglesNumber + 1), totalTrianglesNumber, triangleAdj[v3v1Edge], adjTriangleAdj[v3v1Edge], triangleIndex, adjacentIndex);
 
                     //first triangle, pk pj is 0
-                    if(adjTriangleAdj[0] != noAdjacentTriangle)
+                    if(adjTriangleAdj[v1v2Edge] != noAdjacentTriangle)
                     {
-                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[0], totalTrianglesNumber);
+                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v1v2Edge], totalTrianglesNumber);
                         const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[0]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[0]].getV2() : triangles[adjTriangleAdj[0]].getV3());
-                        legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[0], pk, p2, p3, newPk, v1v2Edge, oppositePk,
-                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[0]));
+                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v1v2Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v1v2Edge]].getV2() : triangles[adjTriangleAdj[v1v2Edge]].getV3());
+                        legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[v1v2Edge], pk, p2, p3, newPk, v1v2Edge, oppositePk,
+                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v1v2Edge]));
                     }
 
                     //second triangle, pi pk is 2
-                    if(adjTriangleAdj[2] != noAdjacentTriangle)
+                    if(adjTriangleAdj[v3v1Edge] != noAdjacentTriangle)
                     {
-                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[2], totalTrianglesNumber + 1);
+                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v3v1Edge], totalTrianglesNumber + 1);
                         const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[2]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[2]].getV2() : triangles[adjTriangleAdj[2]].getV3());
-                        legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[2], pk, p3, p1, newPk, v3v1Edge, oppositePk,
-                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[2]));
+                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v3v1Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v3v1Edge]].getV2() : triangles[adjTriangleAdj[v3v1Edge]].getV3());
+                        legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[v3v1Edge], pk, p3, p1, newPk, v3v1Edge, oppositePk,
+                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v3v1Edge]));
                     }
 
                     break;
                 case v3v1Edge: //pk was v2 in the adjacent triangle
                     triangulation.addTriangle(Triangle(p1, pk, p3));
                     dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
-                    triangulation.addAdjacenciesForNewTriangle(unsigned(totalTrianglesNumber), adjTriangleAdj[0], totalTrianglesNumber + 1, triangleAdj[2], triangleIndex, adjacentIndex);
+                    triangulation.addAdjacenciesForNewTriangle(unsigned(totalTrianglesNumber), adjTriangleAdj[v1v2Edge], totalTrianglesNumber + 1, triangleAdj[v3v1Edge], triangleIndex, adjacentIndex);
 
-                    triangulation.addTriangle(Triangle(pk, p2, p3));
+                    triangulation.addTriangle(Triangle(p3, pk, p2));
                     dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
-                    triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, adjTriangleAdj[1], triangleAdj[1], totalTrianglesNumber, triangleIndex, adjacentIndex);
+                    triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, totalTrianglesNumber, adjTriangleAdj[v2v3Edge], triangleAdj[v2v3Edge], triangleIndex, adjacentIndex);
 
                     //first triangle, pi pk is 0
-                    if(adjTriangleAdj[0] != noAdjacentTriangle)
+                    if(adjTriangleAdj[v1v2Edge] != noAdjacentTriangle)
                     {
-                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[0], totalTrianglesNumber);
+                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v1v2Edge], totalTrianglesNumber);
                         const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[0]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[0]].getV2() : triangles[adjTriangleAdj[0]].getV3());
-                        legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[0], p1, pk, p3, newPk, v1v2Edge, oppositePk,
-                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[0]));
+                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v1v2Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v1v2Edge]].getV2() : triangles[adjTriangleAdj[v1v2Edge]].getV3());
+                        legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[v1v2Edge], p1, pk, p3, newPk, v1v2Edge, oppositePk,
+                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v1v2Edge]));
                     }
 
-                    //second triangle, pk pj is 0
-                    if(adjTriangleAdj[1] != noAdjacentTriangle)
+                    //second triangle, pk pj is 1
+                    if(adjTriangleAdj[v2v3Edge] != noAdjacentTriangle)
                     {
-                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[1], totalTrianglesNumber + 1);
+                        const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v2v3Edge], totalTrianglesNumber + 1);
                         const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[1]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[1]].getV2() : triangles[adjTriangleAdj[1]].getV3());
-                        legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[1], pk, p2, p3, newPk, v1v2Edge, oppositePk,
-                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[1]));
+                        const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v2v3Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v2v3Edge]].getV2() : triangles[adjTriangleAdj[v2v3Edge]].getV3());
+                        legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[v2v3Edge], p3, pk, p2, newPk, v2v3Edge, oppositePk,
+                                triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v2v3Edge]));
                     }
                     break;
             }
@@ -154,64 +154,64 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                     case v1v2Edge: // pk was v3 in the adjacent triangle
                         triangulation.addTriangle(Triangle(p1, p2, pk));
                         dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, triangleAdj[0], adjTriangleAdj[1], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, triangleAdj[v1v2Edge], adjTriangleAdj[v2v3Edge], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
 
-                        triangulation.addTriangle(Triangle(p1, pk, p3));
+                        triangulation.addTriangle(Triangle(p3, p1, pk));
                         dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, totalTrianglesNumber, adjTriangleAdj[2], triangleAdj[2], triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, triangleAdj[v3v1Edge], totalTrianglesNumber, adjTriangleAdj[v3v1Edge], triangleIndex, adjacentIndex);
 
                         //first triangle, pi pk is 1
-                        if(adjTriangleAdj[1] != noAdjacentTriangle)
+                        if(adjTriangleAdj[v2v3Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[1], totalTrianglesNumber);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v2v3Edge], totalTrianglesNumber);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[1]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[1]].getV2() : triangles[adjTriangleAdj[1]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[1], p1, p2, pk, newPk, v2v3Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[1]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v2v3Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v2v3Edge]].getV2() : triangles[adjTriangleAdj[v2v3Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[v2v3Edge], p1, p2, pk, newPk, v2v3Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v2v3Edge]));
                         }
 
-                        //second triangle, pk pj is 1
-                        if(adjTriangleAdj[2] != noAdjacentTriangle)
+                        //second triangle, pk pj is 2
+                        if(adjTriangleAdj[v3v1Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[2], totalTrianglesNumber + 1);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v3v1Edge], totalTrianglesNumber + 1);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[2]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[2]].getV2() : triangles[adjTriangleAdj[2]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[2], p1, pk, p3, newPk, v2v3Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[2]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v3v1Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v3v1Edge]].getV2() : triangles[adjTriangleAdj[v3v1Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[v3v1Edge], p3, p1, pk, newPk, v3v1Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v3v1Edge]));
                         }
 
                         break;
                     case v3v1Edge: //pk was v2 in the adjacent triangle
-                        triangulation.addTriangle(Triangle(p1, p2, pk));
+                        triangulation.addTriangle(Triangle(p2, pk, p1));
                         dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, triangleAdj[0], adjTriangleAdj[0], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, adjTriangleAdj[v1v2Edge], totalTrianglesNumber + 1, triangleAdj[v1v2Edge], triangleIndex, adjacentIndex);
 
                         triangulation.addTriangle(Triangle(p1, pk, p3));
                         dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, totalTrianglesNumber, adjTriangleAdj[1], triangleAdj[2], triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, totalTrianglesNumber, adjTriangleAdj[v2v3Edge], triangleAdj[v3v1Edge], triangleIndex, adjacentIndex);
 
-                        //first triangle, pi pk is 1
-                        if(adjTriangleAdj[0] != noAdjacentTriangle)
+                        //first triangle, pi pk is 0
+                        if(adjTriangleAdj[v1v2Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[0], totalTrianglesNumber);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v1v2Edge], totalTrianglesNumber);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[0]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[0]].getV2() : triangles[adjTriangleAdj[0]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[0], p1, p2, pk, newPk, v2v3Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[0]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v1v2Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v1v2Edge]].getV2() : triangles[adjTriangleAdj[v1v2Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[v1v2Edge], p2, pk, p1, newPk, v1v2Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v1v2Edge]));
                         }
 
                         //second triangle, pk pj is 1
-                        if(adjTriangleAdj[1] != noAdjacentTriangle)
+                        if(adjTriangleAdj[v2v3Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[1], totalTrianglesNumber + 1);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v2v3Edge], totalTrianglesNumber + 1);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[1]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[1]].getV2() : triangles[adjTriangleAdj[1]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[1], p1, pk, p3, newPk, v2v3Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[1]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v2v3Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v2v3Edge]].getV2() : triangles[adjTriangleAdj[v2v3Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[v2v3Edge], p1, pk, p3, newPk, v2v3Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v2v3Edge]));
                         }
 
                         break;
@@ -223,64 +223,64 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                     case v1v2Edge: //pk was v3 in the adjacent triangle
                         triangulation.addTriangle(Triangle(p2, p3, pk));
                         dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, triangleAdj[1], adjTriangleAdj[1], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, triangleAdj[v2v3Edge], adjTriangleAdj[v2v3Edge], totalTrianglesNumber + 1, triangleIndex, adjacentIndex);
 
                         triangulation.addTriangle(Triangle(p1, p2, pk));
                         dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, triangleAdj[0], totalTrianglesNumber, adjTriangleAdj[2], triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, triangleAdj[v1v2Edge], totalTrianglesNumber, adjTriangleAdj[v3v1Edge], triangleIndex, adjacentIndex);
 
                         //first triangle, pi pk is 1
-                        if(adjTriangleAdj[1] != noAdjacentTriangle)
+                        if(adjTriangleAdj[v2v3Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[1], totalTrianglesNumber);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v2v3Edge], totalTrianglesNumber);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[1]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[1]].getV2() : triangles[adjTriangleAdj[1]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[1], p2, p3, pk, newPk, v2v3Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[1]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v2v3Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v2v3Edge]].getV2() : triangles[adjTriangleAdj[v2v3Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[v2v3Edge], p2, p3, pk, newPk, v2v3Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v2v3Edge]));
                         }
 
                         //second triangle, pk pj is 2
-                        if(adjTriangleAdj[2] != noAdjacentTriangle)
+                        if(adjTriangleAdj[v3v1Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[2], totalTrianglesNumber + 1);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v3v1Edge], totalTrianglesNumber + 1);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[2]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[2]].getV2() : triangles[adjTriangleAdj[2]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[2], p1, p2, pk, newPk, v3v1Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[2]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v3v1Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v3v1Edge]].getV2() : triangles[adjTriangleAdj[v3v1Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[v3v1Edge], p1, p2, pk, newPk, v3v1Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v3v1Edge]));
                         }
 
                         break;
                     case v2v3Edge: //pk was v1 in the adjacent triangle
                         triangulation.addTriangle(Triangle(pk, p2, p3));
                         dag.addNode(Node(totalTrianglesNumber), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, totalTrianglesNumber + 1, triangleAdj[1], adjTriangleAdj[2], triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber, totalTrianglesNumber + 1, triangleAdj[v2v3Edge], adjTriangleAdj[v3v1Edge], triangleIndex, adjacentIndex);
 
                         triangulation.addTriangle(Triangle(pk, p1, p2));
                         dag.addNode(Node(totalTrianglesNumber + 1), triangleIndex, adjacentIndex);
-                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, adjTriangleAdj[0], triangleAdj[0], totalTrianglesNumber, triangleIndex, adjacentIndex);
+                        triangulation.addAdjacenciesForNewTriangle(totalTrianglesNumber + 1, adjTriangleAdj[v1v2Edge], triangleAdj[v1v2Edge], totalTrianglesNumber, triangleIndex, adjacentIndex);
 
                         //first triangle, pi pk is 2
-                        if(adjTriangleAdj[2] != noAdjacentTriangle)
+                        if(adjTriangleAdj[v3v1Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[2], totalTrianglesNumber);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v3v1Edge], totalTrianglesNumber);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[2]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[2]].getV2() : triangles[adjTriangleAdj[2]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[2], pk, p2, p3, newPk, v3v1Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[2]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v3v1Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v3v1Edge]].getV2() : triangles[adjTriangleAdj[v3v1Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber, adjTriangleAdj[v3v1Edge], pk, p2, p3, newPk, v3v1Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v3v1Edge]));
                         }
 
                         //second triangle, pk pj is 0
-                        if(adjTriangleAdj[0] != noAdjacentTriangle)
+                        if(adjTriangleAdj[v1v2Edge] != noAdjacentTriangle)
                         {
-                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[0], totalTrianglesNumber + 1);
+                            const int oppositePk = triangulation.findAdjacency(adjTriangleAdj[v1v2Edge], totalTrianglesNumber + 1);
                             const int pkIndex = (oppositePk + 2) % 3; //TODO: replace magic numbers
 
-                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[0]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[0]].getV2() : triangles[adjTriangleAdj[0]].getV3());
-                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[0], pk, p1, p2, newPk, v1v2Edge, oppositePk,
-                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[0]));
+                            const cg3::Point2Dd& newPk = pkIndex == 0? triangles[adjTriangleAdj[v1v2Edge]].getV1() : (pkIndex == 1? triangles[adjTriangleAdj[v1v2Edge]].getV2() : triangles[adjTriangleAdj[v1v2Edge]].getV3());
+                            legalizeEdge(triangulation, dag, totalTrianglesNumber + 1, adjTriangleAdj[v1v2Edge], pk, p1, p2, newPk, v1v2Edge, oppositePk,
+                                    triangulation.getAdjacenciesFromTriangle(totalTrianglesNumber + 1), triangulation.getAdjacenciesFromTriangle(adjTriangleAdj[v1v2Edge]));
                         }
 
                         break;
