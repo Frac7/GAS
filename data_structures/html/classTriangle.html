@@ -66,6 +66,11 @@ $(function() {
 <div class="title">Triangle Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classTriangle.html" title="Triangle. ">Triangle</a>.  
+ <a href="classTriangle.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="triangle_8h_source.html">triangle.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -87,15 +92,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0ac42109ff92fc5b907283e10d7946b2"><td class="memItemLeft" align="right" valign="top">cg3::Point2Dd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTriangle.html#a0ac42109ff92fc5b907283e10d7946b2">getCircumcenter</a> () const</td></tr>
 <tr class="memdesc:a0ac42109ff92fc5b907283e10d7946b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the center of the triangle.  <a href="#a0ac42109ff92fc5b907283e10d7946b2">More...</a><br /></td></tr>
 <tr class="separator:a0ac42109ff92fc5b907283e10d7946b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5769869c3384056f58410395ccd1a979"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTriangle.html#a5769869c3384056f58410395ccd1a979">setV1</a> (const cg3::Point2Dd &amp;value)</td></tr>
-<tr class="memdesc:a5769869c3384056f58410395ccd1a979"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the first vertex.  <a href="#a5769869c3384056f58410395ccd1a979">More...</a><br /></td></tr>
-<tr class="separator:a5769869c3384056f58410395ccd1a979"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeff8b3fc2c12c3608de55e01f995015a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTriangle.html#aeff8b3fc2c12c3608de55e01f995015a">setV2</a> (const cg3::Point2Dd &amp;value)</td></tr>
-<tr class="memdesc:aeff8b3fc2c12c3608de55e01f995015a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the second vertex.  <a href="#aeff8b3fc2c12c3608de55e01f995015a">More...</a><br /></td></tr>
-<tr class="separator:aeff8b3fc2c12c3608de55e01f995015a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0781ccac767888ddda2fa868320d0d6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classTriangle.html#a0781ccac767888ddda2fa868320d0d6b">setV3</a> (const cg3::Point2Dd &amp;value)</td></tr>
-<tr class="memdesc:a0781ccac767888ddda2fa868320d0d6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the third vertex.  <a href="#a0781ccac767888ddda2fa868320d0d6b">More...</a><br /></td></tr>
-<tr class="separator:a0781ccac767888ddda2fa868320d0d6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -109,7 +105,10 @@ cg3::Point2Dd&#160;</td><td class="memItemRight" valign="bottom"><b>v2</b></td><
 cg3::Point2Dd&#160;</td><td class="memItemRight" valign="bottom"><b>v3</b></td></tr>
 <tr class="separator:a8eb4459eb8ead2fc99742e2846d59264"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classTriangle.html" title="Triangle. ">Triangle</a>. </p>
+<p>The triangle data structure is implemented by storing inserted points for the algorithm: it contains the 3 vertices in counter-clockwise order. This class implements getters and setters and two methods, one for the barycenter (used for the drawable) and one for the circumcenter (used for Voronoi). </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3bb081f3c4d90284e27e1005a2b33599"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3bb081f3c4d90284e27e1005a2b33599">&#9670;&nbsp;</a></span>Triangle()</h2>
 
@@ -252,84 +251,6 @@ cg3::Point2Dd&#160;</td><td class="memItemRight" valign="bottom"><b>v3</b></td><
 
 <p>Returns the third vertex. </p>
 <dl class="section return"><dt>Returns</dt><dd>v3: vertex 3 </dd></dl>
-
-</div>
-</div>
-<a id="a5769869c3384056f58410395ccd1a979"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5769869c3384056f58410395ccd1a979">&#9670;&nbsp;</a></span>setV1()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Triangle::setV1 </td>
-          <td>(</td>
-          <td class="paramtype">const cg3::Point2Dd &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the first vertex. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>the vertex </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="aeff8b3fc2c12c3608de55e01f995015a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeff8b3fc2c12c3608de55e01f995015a">&#9670;&nbsp;</a></span>setV2()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Triangle::setV2 </td>
-          <td>(</td>
-          <td class="paramtype">const cg3::Point2Dd &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the second vertex. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>the vertex </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="a0781ccac767888ddda2fa868320d0d6b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0781ccac767888ddda2fa868320d0d6b">&#9670;&nbsp;</a></span>setV3()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Triangle::setV3 </td>
-          <td>(</td>
-          <td class="paramtype">const cg3::Point2Dd &amp;&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the third vertex. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>the vertex </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>

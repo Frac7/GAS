@@ -70,30 +70,3 @@ cg3::Point2Dd Triangle::getCircumcenter() const
 
     return cg3::Point2Dd(xNum / d, yNum / d);
 }
-
-/**
- * @brief Set the first vertex
- * @param[in] value: the vertex
- */
-void Triangle::setV1(const cg3::Point2Dd &value)
-{
-    v1 = value;
-}
-
-/**
- * @brief Set the second vertex
- * @param[in] value: the vertex
- */
-void Triangle::setV2(const cg3::Point2Dd &value)
-{
-    v2 = value;
-}
-
-/**
- * @brief Set the third vertex
- * @param[in] value: the vertex
- */
-void Triangle::setV3(const cg3::Point2Dd &value)
-{
-    v3 = value;
-}

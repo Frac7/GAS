@@ -1,11 +1,20 @@
 \hypertarget{classDAG}{}\section{D\+AG Class Reference}
 \label{classDAG}\index{D\+AG@{D\+AG}}
+
+
+\hyperlink{classDAG}{D\+AG}\+: search data structure.  
+
+
+
+
+{\ttfamily \#include $<$dag.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classDAG_a6ebf33d453b2eb82b743fd0e26bba0d6}{add\+Node} (const \hyperlink{classNode}{Node} \&node, const unsigned int p1, const unsigned int p2)
+void \hyperlink{classDAG_aed6fe76f8e3400755b063bc0d0152955}{add\+Node} (const \hyperlink{classNode}{Node} \&node, unsigned int p1, unsigned int p2)
 \begin{DoxyCompactList}\small\item\em Adds node the dag and sets it as children of nodes p1 and p2. \end{DoxyCompactList}\item 
-void \hyperlink{classDAG_aefedbbae88ee9dcc991b436f38fd6509}{add\+Node} (const \hyperlink{classNode}{Node} \&node, const unsigned int p1)
+void \hyperlink{classDAG_ac0ca03d85f1bd95c9e2dd092923d21ed}{add\+Node} (const \hyperlink{classNode}{Node} \&node, unsigned int p1)
 \begin{DoxyCompactList}\small\item\em Adds node the dag and sets it as children of node p1. \end{DoxyCompactList}\item 
 void \hyperlink{classDAG_a88682a026a8f2931dbe64fc5085430ec}{add\+Node} (const \hyperlink{classNode}{Node} \&node)
 \begin{DoxyCompactList}\small\item\em Adds node the dag. \end{DoxyCompactList}\item 
@@ -18,12 +27,17 @@ std\+::vector$<$ \hyperlink{classNode}{Node} $>$ \& \hyperlink{classDAG_af8afaef
 \begin{DoxyCompactList}\small\item\em Returns the list of nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+\hyperlink{classDAG}{D\+AG}\+: search data structure. 
+
+the \hyperlink{classDAG}{D\+AG} is implemented using a vector of nodes. In this implementation, triangulation data structure stores all the triangles seen in the execution, and when a triangle is added to the triangulation, the corresponding node is added to the \hyperlink{classDAG}{D\+AG}\+: this means that the \hyperlink{classDAG}{D\+AG} and the vectors containing adjacencies and triangles in the triangulation are parallel with it. In this class, there are 3 overloads for adding nodes\+: the first method allows to add only the data of the triangle contained in the node; the second allows to add a node and update its parent to set it as child, this is the case when the point is inserted inside the triangle; the third allows to add a node and update its two parents\+: this is the case of the edge flip. There are also a method for clearing the data structur without removing the root and a method for search in the \hyperlink{classDAG}{D\+AG}\+: this method pick a point and the vector of triangle of the triangulation and, starting from the root, perform an iterative search updating the index according to parents and children. 
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classDAG_a6ebf33d453b2eb82b743fd0e26bba0d6}\label{classDAG_a6ebf33d453b2eb82b743fd0e26bba0d6}} 
+\mbox{\Hypertarget{classDAG_aed6fe76f8e3400755b063bc0d0152955}\label{classDAG_aed6fe76f8e3400755b063bc0d0152955}} 
 \index{D\+AG@{D\+AG}!add\+Node@{add\+Node}}
 \index{add\+Node@{add\+Node}!D\+AG@{D\+AG}}
 \subsubsection{\texorpdfstring{add\+Node()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value,  }\item[{const unsigned int}]{p1,  }\item[{const unsigned int}]{p2 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value,  }\item[{unsigned int}]{p1,  }\item[{unsigned int}]{p2 }\end{DoxyParamCaption})}
 
 
 
@@ -38,11 +52,11 @@ Adds node the dag and sets it as children of nodes p1 and p2.
 \mbox{\tt in}  & {\em p2} & second parent index in the dag \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classDAG_aefedbbae88ee9dcc991b436f38fd6509}\label{classDAG_aefedbbae88ee9dcc991b436f38fd6509}} 
+\mbox{\Hypertarget{classDAG_ac0ca03d85f1bd95c9e2dd092923d21ed}\label{classDAG_ac0ca03d85f1bd95c9e2dd092923d21ed}} 
 \index{D\+AG@{D\+AG}!add\+Node@{add\+Node}}
 \index{add\+Node@{add\+Node}!D\+AG@{D\+AG}}
 \subsubsection{\texorpdfstring{add\+Node()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value,  }\item[{const unsigned int}]{p1 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value,  }\item[{unsigned int}]{p1 }\end{DoxyParamCaption})}
 
 
 

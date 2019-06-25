@@ -15,7 +15,7 @@
 class DrawableTriangulation : public cg3::DrawableObject
 {
 public:
-    DrawableTriangulation(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, const double radius);
+    DrawableTriangulation(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, double radius);
 
     void draw() const;
     cg3::Pointd sceneCenter() const;

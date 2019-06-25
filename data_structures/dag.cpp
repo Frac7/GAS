@@ -8,7 +8,7 @@
  * @param[in] p1: first parent index in the dag
  * @param[in] p2: second parent index in the dag
 */
-void DAG::addNode(const Node& value, const unsigned int p1, const unsigned int p2)
+void DAG::addNode(const Node& value, unsigned int p1, unsigned int p2)
 {
     unsigned int nodeIndex = unsigned(nodeList.size());
     nodeList.push_back(value);
@@ -22,7 +22,7 @@ void DAG::addNode(const Node& value, const unsigned int p1, const unsigned int p
  * @param[in] value: the node to add
  * @param[in] p1: first parent index in the dag
 */
-void DAG::addNode(const Node& value, const unsigned int p1)
+void DAG::addNode(const Node& value, unsigned int p1)
 {
     unsigned int nodeIndex = unsigned(nodeList.size());
     nodeList.push_back(value);
@@ -83,7 +83,7 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
     while(resultNode == -1 && currentNode < length)
     {
         //get triangle index from the node
-        int data = nodeList[unsigned(currentNode)].getData();
+        unsigned int data = nodeList[unsigned(currentNode)].getData();
 
         //check if the point is inside this triangle
         bool flagInside = cg3::isPointLyingInTriangle(
@@ -112,8 +112,6 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
 
                 int child = noChild;
 
-                //TODO: avoid continue keyword
-
                 child = nodeList[unsigned(currentNode)].getC1();
                 //search in children 1
                 if(child != noChild && !firstChildVisited)
@@ -122,29 +120,30 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
                     currentNode = unsigned(child);
                     firstChildVisited = true;
                     lastChildrenVisited = child;
-                    continue;
                 }
-
-                child = nodeList[unsigned(currentNode)].getC2();
-                //search in children 2
-                if(child != noChild && !secondChildVisited)
+                else
                 {
-                    lastParentVisited = int(currentNode);
-                    currentNode = unsigned(child);
-                    secondChildVisited = true;
-                    lastChildrenVisited = child;
-                    continue;
-                }
-
-                child = nodeList[unsigned(currentNode)].getC3();
-                //search in children 3
-                if(child != noChild && !thirdChildVisited)
-                {
-                    lastParentVisited = int(currentNode);
-                    currentNode = unsigned(child);
-                    thirdChildVisited = true;
-                    lastChildrenVisited = child;
-                    continue;
+                    child = nodeList[unsigned(currentNode)].getC2();
+                    //search in children 2
+                    if(child != noChild && !secondChildVisited)
+                    {
+                        lastParentVisited = int(currentNode);
+                        currentNode = unsigned(child);
+                        secondChildVisited = true;
+                        lastChildrenVisited = child;
+                    }
+                    else
+                    {
+                        child = nodeList[unsigned(currentNode)].getC3();
+                        //search in children 3
+                        if(child != noChild && !thirdChildVisited)
+                        {
+                            lastParentVisited = int(currentNode);
+                            currentNode = unsigned(child);
+                            thirdChildVisited = true;
+                            lastChildrenVisited = child;
+                        }
+                    }
                 }
             }
             //flagLeaf && !flagInside or both flags false

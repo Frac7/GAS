@@ -1,5 +1,14 @@
 \hypertarget{classTriangulation}{}\section{Triangulation Class Reference}
 \label{classTriangulation}\index{Triangulation@{Triangulation}}
+
+
+\hyperlink{classTriangulation}{Triangulation}\+: triangles and adjacencies.  
+
+
+
+
+{\ttfamily \#include $<$triangulation.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -13,18 +22,18 @@ void \hyperlink{classTriangulation_a2143e3330a01aeb0c49343e20a513e41}{add\+Trian
 \begin{DoxyCompactList}\small\item\em Add a triangle to the triangulation. \end{DoxyCompactList}\item 
 std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \& \hyperlink{classTriangulation_a9245c1ffae5777f76f51b217f267d594}{get\+Triangles} ()
 \begin{DoxyCompactList}\small\item\em Returns the triangles of the triangulation. \end{DoxyCompactList}\item 
-std\+::array$<$ int, max\+Adjacent\+Triangles $>$ \& \hyperlink{classTriangulation_a82cec4438c1f8b17f4d96160bdebb365}{get\+Adjacencies\+From\+Triangle} (const unsigned int triangle)
+std\+::array$<$ int, max\+Adjacent\+Triangles $>$ \& \hyperlink{classTriangulation_aed2622d943855cc76be697e6a091be0d}{get\+Adjacencies\+From\+Triangle} (unsigned int triangle)
 \begin{DoxyCompactList}\small\item\em Returns the adjacencies of the triangle. \end{DoxyCompactList}\item 
 \mbox{\Hypertarget{classTriangulation_ad03152c349343f5f50542feeb05ead90}\label{classTriangulation_ad03152c349343f5f50542feeb05ead90}} 
 void \hyperlink{classTriangulation_ad03152c349343f5f50542feeb05ead90}{clear\+Data\+Structure} ()
 \begin{DoxyCompactList}\small\item\em Clears triangles and adjacencies but not the first triangle -\/ bounding triangle. \end{DoxyCompactList}\item 
-void \hyperlink{classTriangulation_a77619bd20876c1b3322765ee5135e746}{add\+Adjacencies\+For\+New\+Triangle} (const int v1v2, const int v2v3, const int v3v1)
+void \hyperlink{classTriangulation_acd8f87a0fb57f698421f5e9ffeb28152}{add\+Adjacencies\+For\+New\+Triangle} (int v1v2, int v2v3, int v3v1)
 \begin{DoxyCompactList}\small\item\em Adds adjacencies for a new triangle. \end{DoxyCompactList}\item 
-void \hyperlink{classTriangulation_a26221b1d8851ff0c1e0812a0d3c6afc1}{add\+Adjacencies\+For\+New\+Triangle} (const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1, const unsigned int old)
+void \hyperlink{classTriangulation_a548a6d6b1d3f9b684ec31866934ce104}{add\+Adjacencies\+For\+New\+Triangle} (unsigned int triangle, int v1v2, int v2v3, int v3v1, unsigned int old)
 \begin{DoxyCompactList}\small\item\em Adds adjacencies for a new triangle and replace old adjacencies when adding a triangle. \end{DoxyCompactList}\item 
-void \hyperlink{classTriangulation_a489332eed4dd72b35b8763ce448d3f32}{add\+Adjacencies\+For\+New\+Triangle} (const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1, const unsigned int old, const unsigned int old\+Adj)
+void \hyperlink{classTriangulation_a84a2c76c2533ecf67110459fba009588}{add\+Adjacencies\+For\+New\+Triangle} (unsigned int triangle, int v1v2, int v2v3, int v3v1, unsigned int old, unsigned int old\+Adj)
 \begin{DoxyCompactList}\small\item\em Adds adjacencies for a new triangle and replace old adjacencies when flipping edge. \end{DoxyCompactList}\item 
-unsigned int \hyperlink{classTriangulation_a5cc5f70c9c66ce68e1a0140bab8dee68}{find\+Adjacency} (const unsigned int triangle, const unsigned int adjacent)
+int \hyperlink{classTriangulation_afdb92066cc644a999c55540888f6fc94}{find\+Adjacency} (unsigned int triangle, unsigned int adjacent)
 \begin{DoxyCompactList}\small\item\em Finds the edge where the triangle is adjacent to its adjacent triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -37,12 +46,19 @@ std\+::vector$<$ std\+::array$<$ int, max\+Adjacent\+Triangles $>$ $>$ {\bfserie
 \end{DoxyCompactItemize}
 
 
+\subsection{Detailed Description}
+\hyperlink{classTriangulation}{Triangulation}\+: triangles and adjacencies. 
+
+The triangulation data structure is implemented using a vector of triangles and a vector for triangle adjacencies\+: each position of the latter corresponds to the position of the represented triangle in triangle vector and each element is an array of 3 positions, each of them storing the adjacency as integer index of corresponding triangle. The first location is the edge V1\+V2, the second is the edge V2\+V3 and the third is the edge V3\+V1.
+
+This class implements getters and methos for adding triangles and adjacencies; in particular, as far as adjacencies are concerned, there are 3 overload of this method\+: there is one method that picks only the 3 adjacencies for the considered triangle and stores them; there is a method that picks the 3 adjacencies and the triangle that generates the new 3 triangles; the third overload picks two old parent triangle and it is used when the edge legalization produces two new triangles. There is also another method that returns the edge where two triangles taken in input are adjacent and a method for clearing the data structure without leaving the bounding triangle. 
+
 \subsection{Member Function Documentation}
-\mbox{\Hypertarget{classTriangulation_a77619bd20876c1b3322765ee5135e746}\label{classTriangulation_a77619bd20876c1b3322765ee5135e746}} 
+\mbox{\Hypertarget{classTriangulation_acd8f87a0fb57f698421f5e9ffeb28152}\label{classTriangulation_acd8f87a0fb57f698421f5e9ffeb28152}} 
 \index{Triangulation@{Triangulation}!add\+Adjacencies\+For\+New\+Triangle@{add\+Adjacencies\+For\+New\+Triangle}}
 \index{add\+Adjacencies\+For\+New\+Triangle@{add\+Adjacencies\+For\+New\+Triangle}!Triangulation@{Triangulation}}
 \subsubsection{\texorpdfstring{add\+Adjacencies\+For\+New\+Triangle()}{addAdjacenciesForNewTriangle()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
-{\footnotesize\ttfamily void Triangulation\+::add\+Adjacencies\+For\+New\+Triangle (\begin{DoxyParamCaption}\item[{const int}]{v1v2,  }\item[{const int}]{v2v3,  }\item[{const int}]{v3v1 }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Triangulation\+::add\+Adjacencies\+For\+New\+Triangle (\begin{DoxyParamCaption}\item[{int}]{v1v2,  }\item[{int}]{v2v3,  }\item[{int}]{v3v1 }\end{DoxyParamCaption})}
 
 
 
@@ -57,11 +73,11 @@ Adds adjacencies for a new triangle.
 \mbox{\tt in}  & {\em v3v1} & the adjacent triangle index in edge v3v1 \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTriangulation_a26221b1d8851ff0c1e0812a0d3c6afc1}\label{classTriangulation_a26221b1d8851ff0c1e0812a0d3c6afc1}} 
+\mbox{\Hypertarget{classTriangulation_a548a6d6b1d3f9b684ec31866934ce104}\label{classTriangulation_a548a6d6b1d3f9b684ec31866934ce104}} 
 \index{Triangulation@{Triangulation}!add\+Adjacencies\+For\+New\+Triangle@{add\+Adjacencies\+For\+New\+Triangle}}
 \index{add\+Adjacencies\+For\+New\+Triangle@{add\+Adjacencies\+For\+New\+Triangle}!Triangulation@{Triangulation}}
 \subsubsection{\texorpdfstring{add\+Adjacencies\+For\+New\+Triangle()}{addAdjacenciesForNewTriangle()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
-{\footnotesize\ttfamily void Triangulation\+::add\+Adjacencies\+For\+New\+Triangle (\begin{DoxyParamCaption}\item[{const unsigned int}]{triangle,  }\item[{const int}]{v1v2,  }\item[{const int}]{v2v3,  }\item[{const int}]{v3v1,  }\item[{const unsigned int}]{old }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Triangulation\+::add\+Adjacencies\+For\+New\+Triangle (\begin{DoxyParamCaption}\item[{unsigned int}]{triangle,  }\item[{int}]{v1v2,  }\item[{int}]{v2v3,  }\item[{int}]{v3v1,  }\item[{unsigned int}]{old }\end{DoxyParamCaption})}
 
 
 
@@ -78,11 +94,11 @@ Adds adjacencies for a new triangle and replace old adjacencies when adding a tr
 \mbox{\tt in}  & {\em old} & the old triangle index that must be replaced in the adjacencies \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTriangulation_a489332eed4dd72b35b8763ce448d3f32}\label{classTriangulation_a489332eed4dd72b35b8763ce448d3f32}} 
+\mbox{\Hypertarget{classTriangulation_a84a2c76c2533ecf67110459fba009588}\label{classTriangulation_a84a2c76c2533ecf67110459fba009588}} 
 \index{Triangulation@{Triangulation}!add\+Adjacencies\+For\+New\+Triangle@{add\+Adjacencies\+For\+New\+Triangle}}
 \index{add\+Adjacencies\+For\+New\+Triangle@{add\+Adjacencies\+For\+New\+Triangle}!Triangulation@{Triangulation}}
 \subsubsection{\texorpdfstring{add\+Adjacencies\+For\+New\+Triangle()}{addAdjacenciesForNewTriangle()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
-{\footnotesize\ttfamily void Triangulation\+::add\+Adjacencies\+For\+New\+Triangle (\begin{DoxyParamCaption}\item[{const unsigned int}]{triangle,  }\item[{const int}]{v1v2,  }\item[{const int}]{v2v3,  }\item[{const int}]{v3v1,  }\item[{const unsigned int}]{old,  }\item[{const unsigned int}]{old\+Adj }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Triangulation\+::add\+Adjacencies\+For\+New\+Triangle (\begin{DoxyParamCaption}\item[{unsigned int}]{triangle,  }\item[{int}]{v1v2,  }\item[{int}]{v2v3,  }\item[{int}]{v3v1,  }\item[{unsigned int}]{old,  }\item[{unsigned int}]{old\+Adj }\end{DoxyParamCaption})}
 
 
 
@@ -116,11 +132,11 @@ Add a triangle to the triangulation.
 \mbox{\tt in}  & {\em triangle} & triangle to add \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classTriangulation_a5cc5f70c9c66ce68e1a0140bab8dee68}\label{classTriangulation_a5cc5f70c9c66ce68e1a0140bab8dee68}} 
+\mbox{\Hypertarget{classTriangulation_afdb92066cc644a999c55540888f6fc94}\label{classTriangulation_afdb92066cc644a999c55540888f6fc94}} 
 \index{Triangulation@{Triangulation}!find\+Adjacency@{find\+Adjacency}}
 \index{find\+Adjacency@{find\+Adjacency}!Triangulation@{Triangulation}}
 \subsubsection{\texorpdfstring{find\+Adjacency()}{findAdjacency()}}
-{\footnotesize\ttfamily unsigned int Triangulation\+::find\+Adjacency (\begin{DoxyParamCaption}\item[{const unsigned int}]{triangle,  }\item[{const unsigned int}]{adjacent }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int Triangulation\+::find\+Adjacency (\begin{DoxyParamCaption}\item[{unsigned int}]{triangle,  }\item[{unsigned int}]{adjacent }\end{DoxyParamCaption})}
 
 
 
@@ -136,11 +152,11 @@ Finds the edge where the triangle is adjacent to its adjacent triangle.
 \begin{DoxyReturn}{Returns}
 adjacency\+: the edge where the triangle is adjacent to the adjacent triangle 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTriangulation_a82cec4438c1f8b17f4d96160bdebb365}\label{classTriangulation_a82cec4438c1f8b17f4d96160bdebb365}} 
+\mbox{\Hypertarget{classTriangulation_aed2622d943855cc76be697e6a091be0d}\label{classTriangulation_aed2622d943855cc76be697e6a091be0d}} 
 \index{Triangulation@{Triangulation}!get\+Adjacencies\+From\+Triangle@{get\+Adjacencies\+From\+Triangle}}
 \index{get\+Adjacencies\+From\+Triangle@{get\+Adjacencies\+From\+Triangle}!Triangulation@{Triangulation}}
 \subsubsection{\texorpdfstring{get\+Adjacencies\+From\+Triangle()}{getAdjacenciesFromTriangle()}}
-{\footnotesize\ttfamily std\+::array$<$ int, max\+Adjacent\+Triangles $>$ \& Triangulation\+::get\+Adjacencies\+From\+Triangle (\begin{DoxyParamCaption}\item[{const unsigned int}]{triangle }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::array$<$ int, max\+Adjacent\+Triangles $>$ \& Triangulation\+::get\+Adjacencies\+From\+Triangle (\begin{DoxyParamCaption}\item[{unsigned int}]{triangle }\end{DoxyParamCaption})}
 
 
 

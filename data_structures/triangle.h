@@ -24,11 +24,6 @@ public:
 
     cg3::Point2Dd getCircumcenter() const;
 
-    //setters
-    void setV1(const cg3::Point2Dd &value);
-    void setV2(const cg3::Point2Dd &value);
-    void setV3(const cg3::Point2Dd &value);
-
 protected:
 
     cg3::Point2Dd v1;

@@ -5,6 +5,9 @@
 
 #include <cg3/core/cg3/geometry/2d/point2d.h>
 
+//"empty" child
+const int noChild = -1;
+
 /**
  * @brief Node: node of the DAG
  *
@@ -17,21 +20,20 @@ class Node
 {
 public:
     //create node from children and data
-    Node(const unsigned int data);
+    Node(unsigned int data);
 
-    void addChild(const int value);
+    void addChild(int value);
 
     //getters and setters
     int getC1() const;
     int getC2() const;
     int getC3() const;
-    int getData() const;
+    unsigned int getData() const;
 
 
     void setC1(int value);
     void setC2(int value);
     void setC3(int value);
-    void setData(const int value);
 
     bool isLeaf() const;
 
@@ -45,8 +47,5 @@ private:
     //data contained in the node
     unsigned int data;
 };
-
-//"empty" child
-const int noChild = -1;
 
 #endif // NODE_H

@@ -7,7 +7,7 @@
  * @param[in] center: the center of the triangulation - center of the bounding triangle
  * @param[in] radius: the radius of the triangulation - radius of the bounding triangle
 */
-DrawableVoronoi::DrawableVoronoi(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, const double radius) :
+DrawableVoronoi::DrawableVoronoi(Triangulation& triangulation, DAG& dag, const cg3::Pointd& center, double radius) :
     center(center), radius(radius), triangulation(triangulation), dag(dag) {}
 //parameters of the bounding triangle are passed because the triangulation is inside this polygon
 
@@ -18,8 +18,8 @@ DrawableVoronoi::DrawableVoronoi(Triangulation& triangulation, DAG& dag, const c
 */
 void DrawableVoronoi::draw() const
 {
-    const std::vector<Triangle>& triangles = triangulation.getTriangles();
-    const std::vector<Node>& nodes = dag.getNodeList();
+    std::vector<Triangle>& triangles = triangulation.getTriangles();
+    std::vector<Node>& nodes = dag.getNodeList();
 
     unsigned int length = unsigned(triangles.size());
 

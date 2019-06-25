@@ -27,6 +27,20 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
 
 void incrementalTriangulation(Triangulation& triangulation, DAG &dag, const cg3::Point2Dd& point);
 
+void addElementToTriangulation(Triangulation& triangulation, DAG& dag,
+                unsigned int index, unsigned int parentIndex,
+                const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3,
+                int adjacency0, int adjacency1, int adjacency2);
+
+void testEdge(Triangulation& triangulation, DAG& dag,
+              unsigned int triangle, unsigned int adjacent, unsigned int edge,
+              const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3);
+
+void addElementAfterFlip(Triangulation& triangulation, DAG& dag,
+                         unsigned int index, unsigned int firstParentIndex, unsigned int secondParentIndex,
+                         const cg3::Point2Dd& v1, const cg3::Point2Dd& v2, const cg3::Point2Dd& v3,
+                         int adjacency0, int adjacency1, int adjacency2);
+
 }
 
 #endif // DELAUNAY_H

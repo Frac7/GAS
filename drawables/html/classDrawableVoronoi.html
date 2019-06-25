@@ -65,6 +65,11 @@ $(function() {
 <div class="title">DrawableVoronoi Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classDrawableVoronoi.html" title="DrawableVoronoi: drawable object for Voronoi diagram. ">DrawableVoronoi</a>: drawable object for Voronoi diagram.  
+ <a href="classDrawableVoronoi.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="drawablevoronoi_8h_source.html">drawablevoronoi.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DrawableVoronoi:</div>
 <div class="dyncontent">
@@ -93,7 +98,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:af26652a83c96748bf9a09abc6255672b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the radius of the triangulation.  <a href="#af26652a83c96748bf9a09abc6255672b">More...</a><br /></td></tr>
 <tr class="separator:af26652a83c96748bf9a09abc6255672b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classDrawableVoronoi.html" title="DrawableVoronoi: drawable object for Voronoi diagram. ">DrawableVoronoi</a>: drawable object for Voronoi diagram. </p>
+<p>This class inherits only from DrawableObject, this implementation follows the composition pattern: the drawable object for the triangulation has two members that are references to the DAG, used to draw only leaves, and to the triangulation data structure. The diagram is drawn using circumcenters of each triangle and lines from the circumcenter to the circumcenter of each adjacent triangle. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aab7fabca89392b0eb45c59b4e695855a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab7fabca89392b0eb45c59b4e695855a">&#9670;&nbsp;</a></span>DrawableVoronoi()</h2>
 

@@ -66,8 +66,7 @@ DelaunayManager::DelaunayManager(QWidget *parent) :
      voronoiDiagram(triangulation,
                     dag,
                     boundingTriangle.sceneCenter(),
-                    //boundingTriangle.sceneRadius()) //drawable Voronoi initialization
-                    -1) //drawable Voronoi initialization
+                    boundingTriangle.sceneRadius()) //drawable Voronoi initialization
 {
     //UI setup
     ui->setupUi(this);

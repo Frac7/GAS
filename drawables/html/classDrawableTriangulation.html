@@ -65,6 +65,11 @@ $(function() {
 <div class="title">DrawableTriangulation Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="classDrawableTriangulation.html" title="DrawableTriangulation: drawable object for the triangulation. ">DrawableTriangulation</a>: drawable object for the triangulation.  
+ <a href="classDrawableTriangulation.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="drawabletriangulation_8h_source.html">drawabletriangulation.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for DrawableTriangulation:</div>
 <div class="dyncontent">
@@ -80,9 +85,9 @@ Collaboration diagram for DrawableTriangulation:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a2025131e8964746883f1493f177f8e39"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDrawableTriangulation.html#a2025131e8964746883f1493f177f8e39">DrawableTriangulation</a> (Triangulation &amp;triangulation, DAG &amp;dag, const cg3::Pointd &amp;center, const double radius)</td></tr>
-<tr class="memdesc:a2025131e8964746883f1493f177f8e39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the drawable object.  <a href="#a2025131e8964746883f1493f177f8e39">More...</a><br /></td></tr>
-<tr class="separator:a2025131e8964746883f1493f177f8e39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7285109cc73a2d0a233cccd0cb9278a4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDrawableTriangulation.html#a7285109cc73a2d0a233cccd0cb9278a4">DrawableTriangulation</a> (Triangulation &amp;triangulation, DAG &amp;dag, const cg3::Pointd &amp;center, double radius)</td></tr>
+<tr class="memdesc:a7285109cc73a2d0a233cccd0cb9278a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the drawable object.  <a href="#a7285109cc73a2d0a233cccd0cb9278a4">More...</a><br /></td></tr>
+<tr class="separator:a7285109cc73a2d0a233cccd0cb9278a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a364e9b612571481930770fdfa9d68148"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDrawableTriangulation.html#a364e9b612571481930770fdfa9d68148">draw</a> () const</td></tr>
 <tr class="memdesc:a364e9b612571481930770fdfa9d68148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the triangulation.  <a href="#a364e9b612571481930770fdfa9d68148">More...</a><br /></td></tr>
 <tr class="separator:a364e9b612571481930770fdfa9d68148"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -93,9 +98,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0aee9121b146c327dbbd741c3dc58c0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the radius of the triangulation.  <a href="#a0aee9121b146c327dbbd741c3dc58c0a">More...</a><br /></td></tr>
 <tr class="separator:a0aee9121b146c327dbbd741c3dc58c0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a2025131e8964746883f1493f177f8e39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2025131e8964746883f1493f177f8e39">&#9670;&nbsp;</a></span>DrawableTriangulation()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p><a class="el" href="classDrawableTriangulation.html" title="DrawableTriangulation: drawable object for the triangulation. ">DrawableTriangulation</a>: drawable object for the triangulation. </p>
+<p>This class inherits only from DrawableObject, this implementation follows the composition pattern: the drawable object for the triangulation has two members that are references to the DAG, used to draw only leaves, and to the triangulation data structure. Triangles are drawn using points and lines. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a7285109cc73a2d0a233cccd0cb9278a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7285109cc73a2d0a233cccd0cb9278a4">&#9670;&nbsp;</a></span>DrawableTriangulation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -121,7 +129,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const double&#160;</td>
+          <td class="paramtype">double&#160;</td>
           <td class="paramname"><em>radius</em>&#160;</td>
         </tr>
         <tr>

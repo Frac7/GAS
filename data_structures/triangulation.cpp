@@ -37,7 +37,7 @@ std::vector<Triangle>& Triangulation::getTriangles()
  * @param[in] triangle: the index of the triangle
  * @return adjacencies: the array containing the adjacencies for the triangle
 */
-std::array<int, maxAdjacentTriangles>& Triangulation::getAdjacenciesFromTriangle(const unsigned int triangle)
+std::array<int, maxAdjacentTriangles>& Triangulation::getAdjacenciesFromTriangle(unsigned int triangle)
 {
     return adjacencies[triangle];
 }
@@ -64,7 +64,7 @@ void Triangulation::clearDataStructure()
  * @param[in] v2v3: the adjacent triangle index in edge v2v3
  * @param[in] v3v1: the adjacent triangle index in edge v3v1
 */
-void Triangulation::addAdjacenciesForNewTriangle(const int v1v2, const int v2v3, const int v3v1)
+void Triangulation::addAdjacenciesForNewTriangle(int v1v2, int v2v3, int v3v1)
 {
     adjacencies.push_back({v1v2, v2v3, v3v1});
 }
@@ -77,12 +77,12 @@ void Triangulation::addAdjacenciesForNewTriangle(const int v1v2, const int v2v3,
  * @param[in] old: the old triangle index that must be replaced in the adjacencies
  * @param[in] oldAdj: the old adjacent triangle index that must be replaced in the adjacencies
 */
-void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1,
-                                                 const unsigned int old, const unsigned int oldAdj)
+void Triangulation::addAdjacenciesForNewTriangle(unsigned int triangle, int v1v2, int v2v3, int v3v1,
+                                                 unsigned int old, unsigned int oldAdj)
 {
     addAdjacenciesForNewTriangle(v1v2, v2v3, v3v1);
 
-    unsigned int length = unsigned(adjacencies.size());
+    int length = int(adjacencies.size());
 
     int adjacency = noAdjacentTriangle;
 
@@ -91,44 +91,44 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, co
 
     if(v1v2 != noAdjacentTriangle && v1v2 < length)
     {
-        adjacency = findAdjacency(v1v2, old);
+        adjacency = findAdjacency(unsigned(v1v2), old);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v1v2][adjacency] = int(triangle);
+            adjacencies[unsigned(v1v2)][unsigned(adjacency)] = int(triangle);
         }
 
-        adjacency = findAdjacency(v1v2, oldAdj);
+        adjacency = findAdjacency(unsigned(v1v2), oldAdj);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v1v2][adjacency] = int(triangle);
+            adjacencies[unsigned(v1v2)][unsigned(adjacency)] = int(triangle);
         }
     }
     if(v2v3 != noAdjacentTriangle && v2v3 < length)
     {
-        adjacency = findAdjacency(v2v3, old);
+        adjacency = findAdjacency(unsigned(v2v3), old);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v2v3][adjacency] = int(triangle);
+            adjacencies[unsigned(v2v3)][unsigned(adjacency)] = int(triangle);
         }
 
-        adjacency = findAdjacency(v2v3, oldAdj);
+        adjacency = findAdjacency(unsigned(v2v3), oldAdj);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v2v3][adjacency] = int(triangle);
+            adjacencies[unsigned(v2v3)][unsigned(adjacency)] = int(triangle);
         }
     }
     if(v3v1 != noAdjacentTriangle && v3v1 < length)
     {
-        adjacency = findAdjacency(v3v1, old);
+        adjacency = findAdjacency(unsigned(v3v1), old);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v3v1][adjacency] = int(triangle);
+            adjacencies[unsigned(v3v1)][unsigned(adjacency)] = int(triangle);
         }
 
-        adjacency = findAdjacency(v3v1, oldAdj);
+        adjacency = findAdjacency(unsigned(v3v1), oldAdj);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v3v1][adjacency] = int(triangle);
+            adjacencies[unsigned(v3v1)][unsigned(adjacency)] = int(triangle);
         }
     }
 }
@@ -140,11 +140,11 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, co
  * @param[in] v3v1: the adjacent triangle index in edge v3v1
  * @param[in] old: the old triangle index that must be replaced in the adjacencies
 */
-void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, const int v1v2, const int v2v3, const int v3v1, const unsigned int old)
+void Triangulation::addAdjacenciesForNewTriangle(unsigned int triangle, int v1v2, int v2v3, int v3v1, unsigned int old)
 {
     addAdjacenciesForNewTriangle(v1v2, v2v3, v3v1);
 
-    unsigned int length = unsigned(adjacencies.size());
+    int length = int(adjacencies.size());
 
     int adjacency = noAdjacentTriangle;
 
@@ -153,26 +153,26 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, co
 
     if(v1v2 != noAdjacentTriangle && v1v2 < length)
     {
-        adjacency = findAdjacency(v1v2, old);
+        adjacency = findAdjacency(unsigned(v1v2), old);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v1v2][adjacency] = int(triangle);
+            adjacencies[unsigned(v1v2)][unsigned(adjacency)] = int(triangle);
         }
     }
     if(v2v3 != noAdjacentTriangle && v2v3 < length)
     {
-        adjacency = findAdjacency(v2v3, old);
+        adjacency = findAdjacency(unsigned(v2v3), old);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v2v3][adjacency] = int(triangle);
+            adjacencies[unsigned(v2v3)][unsigned(adjacency)] = int(triangle);
         }
     }
     if(v3v1 != noAdjacentTriangle && v3v1 < length)
     {
-        adjacency = findAdjacency(v3v1, old);
+        adjacency = findAdjacency(unsigned(v3v1), old);
         if(adjacency != noAdjacentTriangle)
         {
-            adjacencies[v3v1][adjacency] = int(triangle);
+            adjacencies[unsigned(v3v1)][unsigned(adjacency)] = int(triangle);
         }
     }
 }
@@ -183,7 +183,7 @@ void Triangulation::addAdjacenciesForNewTriangle(const unsigned int triangle, co
  * @param[in] adjacent: the adjacent triangle where the adjacency must be checked
  * @return adjacency: the edge where the triangle is adjacent to the adjacent triangle
 */
-int Triangulation::findAdjacency(const unsigned int triangle, const unsigned int adjacent)
+int Triangulation::findAdjacency(unsigned int triangle, unsigned int adjacent)
 {
     //check if the triangle is adjacent in that edge with the adjacent
     if(adjacencies[triangle][v1v2Edge] == int(adjacent))

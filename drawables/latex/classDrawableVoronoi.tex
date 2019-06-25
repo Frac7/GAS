@@ -2,6 +2,15 @@
 \label{classDrawableVoronoi}\index{Drawable\+Voronoi@{Drawable\+Voronoi}}
 
 
+\hyperlink{classDrawableVoronoi}{Drawable\+Voronoi}\+: drawable object for Voronoi diagram.  
+
+
+
+
+{\ttfamily \#include $<$drawablevoronoi.\+h$>$}
+
+
+
 Inheritance diagram for Drawable\+Voronoi\+:
 % FIG 0
 
@@ -20,6 +29,11 @@ cg3\+::\+Pointd \hyperlink{classDrawableVoronoi_a1707c9e575880eeac9e981d73e03b3b
 double \hyperlink{classDrawableVoronoi_af26652a83c96748bf9a09abc6255672b}{scene\+Radius} () const
 \begin{DoxyCompactList}\small\item\em Return the radius of the triangulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{classDrawableVoronoi}{Drawable\+Voronoi}\+: drawable object for Voronoi diagram. 
+
+This class inherits only from Drawable\+Object, this implementation follows the composition pattern\+: the drawable object for the triangulation has two members that are references to the D\+AG, used to draw only leaves, and to the triangulation data structure. The diagram is drawn using circumcenters of each triangle and lines from the circumcenter to the circumcenter of each adjacent triangle. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}\label{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}} 

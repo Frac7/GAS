@@ -4,13 +4,13 @@
  * @brief Creates a node without children and initializes the data field with the input parameter
  * @param[in] data: the index of the triangle in the array of triangulation
 */
-Node::Node(const unsigned int data)
+Node::Node(unsigned int data)
     : c1(noChild), c2(noChild), c3(noChild), data(data) {}
 /**
  * @brief Adds a child to a existing node
  * @param[in] value: the index of the child in the dag
 */
-void Node::addChild(const int value)
+void Node::addChild(int value)
 {
     if(c1 == noChild)
     {
@@ -57,7 +57,7 @@ int Node::getC3() const
  * @brief Returns the node data
  * @return data: index of the triangle in the triangulation
 */
-int Node::getData() const
+unsigned int Node::getData() const
 {
     return data;
 }

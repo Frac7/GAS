@@ -16,8 +16,8 @@ class DAG
 public:
 
     //add node to the dag
-    void addNode(const Node& node, const unsigned int p1, const unsigned int p2);
-    void addNode(const Node& node, const unsigned int p1);
+    void addNode(const Node& node, unsigned int p1, unsigned int p2);
+    void addNode(const Node& node, unsigned int p1);
     void addNode(const Node& node);
 
     /* adding a node means adding a triangle

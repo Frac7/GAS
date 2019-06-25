@@ -1,5 +1,14 @@
 \hypertarget{classTriangle}{}\section{Triangle Class Reference}
 \label{classTriangle}\index{Triangle@{Triangle}}
+
+
+\hyperlink{classTriangle}{Triangle}.  
+
+
+
+
+{\ttfamily \#include $<$triangle.\+h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -14,13 +23,7 @@ cg3\+::\+Point2\+Dd \hyperlink{classTriangle_ad63dee82c3268c96bb5a6d353675c133}{
 cg3\+::\+Point2\+Dd \hyperlink{classTriangle_a4d120f7288b7051a1cf442268edd328d}{get\+Center} () const
 \begin{DoxyCompactList}\small\item\em Returns the center of the triangle. \end{DoxyCompactList}\item 
 cg3\+::\+Point2\+Dd \hyperlink{classTriangle_a0ac42109ff92fc5b907283e10d7946b2}{get\+Circumcenter} () const
-\begin{DoxyCompactList}\small\item\em Returns the center of the triangle. \end{DoxyCompactList}\item 
-void \hyperlink{classTriangle_a5769869c3384056f58410395ccd1a979}{set\+V1} (const cg3\+::\+Point2\+Dd \&value)
-\begin{DoxyCompactList}\small\item\em Set the first vertex. \end{DoxyCompactList}\item 
-void \hyperlink{classTriangle_aeff8b3fc2c12c3608de55e01f995015a}{set\+V2} (const cg3\+::\+Point2\+Dd \&value)
-\begin{DoxyCompactList}\small\item\em Set the second vertex. \end{DoxyCompactList}\item 
-void \hyperlink{classTriangle_a0781ccac767888ddda2fa868320d0d6b}{set\+V3} (const cg3\+::\+Point2\+Dd \&value)
-\begin{DoxyCompactList}\small\item\em Set the third vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the center of the triangle. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,6 +37,11 @@ cg3\+::\+Point2\+Dd {\bfseries v2}
 cg3\+::\+Point2\+Dd {\bfseries v3}
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{classTriangle}{Triangle}. 
+
+The triangle data structure is implemented by storing inserted points for the algorithm\+: it contains the 3 vertices in counter-\/clockwise order. This class implements getters and setters and two methods, one for the barycenter (used for the drawable) and one for the circumcenter (used for Voronoi). 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classTriangle_a3bb081f3c4d90284e27e1005a2b33599}\label{classTriangle_a3bb081f3c4d90284e27e1005a2b33599}} 
@@ -123,51 +131,6 @@ Returns the third vertex.
 \begin{DoxyReturn}{Returns}
 v3\+: vertex 3 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classTriangle_a5769869c3384056f58410395ccd1a979}\label{classTriangle_a5769869c3384056f58410395ccd1a979}} 
-\index{Triangle@{Triangle}!set\+V1@{set\+V1}}
-\index{set\+V1@{set\+V1}!Triangle@{Triangle}}
-\subsubsection{\texorpdfstring{set\+V1()}{setV1()}}
-{\footnotesize\ttfamily void Triangle\+::set\+V1 (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{value }\end{DoxyParamCaption})}
-
-
-
-Set the first vertex. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em value} & the vertex \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classTriangle_aeff8b3fc2c12c3608de55e01f995015a}\label{classTriangle_aeff8b3fc2c12c3608de55e01f995015a}} 
-\index{Triangle@{Triangle}!set\+V2@{set\+V2}}
-\index{set\+V2@{set\+V2}!Triangle@{Triangle}}
-\subsubsection{\texorpdfstring{set\+V2()}{setV2()}}
-{\footnotesize\ttfamily void Triangle\+::set\+V2 (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{value }\end{DoxyParamCaption})}
-
-
-
-Set the second vertex. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em value} & the vertex \\
-\hline
-\end{DoxyParams}
-\mbox{\Hypertarget{classTriangle_a0781ccac767888ddda2fa868320d0d6b}\label{classTriangle_a0781ccac767888ddda2fa868320d0d6b}} 
-\index{Triangle@{Triangle}!set\+V3@{set\+V3}}
-\index{set\+V3@{set\+V3}!Triangle@{Triangle}}
-\subsubsection{\texorpdfstring{set\+V3()}{setV3()}}
-{\footnotesize\ttfamily void Triangle\+::set\+V3 (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{value }\end{DoxyParamCaption})}
-
-
-
-Set the third vertex. 
-
-
-\begin{DoxyParams}[1]{Parameters}
-\mbox{\tt in}  & {\em value} & the vertex \\
-\hline
-\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

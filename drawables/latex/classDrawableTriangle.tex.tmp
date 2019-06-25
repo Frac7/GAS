@@ -2,6 +2,15 @@
 \label{classDrawableTriangle}\index{Drawable\+Triangle@{Drawable\+Triangle}}
 
 
+\hyperlink{classDrawableTriangle}{Drawable\+Triangle}.  
+
+
+
+
+{\ttfamily \#include $<$drawabletriangle.\+h$>$}
+
+
+
 Inheritance diagram for Drawable\+Triangle\+:
 % FIG 0
 
@@ -21,6 +30,11 @@ cg3\+::\+Pointd \hyperlink{classDrawableTriangle_a751976132aa5057995dfd42cc48c7c
 double \hyperlink{classDrawableTriangle_a2eed49d841204c4925ef7fcadba4e8f4}{scene\+Radius} () const
 \begin{DoxyCompactList}\small\item\em Calculates the distance between the farthest vertex and the barycenter. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+\hyperlink{classDrawableTriangle}{Drawable\+Triangle}. 
+
+This class inherits from Triangle and Drawable\+Object. This class is used only for drawing the bounding triangle, it is initialized with the constant coordinates declared in the manager. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classDrawableTriangle_ae35494dd883c6248a2128b7fd931b4ab}\label{classDrawableTriangle_ae35494dd883c6248a2128b7fd931b4ab}} 
