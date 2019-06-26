@@ -1,0 +1,122 @@
+\hypertarget{classDAG}{}\section{D\+AG Class Reference}
+\label{classDAG}\index{D\+AG@{D\+AG}}
+
+
+\hyperlink{classDAG}{D\+AG}\+: search data structure.  
+
+
+
+
+{\ttfamily \#include $<$dag.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classDAG_aed6fe76f8e3400755b063bc0d0152955}{add\+Node} (const \hyperlink{classNode}{Node} \&node, unsigned int p1, unsigned int p2)
+\begin{DoxyCompactList}\small\item\em Adds node the dag and sets it as children of nodes p1 and p2. \end{DoxyCompactList}\item 
+void \hyperlink{classDAG_ac0ca03d85f1bd95c9e2dd092923d21ed}{add\+Node} (const \hyperlink{classNode}{Node} \&node, unsigned int p1)
+\begin{DoxyCompactList}\small\item\em Adds node the dag and sets it as children of node p1. \end{DoxyCompactList}\item 
+void \hyperlink{classDAG_a88682a026a8f2931dbe64fc5085430ec}{add\+Node} (const \hyperlink{classNode}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Adds node the dag. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDAG_a04bf7ea8f5319b8dbcf2814d5c42e292}\label{classDAG_a04bf7ea8f5319b8dbcf2814d5c42e292}} 
+void \hyperlink{classDAG_a04bf7ea8f5319b8dbcf2814d5c42e292}{clear\+Data\+Structure} ()
+\begin{DoxyCompactList}\small\item\em Removes each node from the dag but not the root. \end{DoxyCompactList}\item 
+int \hyperlink{classDAG_addd2c3b6de47c3873bb6c0bd074f2a67}{search\+In\+Nodes} (const cg3\+::\+Point2\+Dd \&point, const std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \&triangles) const
+\begin{DoxyCompactList}\small\item\em Searches the triangle containing the point using the dag. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{classNode}{Node} $>$ \& \hyperlink{classDAG_af8afaefe800c1eb05ef631e148692c2d}{get\+Node\+List} ()
+\begin{DoxyCompactList}\small\item\em Returns the list of nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classDAG}{D\+AG}\+: search data structure. 
+
+the \hyperlink{classDAG}{D\+AG} is implemented using a vector of nodes. In this implementation, triangulation data structure stores all the triangles seen in the execution, and when a triangle is added to the triangulation, the corresponding node is added to the \hyperlink{classDAG}{D\+AG}\+: this means that the \hyperlink{classDAG}{D\+AG} and the vectors containing adjacencies and triangles in the triangulation are parallel with it. In this class, there are 3 overloads for adding nodes\+: the first method allows to add only the data of the triangle contained in the node; the second allows to add a node and update its parent to set it as child, this is the case when the point is inserted inside the triangle; the third allows to add a node and update its two parents\+: this is the case of the edge flip. There are also a method for clearing the data structur without removing the root and a method for search in the \hyperlink{classDAG}{D\+AG}\+: this method pick a point and the vector of triangle of the triangulation and, starting from the root, perform an iterative search updating the index according to parents and children. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDAG_aed6fe76f8e3400755b063bc0d0152955}\label{classDAG_aed6fe76f8e3400755b063bc0d0152955}} 
+\index{D\+AG@{D\+AG}!add\+Node@{add\+Node}}
+\index{add\+Node@{add\+Node}!D\+AG@{D\+AG}}
+\subsubsection{\texorpdfstring{add\+Node()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value,  }\item[{unsigned int}]{p1,  }\item[{unsigned int}]{p2 }\end{DoxyParamCaption})}
+
+
+
+Adds node the dag and sets it as children of nodes p1 and p2. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the node to add \\
+\hline
+\mbox{\tt in}  & {\em p1} & first parent index in the dag \\
+\hline
+\mbox{\tt in}  & {\em p2} & second parent index in the dag \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDAG_ac0ca03d85f1bd95c9e2dd092923d21ed}\label{classDAG_ac0ca03d85f1bd95c9e2dd092923d21ed}} 
+\index{D\+AG@{D\+AG}!add\+Node@{add\+Node}}
+\index{add\+Node@{add\+Node}!D\+AG@{D\+AG}}
+\subsubsection{\texorpdfstring{add\+Node()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value,  }\item[{unsigned int}]{p1 }\end{DoxyParamCaption})}
+
+
+
+Adds node the dag and sets it as children of node p1. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the node to add \\
+\hline
+\mbox{\tt in}  & {\em p1} & first parent index in the dag \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDAG_a88682a026a8f2931dbe64fc5085430ec}\label{classDAG_a88682a026a8f2931dbe64fc5085430ec}} 
+\index{D\+AG@{D\+AG}!add\+Node@{add\+Node}}
+\index{add\+Node@{add\+Node}!D\+AG@{D\+AG}}
+\subsubsection{\texorpdfstring{add\+Node()}{addNode()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void D\+A\+G\+::add\+Node (\begin{DoxyParamCaption}\item[{const \hyperlink{classNode}{Node} \&}]{value }\end{DoxyParamCaption})}
+
+
+
+Adds node the dag. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em value} & the node to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classDAG_af8afaefe800c1eb05ef631e148692c2d}\label{classDAG_af8afaefe800c1eb05ef631e148692c2d}} 
+\index{D\+AG@{D\+AG}!get\+Node\+List@{get\+Node\+List}}
+\index{get\+Node\+List@{get\+Node\+List}!D\+AG@{D\+AG}}
+\subsubsection{\texorpdfstring{get\+Node\+List()}{getNodeList()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classNode}{Node} $>$ \& D\+A\+G\+::get\+Node\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the list of nodes. 
+
+\begin{DoxyReturn}{Returns}
+node\+List\+: the list of nodes in the dag 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDAG_addd2c3b6de47c3873bb6c0bd074f2a67}\label{classDAG_addd2c3b6de47c3873bb6c0bd074f2a67}} 
+\index{D\+AG@{D\+AG}!search\+In\+Nodes@{search\+In\+Nodes}}
+\index{search\+In\+Nodes@{search\+In\+Nodes}!D\+AG@{D\+AG}}
+\subsubsection{\texorpdfstring{search\+In\+Nodes()}{searchInNodes()}}
+{\footnotesize\ttfamily int D\+A\+G\+::search\+In\+Nodes (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{point,  }\item[{const std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \&}]{triangles }\end{DoxyParamCaption}) const}
+
+
+
+Searches the triangle containing the point using the dag. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em point} & last point inserted \\
+\hline
+\mbox{\tt in}  & {\em triangles} & triangles of triangulation \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+dag.\+h\item 
+dag.\+cpp\end{DoxyCompactItemize}

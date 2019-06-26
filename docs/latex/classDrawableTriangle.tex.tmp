@@ -1,0 +1,93 @@
+\hypertarget{classDrawableTriangle}{}\section{Drawable\+Triangle Class Reference}
+\label{classDrawableTriangle}\index{Drawable\+Triangle@{Drawable\+Triangle}}
+
+
+\hyperlink{classDrawableTriangle}{Drawable\+Triangle}.  
+
+
+
+
+{\ttfamily \#include $<$drawabletriangle.\+h$>$}
+
+
+
+Inheritance diagram for Drawable\+Triangle\+:
+% FIG 0
+
+
+Collaboration diagram for Drawable\+Triangle\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDrawableTriangle_ae35494dd883c6248a2128b7fd931b4ab}{Drawable\+Triangle} (const cg3\+::\+Point2\+Dd \&v1, const cg3\+::\+Point2\+Dd \&v2, const cg3\+::\+Point2\+Dd \&v3)
+\begin{DoxyCompactList}\small\item\em Initializes the drawable object by creating a triangle. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDrawableTriangle_a732e29812f4283029b532bbd7ccc23a0}\label{classDrawableTriangle_a732e29812f4283029b532bbd7ccc23a0}} 
+void \hyperlink{classDrawableTriangle_a732e29812f4283029b532bbd7ccc23a0}{draw} () const
+\begin{DoxyCompactList}\small\item\em Draws the triangle. \end{DoxyCompactList}\item 
+cg3\+::\+Pointd \hyperlink{classDrawableTriangle_a751976132aa5057995dfd42cc48c7c56}{scene\+Center} () const
+\begin{DoxyCompactList}\small\item\em Calculates the triangle center. \end{DoxyCompactList}\item 
+double \hyperlink{classDrawableTriangle_a2eed49d841204c4925ef7fcadba4e8f4}{scene\+Radius} () const
+\begin{DoxyCompactList}\small\item\em Calculates the distance between the farthest vertex and the barycenter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{classDrawableTriangle}{Drawable\+Triangle}. 
+
+This class inherits from Triangle and Drawable\+Object. This class is used only for drawing the bounding triangle, it is initialized with the constant coordinates declared in the manager. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDrawableTriangle_ae35494dd883c6248a2128b7fd931b4ab}\label{classDrawableTriangle_ae35494dd883c6248a2128b7fd931b4ab}} 
+\index{Drawable\+Triangle@{Drawable\+Triangle}!Drawable\+Triangle@{Drawable\+Triangle}}
+\index{Drawable\+Triangle@{Drawable\+Triangle}!Drawable\+Triangle@{Drawable\+Triangle}}
+\subsubsection{\texorpdfstring{Drawable\+Triangle()}{DrawableTriangle()}}
+{\footnotesize\ttfamily Drawable\+Triangle\+::\+Drawable\+Triangle (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{v1,  }\item[{const cg3\+::\+Point2\+Dd \&}]{v2,  }\item[{const cg3\+::\+Point2\+Dd \&}]{v3 }\end{DoxyParamCaption})}
+
+
+
+Initializes the drawable object by creating a triangle. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em v1} & the first vertex coordinate \\
+\hline
+\mbox{\tt in}  & {\em v2} & the second vertex coordinate \\
+\hline
+\mbox{\tt in}  & {\em v3} & the third vertex coordinate \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDrawableTriangle_a751976132aa5057995dfd42cc48c7c56}\label{classDrawableTriangle_a751976132aa5057995dfd42cc48c7c56}} 
+\index{Drawable\+Triangle@{Drawable\+Triangle}!scene\+Center@{scene\+Center}}
+\index{scene\+Center@{scene\+Center}!Drawable\+Triangle@{Drawable\+Triangle}}
+\subsubsection{\texorpdfstring{scene\+Center()}{sceneCenter()}}
+{\footnotesize\ttfamily cg3\+::\+Pointd Drawable\+Triangle\+::scene\+Center (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Calculates the triangle center. 
+
+\begin{DoxyReturn}{Returns}
+center\+: the triangle barycenter 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classDrawableTriangle_a2eed49d841204c4925ef7fcadba4e8f4}\label{classDrawableTriangle_a2eed49d841204c4925ef7fcadba4e8f4}} 
+\index{Drawable\+Triangle@{Drawable\+Triangle}!scene\+Radius@{scene\+Radius}}
+\index{scene\+Radius@{scene\+Radius}!Drawable\+Triangle@{Drawable\+Triangle}}
+\subsubsection{\texorpdfstring{scene\+Radius()}{sceneRadius()}}
+{\footnotesize\ttfamily double Drawable\+Triangle\+::scene\+Radius (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Calculates the distance between the farthest vertex and the barycenter. 
+
+\begin{DoxyReturn}{Returns}
+radius\+: the triangle radius 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+drawabletriangle.\+h\item 
+drawabletriangle.\+cpp\end{DoxyCompactItemize}
