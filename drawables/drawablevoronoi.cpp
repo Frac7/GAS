@@ -29,9 +29,11 @@ void DrawableVoronoi::draw() const
         //ignore bounding triangle
         if(nodes[i].isLeaf())
         {
+            //draw circumcenter
             cg3::Point2Dd circumCenter = triangles[i].getCircumcenter();
             cg3::viewer::drawPoint2D(circumCenter, Qt::yellow, 5);
 
+            //draw line from the circumcenter to each circumcenter of adjacent triangles
             const std::array<int, maxAdjacentTriangles>& adjacencies = triangulation.getAdjacenciesFromTriangle(i);
 
             if(adjacencies[v1v2Edge] != noAdjacentTriangle)

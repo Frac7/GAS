@@ -13,6 +13,7 @@ void DAG::addNode(const Node& value, unsigned int p1, unsigned int p2)
     unsigned int nodeIndex = unsigned(nodeList.size());
     nodeList.push_back(value);
 
+    //updating parents
     nodeList[p1].addChild(int(nodeIndex));
     nodeList[p2].addChild(int(nodeIndex));
 }
@@ -27,6 +28,7 @@ void DAG::addNode(const Node& value, unsigned int p1)
     unsigned int nodeIndex = unsigned(nodeList.size());
     nodeList.push_back(value);
 
+    //updating parent
    nodeList[p1].addChild(int(nodeIndex));
 }
 
@@ -69,14 +71,16 @@ std::vector<Node> &DAG::getNodeList()
 */
 int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &triangles) const
 {
+    //flags to mark children as visited
     bool firstChildVisited = false;
     bool secondChildVisited = false;
     bool thirdChildVisited = false;
 
+    //indices to perform the search
     unsigned int currentNode = 0;
-    int lastParentVisited = -1;
+    int lastParentVisited = -1; //this index allows to "go back" to the parent
     int resultNode = -1;
-    int lastChildrenVisited = -1;
+    int lastChildrenVisited = -1; //this index allows to "go down" in the children subtree
 
     unsigned int length = unsigned(nodeList.size());
 

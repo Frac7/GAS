@@ -29,6 +29,7 @@ void DrawableTriangulation::draw() const
         //ignore bounding triangle
         if(nodes[i].isLeaf())
         {
+            //draw points and lines
             cg3::viewer::drawPoint2D(triangles[i].getV1(), Qt::red, 5);
             cg3::viewer::drawPoint2D(triangles[i].getV2(), Qt::red, 5);
             cg3::viewer::drawPoint2D(triangles[i].getV3(), Qt::red, 5);

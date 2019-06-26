@@ -33,10 +33,12 @@ void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3:
             //ignore deleted triangles
             if(nodeVector[i].isLeaf())
             {
+                //push 3 points for each triangle
                 points.push_back(triangleVector[i].getV1());
                 points.push_back(triangleVector[i].getV2());
                 points.push_back(triangleVector[i].getV3());
 
+                //push current triangle
                 triangles(i, 0) = j;
                 triangles(i, 1) = j + 1;
                 triangles(i, 2) = j + 2;
@@ -69,6 +71,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                   const unsigned int edge, const unsigned int adjEdge,
                   std::array<int, dimension>& triangleAdj, std::array<int, dimension>& adjTriangleAdj)
 {
+    //if the edge is illegala
     if(DelaunayTriangulation::Checker::
             isPointLyingInCircle(p1, p2, p3, pk, false))
     {
@@ -77,6 +80,15 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
         unsigned int totalTrianglesNumber = unsigned(triangles.size());
 
         //replace pi pj with pr pk
+
+        //the legalization manages 9 case: for each adjacency for the considered (new) triangle, other 3 cases are managed
+        //the internal cases manage the adjacency in the adjacent triangle for the (new) considered triangle
+
+        //this method allows to avoid other checks for adjacencies
+
+        //at first, 2 triangles are added and then the legalization is performed recursively
+
+        //for each case v1, v2, v3 and the opposite vertex are known
 
         switch (edge)
         {
