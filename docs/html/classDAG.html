@@ -86,12 +86,12 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDAG.html#a04bf7ea8f5319b8dbcf2814d5c42e292">clearDataStructure</a> ()</td></tr>
 <tr class="memdesc:a04bf7ea8f5319b8dbcf2814d5c42e292"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes each node from the dag but not the root. <br /></td></tr>
 <tr class="separator:a04bf7ea8f5319b8dbcf2814d5c42e292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd2c3b6de47c3873bb6c0bd074f2a67"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDAG.html#addd2c3b6de47c3873bb6c0bd074f2a67">searchInNodes</a> (const cg3::Point2Dd &amp;point, const std::vector&lt; <a class="el" href="classTriangle.html">Triangle</a> &gt; &amp;triangles) const</td></tr>
-<tr class="memdesc:addd2c3b6de47c3873bb6c0bd074f2a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches the triangle containing the point using the dag.  <a href="#addd2c3b6de47c3873bb6c0bd074f2a67">More...</a><br /></td></tr>
-<tr class="separator:addd2c3b6de47c3873bb6c0bd074f2a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8afaefe800c1eb05ef631e148692c2d"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classNode.html">Node</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDAG.html#af8afaefe800c1eb05ef631e148692c2d">getNodeList</a> ()</td></tr>
 <tr class="memdesc:af8afaefe800c1eb05ef631e148692c2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the list of nodes.  <a href="#af8afaefe800c1eb05ef631e148692c2d">More...</a><br /></td></tr>
 <tr class="separator:af8afaefe800c1eb05ef631e148692c2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a871ac0ced57e773b7bc8add0268159ec"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDAG.html#a871ac0ced57e773b7bc8add0268159ec">searchInNodes</a> (const unsigned int i, const unsigned int length, const cg3::Point2Dd &amp;point, const std::vector&lt; <a class="el" href="classTriangle.html">Triangle</a> &gt; &amp;triangles) const</td></tr>
+<tr class="memdesc:a871ac0ced57e773b7bc8add0268159ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Searches the triangle containing the point using the dag.  <a href="#a871ac0ced57e773b7bc8add0268159ec">More...</a><br /></td></tr>
+<tr class="separator:a871ac0ced57e773b7bc8add0268159ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classDAG.html" title="DAG: search data structure. ">DAG</a>: search data structure. </p>
@@ -224,8 +224,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="addd2c3b6de47c3873bb6c0bd074f2a67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addd2c3b6de47c3873bb6c0bd074f2a67">&#9670;&nbsp;</a></span>searchInNodes()</h2>
+<a id="a871ac0ced57e773b7bc8add0268159ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a871ac0ced57e773b7bc8add0268159ec">&#9670;&nbsp;</a></span>searchInNodes()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -233,6 +233,18 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">int DAG::searchInNodes </td>
           <td>(</td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const unsigned int&#160;</td>
+          <td class="paramname"><em>length</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const cg3::Point2Dd &amp;&#160;</td>
           <td class="paramname"><em>point</em>, </td>
         </tr>
@@ -253,6 +265,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <p>Searches the triangle containing the point using the dag. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">i</td><td>the current node </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">length</td><td>total nodes, used as base condition for recursion </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">point</td><td>last point inserted </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">triangles</td><td>triangles of triangulation </td></tr>
   </table>

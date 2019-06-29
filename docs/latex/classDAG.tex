@@ -21,10 +21,10 @@ void \hyperlink{classDAG_a88682a026a8f2931dbe64fc5085430ec}{add\+Node} (const \h
 \mbox{\Hypertarget{classDAG_a04bf7ea8f5319b8dbcf2814d5c42e292}\label{classDAG_a04bf7ea8f5319b8dbcf2814d5c42e292}} 
 void \hyperlink{classDAG_a04bf7ea8f5319b8dbcf2814d5c42e292}{clear\+Data\+Structure} ()
 \begin{DoxyCompactList}\small\item\em Removes each node from the dag but not the root. \end{DoxyCompactList}\item 
-int \hyperlink{classDAG_addd2c3b6de47c3873bb6c0bd074f2a67}{search\+In\+Nodes} (const cg3\+::\+Point2\+Dd \&point, const std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \&triangles) const
-\begin{DoxyCompactList}\small\item\em Searches the triangle containing the point using the dag. \end{DoxyCompactList}\item 
 std\+::vector$<$ \hyperlink{classNode}{Node} $>$ \& \hyperlink{classDAG_af8afaefe800c1eb05ef631e148692c2d}{get\+Node\+List} ()
-\begin{DoxyCompactList}\small\item\em Returns the list of nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Returns the list of nodes. \end{DoxyCompactList}\item 
+int \hyperlink{classDAG_a871ac0ced57e773b7bc8add0268159ec}{search\+In\+Nodes} (const unsigned int i, const unsigned int length, const cg3\+::\+Point2\+Dd \&point, const std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \&triangles) const
+\begin{DoxyCompactList}\small\item\em Searches the triangle containing the point using the dag. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -97,11 +97,11 @@ Returns the list of nodes.
 \begin{DoxyReturn}{Returns}
 node\+List\+: the list of nodes in the dag 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classDAG_addd2c3b6de47c3873bb6c0bd074f2a67}\label{classDAG_addd2c3b6de47c3873bb6c0bd074f2a67}} 
+\mbox{\Hypertarget{classDAG_a871ac0ced57e773b7bc8add0268159ec}\label{classDAG_a871ac0ced57e773b7bc8add0268159ec}} 
 \index{D\+AG@{D\+AG}!search\+In\+Nodes@{search\+In\+Nodes}}
 \index{search\+In\+Nodes@{search\+In\+Nodes}!D\+AG@{D\+AG}}
 \subsubsection{\texorpdfstring{search\+In\+Nodes()}{searchInNodes()}}
-{\footnotesize\ttfamily int D\+A\+G\+::search\+In\+Nodes (\begin{DoxyParamCaption}\item[{const cg3\+::\+Point2\+Dd \&}]{point,  }\item[{const std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \&}]{triangles }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily int D\+A\+G\+::search\+In\+Nodes (\begin{DoxyParamCaption}\item[{const unsigned int}]{i,  }\item[{const unsigned int}]{length,  }\item[{const cg3\+::\+Point2\+Dd \&}]{point,  }\item[{const std\+::vector$<$ \hyperlink{classTriangle}{Triangle} $>$ \&}]{triangles }\end{DoxyParamCaption}) const}
 
 
 
@@ -109,6 +109,10 @@ Searches the triangle containing the point using the dag.
 
 
 \begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em i} & the current node \\
+\hline
+\mbox{\tt in}  & {\em length} & total nodes, used as base condition for recursion \\
+\hline
 \mbox{\tt in}  & {\em point} & last point inserted \\
 \hline
 \mbox{\tt in}  & {\em triangles} & triangles of triangulation \\
