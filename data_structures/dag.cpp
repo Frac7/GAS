@@ -66,91 +66,75 @@ std::vector<Node> &DAG::getNodeList()
 
 /**
  * @brief Searches the triangle containing the point using the dag
+ * @param[in] i: the current node
+ * @param[in] length: total nodes, used as base condition for recursion
  * @param[in] point: last point inserted
  * @param[in] triangles: triangles of triangulation
 */
-int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &triangles) const
+int DAG::searchInNodes(const unsigned int i, const unsigned int length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const
 {
-    //flags to mark children as visited
-    bool firstChildVisited = false;
-    bool secondChildVisited = false;
-    bool thirdChildVisited = false;
-
-    //indices to perform the search
-    unsigned int currentNode = 0;
-    int lastParentVisited = 0; //this index allows to "go back" to the parent
-    int resultNode = -1;
-    int lastChildrenVisited = -1; //this index allows to "go down" in the children subtree
-
-    unsigned int length = unsigned(nodeList.size());
-
-    while(resultNode == -1 && currentNode < length)
+    if(i < length)
     {
         //get triangle index from the node
-        unsigned int data = nodeList[unsigned(currentNode)].getData();
+        unsigned int data = nodeList[i].getData();
 
         //check if the point is inside this triangle
         bool flagInside = cg3::isPointLyingInTriangle(
-                    triangles[unsigned(data)].getV1(), triangles[unsigned(data)].getV2(), triangles[unsigned(data)].getV3(), point, true);
+                    triangles[data].getV1(), triangles[data].getV2(), triangles[data].getV3(), point, true);
         //check if the node is a leaf
-        bool flagLeaf = nodeList[unsigned(currentNode)].isLeaf();
+        bool flagLeaf = nodeList[i].isLeaf();
 
         //if the point is inside and the triangle is a leaf, then return the index of the node in the dag
         if(flagInside && flagLeaf)
         {
-            resultNode = int(currentNode);
+            return int(i);
         }
         //if the flag is false, the node can be a parent or the node doesn't contain the point
         else
         {
+            int result = -1;
+
             //in this case the node is not a leaf but it contains the point
             if(!flagLeaf && flagInside)
             {
-                //if I deside to go down to a child, then these flags must be reset
-                if(lastChildrenVisited == int(currentNode))
-                {
-                    firstChildVisited = false;
-                    secondChildVisited = false;
-                    thirdChildVisited = false;
-                }
+                int child = noChild;
 
-                int child1 = nodeList[unsigned(currentNode)].getC1();
-                int child2 = nodeList[unsigned(currentNode)].getC2();
-                int child3 = nodeList[unsigned(currentNode)].getC3();
-
+                child = nodeList[i].getC1();
                 //search in children 1
-                if(child1 != noChild && !firstChildVisited)
+                if(child != noChild)
                 {
-                    lastParentVisited = int(currentNode);
-                    currentNode = unsigned(child1);
-                    firstChildVisited = true;
-                    lastChildrenVisited = child1;
+                    result = searchInNodes(unsigned(child), length, point, triangles);
+                    if(result != -1)
+                    {
+                        return result;
+                    }
                 }
-                //search in children 2
-                else if(child2 != noChild && !secondChildVisited)
-                {
-                    lastParentVisited = int(currentNode);
-                    currentNode = unsigned(child2);
-                    secondChildVisited = true;
-                    lastChildrenVisited = child2;
-                }
-                //search in children 3
-                else if(child3 != noChild && !thirdChildVisited)
-                {
-                    lastParentVisited = int(currentNode);
-                    currentNode = unsigned(child3);
-                    thirdChildVisited = true;
-                    lastChildrenVisited = child3;
-                }
-            }
-            //flagLeaf && !flagInside or both flags false, then go up to the parent
-            else if(!flagInside)
-            //it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
-            {
-                currentNode = unsigned(lastParentVisited);
-            }
 
+                child = nodeList[i].getC2();
+                //search in children 2
+                if(child != noChild)
+                {
+                    result = searchInNodes(unsigned(child), length, point, triangles);
+                    if(result != -1)
+                    {
+                        return result;
+                    }
+                }
+
+                child = nodeList[i].getC3();
+                //search in children 3
+                if(child != noChild)
+                {
+                    result = searchInNodes(unsigned(child), length, point, triangles);
+                    if(result != -1)
+                    {
+                        return result;
+                    }
+                }
+            }
         }
     }
-    return resultNode;
+    //flagLeaf && !flagInside or both flags false
+    return -1;
+    //it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
 }

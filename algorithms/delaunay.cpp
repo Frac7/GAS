@@ -355,7 +355,7 @@ void incrementalTriangulation(Triangulation& triangulation, DAG& dag, const cg3:
     const std::vector<Node>& nodes = dag.getNodeList();
 
     //find the triangle that contains this point using the DAG
-    unsigned int parentNodeIndex = unsigned(dag.searchInNodes(point, triangles));
+    unsigned int parentNodeIndex = unsigned(dag.searchInNodes(0, unsigned(nodes.size()), point, triangles));
     unsigned int triangleIndex = unsigned(nodes[parentNodeIndex].getData());
     //these numbers must be not equal to -1
 

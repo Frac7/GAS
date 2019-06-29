@@ -27,9 +27,9 @@ public:
 
     void clearDataStructure();
 
-    int searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &triangles) const;
-
     std::vector<Node>& getNodeList();
+
+    int searchInNodes(const unsigned int i, const unsigned int length, const cg3::Point2Dd& point, const std::vector<Triangle>& triangles) const;
 
 private:
     std::vector<Node> nodeList;
