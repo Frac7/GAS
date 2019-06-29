@@ -63,10 +63,14 @@ cg3::Point2Dd Triangle::getCircumcenter() const
     double bSum = bX2 + bY2;
     double cSum = cX2 + cY2;
 
-    double xNum = aSum * (v2.y() - v3.y()) + bSum * (v3.y() - v1.y()) + cSum * (v1.y() - v2.y());
+    double bcDIffY = v2.y() - v3.y();
+    double caDIffY = v3.y() - v1.y();
+    double abDIffY = v1.y() - v2.y();
+
+    double xNum = aSum * bcDIffY + bSum * caDIffY + cSum * abDIffY;
     double yNum = aSum * (v3.x() - v2.x()) + bSum * (v1.x() - v3.x()) + cSum * (v2.x() - v1.x());
 
-    double d = 2 * (v1.x() * (v2.y() - v3.y()) + v2.x() * (v3.y() - v1.y()) + v3.x() * (v1.y() - v2.y()));
+    double d = 2 * (v1.x() * bcDIffY + v2.x() * caDIffY + v3.x() * abDIffY);
 
     return cg3::Point2Dd(xNum / d, yNum / d);
 }

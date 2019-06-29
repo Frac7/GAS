@@ -26,6 +26,7 @@ void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3:
         triangles.resize(vectorSize, dimension);
 
         unsigned int j = 0;
+        unsigned int k = 0;
 
         //ignore bounding triangle
         for(unsigned int i = 1; i < vectorSize; i++)
@@ -39,11 +40,12 @@ void fillDataStructures(Triangulation& triangulation, DAG& dag, std::vector<cg3:
                 points.push_back(triangleVector[i].getV3());
 
                 //push current triangle
-                triangles(i, 0) = j;
-                triangles(i, 1) = j + 1;
-                triangles(i, 2) = j + 2;
+                triangles(k, 0) = j;
+                triangles(k, 1) = j + 1;
+                triangles(k, 2) = j + 2;
 
                 j += 3;
+                k++;
             }
         }
     }
@@ -71,7 +73,7 @@ void legalizeEdge(Triangulation& triangulation, DAG& dag,
                   const unsigned int edge, const unsigned int adjEdge,
                   std::array<int, dimension>& triangleAdj, std::array<int, dimension>& adjTriangleAdj)
 {
-    //if the edge is illegala
+    //if the edge is illegal
     if(DelaunayTriangulation::Checker::
             isPointLyingInCircle(p1, p2, p3, pk, false))
     {

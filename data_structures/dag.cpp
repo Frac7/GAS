@@ -114,43 +114,36 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
                     thirdChildVisited = false;
                 }
 
-                int child = noChild;
+                int child1 = nodeList[unsigned(currentNode)].getC1();
+                int child2 = nodeList[unsigned(currentNode)].getC2();
+                int child3 = nodeList[unsigned(currentNode)].getC3();
 
-                child = nodeList[unsigned(currentNode)].getC1();
                 //search in children 1
-                if(child != noChild && !firstChildVisited)
+                if(child1 != noChild && !firstChildVisited)
                 {
                     lastParentVisited = int(currentNode);
-                    currentNode = unsigned(child);
+                    currentNode = unsigned(child1);
                     firstChildVisited = true;
-                    lastChildrenVisited = child;
+                    lastChildrenVisited = child1;
                 }
-                else
+                //search in children 2
+                else if(child2 != noChild && !secondChildVisited)
                 {
-                    child = nodeList[unsigned(currentNode)].getC2();
-                    //search in children 2
-                    if(child != noChild && !secondChildVisited)
-                    {
-                        lastParentVisited = int(currentNode);
-                        currentNode = unsigned(child);
-                        secondChildVisited = true;
-                        lastChildrenVisited = child;
-                    }
-                    else
-                    {
-                        child = nodeList[unsigned(currentNode)].getC3();
-                        //search in children 3
-                        if(child != noChild && !thirdChildVisited)
-                        {
-                            lastParentVisited = int(currentNode);
-                            currentNode = unsigned(child);
-                            thirdChildVisited = true;
-                            lastChildrenVisited = child;
-                        }
-                    }
+                    lastParentVisited = int(currentNode);
+                    currentNode = unsigned(child2);
+                    secondChildVisited = true;
+                    lastChildrenVisited = child2;
+                }
+                //search in children 3
+                else if(child3 != noChild && !thirdChildVisited)
+                {
+                    lastParentVisited = int(currentNode);
+                    currentNode = unsigned(child3);
+                    thirdChildVisited = true;
+                    lastChildrenVisited = child3;
                 }
             }
-            //flagLeaf && !flagInside or both flags false
+            //flagLeaf && !flagInside or both flags false, then go up to the parent
             else if(!flagInside)
             //it is not necessary to call the function on siblings if the node is a leaf because the parent checks for all the children
             {

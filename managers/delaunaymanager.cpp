@@ -340,7 +340,12 @@ void DelaunayManager::checkTriangulation() {
 //They are needed if you want to implement voronoi
 /********************************************************************************************************************/
 
+/**
+ * @brief Draws Voronoi diagram from existing trinagulation
+ */
 void DelaunayManager::on_voronoiDiagramPushButton_clicked() {
+
+    //the diagram is drawn only if it doesn't already exists in the canvas
     if(!mainWindow.contains(&voronoiDiagram))
     {
         mainWindow.pushObj(&voronoiDiagram, "Voronoi diagram");
@@ -349,8 +354,12 @@ void DelaunayManager::on_voronoiDiagramPushButton_clicked() {
         fitScene();
     }
 }
-
+/**
+ * @brief Clears drawn Voronoi Diagram
+ */
 void DelaunayManager::on_clearVoronoiDiagramPushButton_clicked() {
+
+    //the diagram is erased only if the scene containts it
     if(mainWindow.contains(&voronoiDiagram))
     {
         mainWindow.deleteObj(&voronoiDiagram);
