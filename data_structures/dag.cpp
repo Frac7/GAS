@@ -78,7 +78,7 @@ int DAG::searchInNodes(const cg3::Point2Dd& point, const std::vector<Triangle> &
 
     //indices to perform the search
     unsigned int currentNode = 0;
-    int lastParentVisited = -1; //this index allows to "go back" to the parent
+    int lastParentVisited = 0; //this index allows to "go back" to the parent
     int resultNode = -1;
     int lastChildrenVisited = -1; //this index allows to "go down" in the children subtree
 

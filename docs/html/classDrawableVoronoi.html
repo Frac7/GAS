@@ -74,18 +74,20 @@ $(function() {
 Inheritance diagram for DrawableVoronoi:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDrawableVoronoi__inherit__graph.png" border="0" usemap="#DrawableVoronoi_inherit__map" alt="Inheritance graph"/></div>
-<!-- MAP 0 -->
+<map name="DrawableVoronoi_inherit__map" id="DrawableVoronoi_inherit__map">
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <div class="dynheader">
 Collaboration diagram for DrawableVoronoi:</div>
 <div class="dyncontent">
 <div class="center"><img src="classDrawableVoronoi__coll__graph.png" border="0" usemap="#DrawableVoronoi_coll__map" alt="Collaboration graph"/></div>
-<!-- MAP 1 -->
+<map name="DrawableVoronoi_coll__map" id="DrawableVoronoi_coll__map">
+</map>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aab7fabca89392b0eb45c59b4e695855a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDrawableVoronoi.html#aab7fabca89392b0eb45c59b4e695855a">DrawableVoronoi</a> (Triangulation &amp;triangulation, DAG &amp;dag, const cg3::Pointd &amp;center, const double radius)</td></tr>
+<tr class="memitem:aab7fabca89392b0eb45c59b4e695855a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDrawableVoronoi.html#aab7fabca89392b0eb45c59b4e695855a">DrawableVoronoi</a> (<a class="el" href="classTriangulation.html">Triangulation</a> &amp;triangulation, <a class="el" href="classDAG.html">DAG</a> &amp;dag, const cg3::Pointd &amp;center, const double radius)</td></tr>
 <tr class="memdesc:aab7fabca89392b0eb45c59b4e695855a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes the drawable object.  <a href="#aab7fabca89392b0eb45c59b4e695855a">More...</a><br /></td></tr>
 <tr class="separator:aab7fabca89392b0eb45c59b4e695855a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa10c214cfc42f752433c682760d88b70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDrawableVoronoi.html#aa10c214cfc42f752433c682760d88b70">draw</a> () const</td></tr>
@@ -100,7 +102,7 @@ Public Member Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classDrawableVoronoi.html" title="DrawableVoronoi: drawable object for Voronoi diagram. ">DrawableVoronoi</a>: drawable object for Voronoi diagram. </p>
-<p>This class inherits only from DrawableObject, this implementation follows the composition pattern: the drawable object for the triangulation has two members that are references to the DAG, used to draw only leaves, and to the triangulation data structure. The diagram is drawn using circumcenters of each triangle and lines from the circumcenter to the circumcenter of each adjacent triangle. </p>
+<p>This class inherits only from DrawableObject, this implementation follows the composition pattern: the drawable object for the triangulation has two members that are references to the <a class="el" href="classDAG.html" title="DAG: search data structure. ">DAG</a>, used to draw only leaves, and to the triangulation data structure. The diagram is drawn using circumcenters of each triangle and lines from the circumcenter to the circumcenter of each adjacent triangle. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aab7fabca89392b0eb45c59b4e695855a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aab7fabca89392b0eb45c59b4e695855a">&#9670;&nbsp;</a></span>DrawableVoronoi()</h2>
@@ -111,13 +113,13 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">DrawableVoronoi::DrawableVoronoi </td>
           <td>(</td>
-          <td class="paramtype">Triangulation &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classTriangulation.html">Triangulation</a> &amp;&#160;</td>
           <td class="paramname"><em>triangulation</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">DAG &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classDAG.html">DAG</a> &amp;&#160;</td>
           <td class="paramname"><em>dag</em>, </td>
         </tr>
         <tr>

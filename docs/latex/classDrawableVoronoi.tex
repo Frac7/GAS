@@ -12,15 +12,27 @@
 
 
 Inheritance diagram for Drawable\+Voronoi\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classDrawableVoronoi__inherit__graph}
+\end{center}
+\end{figure}
 
 
 Collaboration diagram for Drawable\+Voronoi\+:
-% FIG 1
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=171pt]{classDrawableVoronoi__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}{Drawable\+Voronoi} (Triangulation \&triangulation, D\+AG \&dag, const cg3\+::\+Pointd \&center, const double radius)
+\hyperlink{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}{Drawable\+Voronoi} (\hyperlink{classTriangulation}{Triangulation} \&triangulation, \hyperlink{classDAG}{D\+AG} \&dag, const cg3\+::\+Pointd \&center, const double radius)
 \begin{DoxyCompactList}\small\item\em Initializes the drawable object. \end{DoxyCompactList}\item 
 void \hyperlink{classDrawableVoronoi_aa10c214cfc42f752433c682760d88b70}{draw} () const
 \begin{DoxyCompactList}\small\item\em Draws the Voronoi diagram. \end{DoxyCompactList}\item 
@@ -33,14 +45,14 @@ double \hyperlink{classDrawableVoronoi_af26652a83c96748bf9a09abc6255672b}{scene\
 \subsection{Detailed Description}
 \hyperlink{classDrawableVoronoi}{Drawable\+Voronoi}\+: drawable object for Voronoi diagram. 
 
-This class inherits only from Drawable\+Object, this implementation follows the composition pattern\+: the drawable object for the triangulation has two members that are references to the D\+AG, used to draw only leaves, and to the triangulation data structure. The diagram is drawn using circumcenters of each triangle and lines from the circumcenter to the circumcenter of each adjacent triangle. 
+This class inherits only from Drawable\+Object, this implementation follows the composition pattern\+: the drawable object for the triangulation has two members that are references to the \hyperlink{classDAG}{D\+AG}, used to draw only leaves, and to the triangulation data structure. The diagram is drawn using circumcenters of each triangle and lines from the circumcenter to the circumcenter of each adjacent triangle. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}\label{classDrawableVoronoi_aab7fabca89392b0eb45c59b4e695855a}} 
 \index{Drawable\+Voronoi@{Drawable\+Voronoi}!Drawable\+Voronoi@{Drawable\+Voronoi}}
 \index{Drawable\+Voronoi@{Drawable\+Voronoi}!Drawable\+Voronoi@{Drawable\+Voronoi}}
 \subsubsection{\texorpdfstring{Drawable\+Voronoi()}{DrawableVoronoi()}}
-{\footnotesize\ttfamily Drawable\+Voronoi\+::\+Drawable\+Voronoi (\begin{DoxyParamCaption}\item[{Triangulation \&}]{triangulation,  }\item[{D\+AG \&}]{dag,  }\item[{const cg3\+::\+Pointd \&}]{center,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Drawable\+Voronoi\+::\+Drawable\+Voronoi (\begin{DoxyParamCaption}\item[{\hyperlink{classTriangulation}{Triangulation} \&}]{triangulation,  }\item[{\hyperlink{classDAG}{D\+AG} \&}]{dag,  }\item[{const cg3\+::\+Pointd \&}]{center,  }\item[{const double}]{radius }\end{DoxyParamCaption})}
 
 
 
